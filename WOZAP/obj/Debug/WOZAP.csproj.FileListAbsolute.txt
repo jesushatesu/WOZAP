@@ -1,0 +1,8 @@
+C:\Users\user\Desktop\апроо\WOZAP\WOZAP\obj\Debug\WOZAP.csprojResolveAssemblyReference.cache
+C:\Users\user\Desktop\апроо\WOZAP\WOZAP\bin\Debug\WOZAP.dll.config
+C:\Users\user\Desktop\апроо\WOZAP\WOZAP\bin\Debug\WOZAP.dll
+C:\Users\user\Desktop\апроо\WOZAP\WOZAP\bin\Debug\WOZAP.pdb
+C:\Users\user\Desktop\апроо\WOZAP\WOZAP\bin\Debug\ChatWindow.exe
+C:\Users\user\Desktop\апроо\WOZAP\WOZAP\bin\Debug\ChatWindow.pdb
+C:\Users\user\Desktop\апроо\WOZAP\WOZAP\obj\Debug\WOZAP.dll
+C:\Users\user\Desktop\апроо\WOZAP\WOZAP\obj\Debug\WOZAP.pdb
