@@ -6,7 +6,7 @@ using System.ServiceModel;
 using System.Text;
 using ChatWindow;
 
-namespace WOZAP
+namespace WOZAP// fjvnfj
 {
     [ServiceContract(CallbackContract = typeof(IServerChatCallback))]   
     public interface IService
