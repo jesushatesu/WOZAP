@@ -6,3 +6,6 @@ C:\Users\user\Desktop\апроо\WOZAP\WOZAP\bin\Debug\ChatWindow.exe
 C:\Users\user\Desktop\апроо\WOZAP\WOZAP\bin\Debug\ChatWindow.pdb
 C:\Users\user\Desktop\апроо\WOZAP\WOZAP\obj\Debug\WOZAP.dll
 C:\Users\user\Desktop\апроо\WOZAP\WOZAP\obj\Debug\WOZAP.pdb
+C:\Users\Илья\Desktop\ТиМП\WOZAP\WOZAP\obj\Debug\WOZAP.csprojAssemblyReference.cache
+C:\Users\Илья\Desktop\ТиМП\WOZAP\WOZAP\obj\Debug\WOZAP.dll
+C:\Users\Илья\Desktop\ТиМП\WOZAP\WOZAP\obj\Debug\WOZAP.pdb

@@ -66,12 +66,6 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\ChatWindow\ChatWindow\ChatWindow.csproj">
-      <Project>{85ed1d11-5fba-4ad9-9456-fd14d0025b1b}</Project>
-      <Name>ChatWindow</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <Service Include="{3259AA49-8AA1-44D3-9025-A0B520596A8C}" />
   </ItemGroup>
   <ItemGroup>
