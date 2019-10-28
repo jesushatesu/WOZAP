@@ -4,13 +4,29 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.ServiceModel;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace MainWindow
 {
-	public partial class UserWindow : Form
+	public interface IServerChatCallback
+	{
+		[OperationContract]
+		void MsgCallback(string msg);
+
+		[OperationContract]
+		void ConnectUserCallback(string userName);
+
+		[OperationContract]
+		void DisconnectUserCallback(string userName);
+
+		[OperationContract]
+		void ModificationMsgCallback(string msg);
+	}
+
+	public partial class UserWindow : Form, IServerChatCallback
 	{
 		private SingInWindow _singInWindow;
 		private string _userName;
@@ -22,6 +38,8 @@ namespace MainWindow
 			InitializeComponent();
 			this.userName.Text = _userName;
 		}
+
+		//private void MainWindow_Load(object sender, EventArgs e)
 
 		private void closeButton_Click(object sender, EventArgs e)
 		{
@@ -60,5 +78,24 @@ namespace MainWindow
 			_singInWindow.Show();
 		}
 
+		public void MsgCallback(string msg)
+		{
+			
+		}
+
+		public void ConnectUserCallback(string userName)
+		{
+			
+		}
+
+		public void DisconnectUserCallback(string userName)
+		{
+			
+		}
+
+		public void ModificationMsgCallback(string msg)
+		{
+			
+		}
 	}
 }

@@ -4,9 +4,9 @@ using System.Linq;
 using System.Runtime.Serialization;
 using System.ServiceModel;
 using System.Text;
-using ChatWindow;
+using MainWindow;
 
-namespace WOZAP// fjvnfj
+namespace WOZAP
 {
     [ServiceContract(CallbackContract = typeof(IServerChatCallback))]   
     public interface IService

@@ -73,5 +73,11 @@
       <DependentUpon>DataClasses1.dbml</DependentUpon>
     </None>
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\MainWindow\MainWindow.csproj">
+      <Project>{55d9bfc3-6ea9-4124-9da1-a2cff76828da}</Project>
+      <Name>MainWindow</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
