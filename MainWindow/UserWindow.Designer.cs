@@ -1,9 +1,16 @@
 ﻿namespace MainWindow
 {
-	partial class SingInWindow
+	partial class UserWindow
 	{
+		/// <summary>
+		/// Required designer variable.
+		/// </summary>
 		private System.ComponentModel.IContainer components = null;
 
+		/// <summary>
+		/// Clean up any resources being used.
+		/// </summary>
+		/// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
 		protected override void Dispose(bool disposing)
 		{
 			if (disposing && (components != null))
@@ -21,8 +28,12 @@
 		/// </summary>
 		private void InitializeComponent()
 		{
-			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SingInWindow));
+			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(UserWindow));
 			this.mainFoneSingIn = new System.Windows.Forms.Panel();
+			this.Left = new System.Windows.Forms.Panel();
+			this.userInfoBox = new System.Windows.Forms.Panel();
+			this.userName = new System.Windows.Forms.Label();
+			this.buttonLogOut = new System.Windows.Forms.Button();
 			this.topblokAuth = new System.Windows.Forms.Panel();
 			this.panel2 = new System.Windows.Forms.Panel();
 			this.wozzup = new System.Windows.Forms.Label();
@@ -30,33 +41,68 @@
 			this.pictureBox1 = new System.Windows.Forms.PictureBox();
 			this.buttonMinimized = new System.Windows.Forms.PictureBox();
 			this.closeButton = new System.Windows.Forms.PictureBox();
-			this.pictureBox3 = new System.Windows.Forms.PictureBox();
-			this.loginLine = new System.Windows.Forms.TextBox();
-			this.labelAuthorization = new System.Windows.Forms.Label();
-			this.buttonSingIn = new System.Windows.Forms.Button();
 			this.mainFoneSingIn.SuspendLayout();
+			this.Left.SuspendLayout();
+			this.userInfoBox.SuspendLayout();
 			this.topblokAuth.SuspendLayout();
 			this.panel2.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.buttonMinimized)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.closeButton)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
 			this.SuspendLayout();
 			// 
 			// mainFoneSingIn
 			// 
 			this.mainFoneSingIn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(134)))), ((int)(((byte)(191)))), ((int)(((byte)(239)))));
+			this.mainFoneSingIn.Controls.Add(this.Left);
 			this.mainFoneSingIn.Controls.Add(this.topblokAuth);
-			this.mainFoneSingIn.Controls.Add(this.pictureBox3);
-			this.mainFoneSingIn.Controls.Add(this.loginLine);
-			this.mainFoneSingIn.Controls.Add(this.labelAuthorization);
-			this.mainFoneSingIn.Controls.Add(this.buttonSingIn);
 			this.mainFoneSingIn.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.mainFoneSingIn.Location = new System.Drawing.Point(0, 0);
 			this.mainFoneSingIn.Name = "mainFoneSingIn";
-			this.mainFoneSingIn.Size = new System.Drawing.Size(756, 438);
-			this.mainFoneSingIn.TabIndex = 0;
+			this.mainFoneSingIn.Size = new System.Drawing.Size(1041, 573);
+			this.mainFoneSingIn.TabIndex = 1;
+			// 
+			// Left
+			// 
+			this.Left.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(90)))), ((int)(((byte)(170)))));
+			this.Left.Controls.Add(this.userInfoBox);
+			this.Left.Dock = System.Windows.Forms.DockStyle.Left;
+			this.Left.Location = new System.Drawing.Point(0, 35);
+			this.Left.Name = "Left";
+			this.Left.Size = new System.Drawing.Size(397, 538);
+			this.Left.TabIndex = 7;
+			// 
+			// userInfoBox
+			// 
+			this.userInfoBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(120)))), ((int)(((byte)(111)))), ((int)(((byte)(249)))));
+			this.userInfoBox.Controls.Add(this.userName);
+			this.userInfoBox.Controls.Add(this.buttonLogOut);
+			this.userInfoBox.Dock = System.Windows.Forms.DockStyle.Top;
+			this.userInfoBox.Location = new System.Drawing.Point(0, 0);
+			this.userInfoBox.Name = "userInfoBox";
+			this.userInfoBox.Size = new System.Drawing.Size(397, 60);
+			this.userInfoBox.TabIndex = 0;
+			// 
+			// userName
+			// 
+			this.userName.AutoSize = true;
+			this.userName.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.userName.Location = new System.Drawing.Point(12, 14);
+			this.userName.Name = "userName";
+			this.userName.Size = new System.Drawing.Size(133, 29);
+			this.userName.TabIndex = 1;
+			this.userName.Text = "LoginUser";
+			// 
+			// buttonLogOut
+			// 
+			this.buttonLogOut.Location = new System.Drawing.Point(243, 14);
+			this.buttonLogOut.Name = "buttonLogOut";
+			this.buttonLogOut.Size = new System.Drawing.Size(151, 30);
+			this.buttonLogOut.TabIndex = 0;
+			this.buttonLogOut.Text = "log out";
+			this.buttonLogOut.UseVisualStyleBackColor = true;
+			this.buttonLogOut.Click += new System.EventHandler(this.buttonLogOut_Click);
 			// 
 			// topblokAuth
 			// 
@@ -64,12 +110,11 @@
 			this.topblokAuth.Controls.Add(this.panel2);
 			this.topblokAuth.Controls.Add(this.buttonMinimized);
 			this.topblokAuth.Controls.Add(this.closeButton);
+			this.topblokAuth.Dock = System.Windows.Forms.DockStyle.Top;
 			this.topblokAuth.Location = new System.Drawing.Point(0, 0);
 			this.topblokAuth.Name = "topblokAuth";
-			this.topblokAuth.Size = new System.Drawing.Size(756, 35);
+			this.topblokAuth.Size = new System.Drawing.Size(1041, 35);
 			this.topblokAuth.TabIndex = 6;
-			this.topblokAuth.MouseDown += new System.Windows.Forms.MouseEventHandler(this.topblokAuth_MouseDown);
-			this.topblokAuth.MouseMove += new System.Windows.Forms.MouseEventHandler(this.topblokAuth_MouseMove);
 			// 
 			// panel2
 			// 
@@ -116,7 +161,7 @@
 			// 
 			this.buttonMinimized.Cursor = System.Windows.Forms.Cursors.Hand;
 			this.buttonMinimized.Image = ((System.Drawing.Image)(resources.GetObject("buttonMinimized.Image")));
-			this.buttonMinimized.Location = new System.Drawing.Point(688, 3);
+			this.buttonMinimized.Location = new System.Drawing.Point(973, 3);
 			this.buttonMinimized.Name = "buttonMinimized";
 			this.buttonMinimized.Size = new System.Drawing.Size(25, 25);
 			this.buttonMinimized.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -131,7 +176,7 @@
 			this.closeButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(62)))), ((int)(((byte)(128)))), ((int)(((byte)(182)))));
 			this.closeButton.Cursor = System.Windows.Forms.Cursors.Hand;
 			this.closeButton.Image = ((System.Drawing.Image)(resources.GetObject("closeButton.Image")));
-			this.closeButton.Location = new System.Drawing.Point(719, 3);
+			this.closeButton.Location = new System.Drawing.Point(1004, 3);
 			this.closeButton.Name = "closeButton";
 			this.closeButton.Size = new System.Drawing.Size(25, 25);
 			this.closeButton.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -141,66 +186,20 @@
 			this.closeButton.MouseEnter += new System.EventHandler(this.closeButton_MouseEnter);
 			this.closeButton.MouseLeave += new System.EventHandler(this.closeButton_MouseLeave);
 			// 
-			// pictureBox3
-			// 
-			this.pictureBox3.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox3.Image")));
-			this.pictureBox3.Location = new System.Drawing.Point(160, 202);
-			this.pictureBox3.Name = "pictureBox3";
-			this.pictureBox3.Size = new System.Drawing.Size(30, 30);
-			this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-			this.pictureBox3.TabIndex = 5;
-			this.pictureBox3.TabStop = false;
-			// 
-			// loginLine
-			// 
-			this.loginLine.Font = new System.Drawing.Font("Mongolian Baiti", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.loginLine.Location = new System.Drawing.Point(206, 202);
-			this.loginLine.Multiline = true;
-			this.loginLine.Name = "loginLine";
-			this.loginLine.Size = new System.Drawing.Size(344, 32);
-			this.loginLine.TabIndex = 2;
-			// 
-			// labelAuthorization
-			// 
-			this.labelAuthorization.Dock = System.Windows.Forms.DockStyle.Top;
-			this.labelAuthorization.Font = new System.Drawing.Font("Segoe Print", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.labelAuthorization.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-			this.labelAuthorization.Location = new System.Drawing.Point(0, 0);
-			this.labelAuthorization.Name = "labelAuthorization";
-			this.labelAuthorization.Size = new System.Drawing.Size(756, 247);
-			this.labelAuthorization.TabIndex = 1;
-			this.labelAuthorization.Text = "Authorization";
-			this.labelAuthorization.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-			// 
-			// buttonSingIn
-			// 
-			this.buttonSingIn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(246)))), ((int)(((byte)(29)))));
-			this.buttonSingIn.Cursor = System.Windows.Forms.Cursors.Hand;
-			this.buttonSingIn.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
-			this.buttonSingIn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(165)))), ((int)(((byte)(247)))), ((int)(((byte)(174)))));
-			this.buttonSingIn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-			this.buttonSingIn.Font = new System.Drawing.Font("Segoe UI", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-			this.buttonSingIn.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-			this.buttonSingIn.Location = new System.Drawing.Point(257, 263);
-			this.buttonSingIn.Name = "buttonSingIn";
-			this.buttonSingIn.Size = new System.Drawing.Size(249, 47);
-			this.buttonSingIn.TabIndex = 0;
-			this.buttonSingIn.Text = "Sing in";
-			this.buttonSingIn.UseVisualStyleBackColor = false;
-			this.buttonSingIn.Click += new System.EventHandler(this.buttonSingIn_Click);
-			// 
-			// SingInWindow
+			// UserWindow
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(756, 438);
+			this.ClientSize = new System.Drawing.Size(1041, 573);
 			this.Controls.Add(this.mainFoneSingIn);
 			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-			this.Name = "SingInWindow";
+			this.Name = "UserWindow";
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-			this.Text = "SingIn";
+			this.Text = "UserWindow";
 			this.mainFoneSingIn.ResumeLayout(false);
-			this.mainFoneSingIn.PerformLayout();
+			this.Left.ResumeLayout(false);
+			this.userInfoBox.ResumeLayout(false);
+			this.userInfoBox.PerformLayout();
 			this.topblokAuth.ResumeLayout(false);
 			this.panel2.ResumeLayout(false);
 			this.panel2.PerformLayout();
@@ -208,7 +207,6 @@
 			((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.buttonMinimized)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.closeButton)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
 			this.ResumeLayout(false);
 
 		}
@@ -216,16 +214,16 @@
 		#endregion
 
 		private System.Windows.Forms.Panel mainFoneSingIn;
-		private System.Windows.Forms.Button buttonSingIn;
-		private System.Windows.Forms.Label labelAuthorization;
-		private System.Windows.Forms.TextBox loginLine;
-		private System.Windows.Forms.PictureBox buttonMinimized;
-		private System.Windows.Forms.PictureBox closeButton;
-		private System.Windows.Forms.PictureBox pictureBox3;
 		private System.Windows.Forms.Panel topblokAuth;
 		private System.Windows.Forms.Panel panel2;
 		private System.Windows.Forms.Label wozzup;
 		private System.Windows.Forms.PictureBox pictureBox4;
 		private System.Windows.Forms.PictureBox pictureBox1;
+		private System.Windows.Forms.PictureBox buttonMinimized;
+		private System.Windows.Forms.PictureBox closeButton;
+		private new System.Windows.Forms.Panel Left;
+		private System.Windows.Forms.Panel userInfoBox;
+		private System.Windows.Forms.Label userName;
+		private System.Windows.Forms.Button buttonLogOut;
 	}
 }

@@ -7,3 +7,4 @@ C:\Users\Илья\Desktop\ТиМП\WOZAP\MainWindow\obj\Debug\MainWindow.SingInW
 C:\Users\Илья\Desktop\ТиМП\WOZAP\MainWindow\obj\Debug\MainWindow.csproj.GenerateResource.cache
 C:\Users\Илья\Desktop\ТиМП\WOZAP\MainWindow\obj\Debug\MainWindow.exe
 C:\Users\Илья\Desktop\ТиМП\WOZAP\MainWindow\obj\Debug\MainWindow.pdb
+C:\Users\Илья\Desktop\ТиМП\WOZAP\MainWindow\obj\Debug\MainWindow.UserWindow.resources

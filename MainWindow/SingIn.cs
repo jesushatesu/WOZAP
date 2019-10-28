@@ -46,5 +46,35 @@ namespace MainWindow
 		{
 			lastPoint = new Point(e.X, e.Y);
 		}
+
+		private void buttonMinimized_MouseLeave(object sender, EventArgs e)
+		{
+			this.buttonMinimized.BackColor = Color.FromArgb(62, 128, 182);
+		}
+
+		private void buttonMinimized_Click(object sender, EventArgs e)
+		{
+			this.WindowState = FormWindowState.Minimized;
+		}
+
+		private void buttonMinimized_MouseEnter(object sender, EventArgs e)
+		{
+			this.buttonMinimized.BackColor = Color.FromArgb(131, 175, 230);
+		}
+
+		private void buttonSingIn_Click(object sender, EventArgs e)
+		{
+			if (this.loginLine.Text != "")
+			{
+				this.Hide();
+				UserWindow userWindow = new UserWindow(this.loginLine.Text, this);
+				userWindow.Show();
+
+			}
+			else
+			{
+				this.loginLine.Focus();
+			}
+		}
 	}
 }
