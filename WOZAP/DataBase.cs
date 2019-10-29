@@ -23,23 +23,23 @@ namespace WOZAP
     public class DataBase : IDataBase
     {
         private static string[] UnsentMsg;
-        public static void AddUser(string user)
+        public void AddUser(string user)
         {
 
         }
-        public static void AddMsg(string Msg)
+        public void AddMsg(string Msg)
         {
 
         }
-        public static string GetMsg(string UserName)
+        public string GetMsg(string UserName)
         {
             return UserName;
         }
-        public static string[] GetUsers()
+        public string[] GetUsers()
         {
             return null;
         }
-        public static string ModificationMsgDB(int idMsg, string newMsg)
+        public string ModificationMsgDB(int idMsg, string newMsg)
         {
             return null;
         }
