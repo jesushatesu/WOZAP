@@ -11,7 +11,7 @@ namespace WOZAP
     [ServiceBehavior(InstanceContextMode = InstanceContextMode.Single)]
     public class Service : IService
     {
-
+		//qwer
         IDataBase dataBase;
         static List<User> users;
 
