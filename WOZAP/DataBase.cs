@@ -20,7 +20,7 @@ namespace WOZAP
 
     }
 
-    public static class DataBase : IDataBase
+    public class DataBase : IDataBase
     {
         private static string[] UnsentMsg;
         public static void AddUser(string user)
