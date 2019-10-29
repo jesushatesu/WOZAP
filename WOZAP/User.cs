@@ -9,9 +9,9 @@ namespace WOZAP
 {
     class User
     {
-        private string name { get; set; }
-        private bool isConnected { get; set; }
-        private OperationContext opCont { get; set; }
+        public string name { get; set; }
+        public bool isConnected { get; set; }
+        public OperationContext opCont { get; set; }
 
     }
 }
