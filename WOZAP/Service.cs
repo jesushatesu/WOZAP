@@ -12,26 +12,62 @@ namespace WOZAP
     public class Service : IService
     {
 
-        static string[] users = DataBase.GetUsers();
+        IDataBase dataBase;
+        static List<User> users;
 
-        public int Connect(string userName)
+        Service()
         {
-            return 0;
+            users = GetUsers();
+        }
+
+        public string Connect(string userName, out List<User> listUsers)
+        {
+            dataBase.AddUser(userName);
+            string messages = "";
+
+            foreach (User user in users)
+            {
+                if (user.name == userName)
+                {
+                    messages = dataBase.GetMsg(userName);
+                    user.isConnected = true;
+                }
+            }
+            
+            listUsers = users;
+            return messages;
         }
 
         public void Disconnect(string userName)
         {
-
+            foreach (User user in users)
+            {
+                if (user.name == userName)
+                    user.isConnected = false;
+            }
         }
 
-        public void SendMsg(string userName, string msg)
+        public void SendMsg(string fromUserName, string toUserName, string msg)
         {
+            foreach(User user in users)
+            {
+                if (user.name == toUserName)
+                {
+                    string message = fromUserName;
+                    message += " " + DateTime.Now.ToShortTimeString() + "/n";
 
+                    message += msg;
+
+                    user.opCont.GetCallbackChannel<IServerChatCallback>().MsgCallback(message);
+
+                    break;
+                }
+            }
         }
 
-        public static string[] GetUsers()
+        public List<User> GetUsers()
         {
-            return users;
+            return dataBase.GetUsers();
         }
     }
 }

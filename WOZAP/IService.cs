@@ -12,12 +12,12 @@ namespace WOZAP
     public interface IService
     {
         [OperationContract]
-        int Connect(string userName);
+        string Connect(string userName, out List<User> listUsers);
 
         [OperationContract]
         void Disconnect(string userName);
 
         [OperationContract(IsOneWay = true)]
-        void SendMsg(string userName, string msg);
+        void SendMsg(string fromUserName, string toUserName, string msg);
     }
 }

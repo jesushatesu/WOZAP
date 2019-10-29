@@ -6,3 +6,13 @@ C:\Users\user\Desktop\апроо\WOZAP\HostASe\bin\Debug\Host.exe
 C:\Users\user\Desktop\апроо\WOZAP\HostASe\bin\Debug\Host.pdb
 C:\Users\user\Desktop\апроо\WOZAP\HostASe\obj\Debug\Host.exe
 C:\Users\user\Desktop\апроо\WOZAP\HostASe\obj\Debug\Host.pdb
+C:\Users\JesusHatesU\WOZAP\HostASe\bin\Debug\Host.exe.config
+C:\Users\JesusHatesU\WOZAP\HostASe\bin\Debug\Host.exe
+C:\Users\JesusHatesU\WOZAP\HostASe\bin\Debug\Host.pdb
+C:\Users\JesusHatesU\WOZAP\HostASe\bin\Debug\WOZAP.dll
+C:\Users\JesusHatesU\WOZAP\HostASe\bin\Debug\WOZAP.pdb
+C:\Users\JesusHatesU\WOZAP\HostASe\bin\Debug\WOZAP.dll.config
+C:\Users\JesusHatesU\WOZAP\HostASe\obj\Debug\Host.csproj.CoreCompileInputs.cache
+C:\Users\JesusHatesU\WOZAP\HostASe\obj\Debug\Host.csproj.CopyComplete
+C:\Users\JesusHatesU\WOZAP\HostASe\obj\Debug\Host.exe
+C:\Users\JesusHatesU\WOZAP\HostASe\obj\Debug\Host.pdb

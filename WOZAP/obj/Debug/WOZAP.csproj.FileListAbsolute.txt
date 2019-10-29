@@ -9,3 +9,7 @@ C:\Users\user\Desktop\апроо\WOZAP\WOZAP\obj\Debug\WOZAP.pdb
 C:\Users\Илья\Desktop\ТиМП\WOZAP\WOZAP\obj\Debug\WOZAP.csprojAssemblyReference.cache
 C:\Users\Илья\Desktop\ТиМП\WOZAP\WOZAP\obj\Debug\WOZAP.dll
 C:\Users\Илья\Desktop\ТиМП\WOZAP\WOZAP\obj\Debug\WOZAP.pdb
+C:\Users\JesusHatesU\WOZAP\WOZAP\obj\Debug\WOZAP.csprojAssemblyReference.cache
+C:\Users\JesusHatesU\WOZAP\WOZAP\obj\Debug\WOZAP.csproj.CoreCompileInputs.cache
+C:\Users\JesusHatesU\WOZAP\WOZAP\obj\Debug\WOZAP.dll
+C:\Users\JesusHatesU\WOZAP\WOZAP\obj\Debug\WOZAP.pdb

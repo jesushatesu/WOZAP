@@ -7,7 +7,7 @@ using System.ServiceModel;
 
 namespace WOZAP
 {
-    class User
+    public class User
     {
         public string name { get; set; }
         public bool isConnected { get; set; }

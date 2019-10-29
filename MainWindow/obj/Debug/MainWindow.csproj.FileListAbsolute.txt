@@ -8,3 +8,13 @@ C:\Users\Илья\Desktop\ТиМП\WOZAP\MainWindow\obj\Debug\MainWindow.csproj.
 C:\Users\Илья\Desktop\ТиМП\WOZAP\MainWindow\obj\Debug\MainWindow.exe
 C:\Users\Илья\Desktop\ТиМП\WOZAP\MainWindow\obj\Debug\MainWindow.pdb
 C:\Users\Илья\Desktop\ТиМП\WOZAP\MainWindow\obj\Debug\MainWindow.UserWindow.resources
+C:\Users\JesusHatesU\WOZAP\MainWindow\bin\Debug\MainWindow.exe.config
+C:\Users\JesusHatesU\WOZAP\MainWindow\bin\Debug\MainWindow.exe
+C:\Users\JesusHatesU\WOZAP\MainWindow\bin\Debug\MainWindow.pdb
+C:\Users\JesusHatesU\WOZAP\MainWindow\obj\Debug\MainWindow.Properties.Resources.resources
+C:\Users\JesusHatesU\WOZAP\MainWindow\obj\Debug\MainWindow.SingInWindow.resources
+C:\Users\JesusHatesU\WOZAP\MainWindow\obj\Debug\MainWindow.UserWindow.resources
+C:\Users\JesusHatesU\WOZAP\MainWindow\obj\Debug\MainWindow.csproj.GenerateResource.cache
+C:\Users\JesusHatesU\WOZAP\MainWindow\obj\Debug\MainWindow.csproj.CoreCompileInputs.cache
+C:\Users\JesusHatesU\WOZAP\MainWindow\obj\Debug\MainWindow.exe
+C:\Users\JesusHatesU\WOZAP\MainWindow\obj\Debug\MainWindow.pdb

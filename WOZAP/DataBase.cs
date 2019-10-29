@@ -14,7 +14,7 @@ namespace WOZAP
 
         string GetMsg(string UserName);
 
-        string[] GetUsers();
+        List<User> GetUsers();
 
         string ModificationMsgDB(int idMsg, string newMsg);
 
@@ -35,7 +35,7 @@ namespace WOZAP
         {
             return UserName;
         }
-        public string[] GetUsers()
+        public List<User> GetUsers()
         {
             return null;
         }
