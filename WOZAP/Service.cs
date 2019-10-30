@@ -11,13 +11,13 @@ namespace WOZAP
     [ServiceBehavior(InstanceContextMode = InstanceContextMode.Single)]
     public class Service : IService
     {
-		//qwer
         IDataBase dataBase;
         static List<User> users;
 
         Service()
         {
             users = GetUsers();
+            dataBase = new DataBase();
         }
 
         public string Connect(string userName, out List<User> listUsers)
@@ -27,6 +27,8 @@ namespace WOZAP
 
             foreach (User user in users)
             {
+                user.opCont.GetCallbackChannel<IServerChatCallback>().ConnectUserCallback(user.name);
+
                 if (user.name == userName)
                 {
                     messages = dataBase.GetMsg(userName);

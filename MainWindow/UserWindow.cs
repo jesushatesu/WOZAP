@@ -4,39 +4,30 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
-using System.ServiceModel;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.ServiceModel;
+using WOZAP;
 
 namespace MainWindow
 {
-	public interface IServerChatCallback
-	{
-		[OperationContract]
-		void MsgCallback(string msg);
-
-		[OperationContract]
-		void ConnectUserCallback(string userName);
-
-		[OperationContract]
-		void DisconnectUserCallback(string userName);
-
-		[OperationContract]
-		void ModificationMsgCallback(string msg);
-	}
 
 	public partial class UserWindow : Form, IServerChatCallback
 	{
 		private SingInWindow _singInWindow;
 		private string _userName;
-
+        private List<User> _allUsers;
+        WOZAP.IService service; // ---------
+         
 		public UserWindow(string userName, SingInWindow singInWindow)
 		{
 			_userName = userName;
 			_singInWindow = singInWindow;
+            this.userName.Text = _userName;
+
 			InitializeComponent();
-			this.userName.Text = _userName;
+			
 		}
 
 		//private void MainWindow_Load(object sender, EventArgs e)
@@ -90,7 +81,7 @@ namespace MainWindow
 
 		public void DisconnectUserCallback(string userName)
 		{
-			
+			foreach()
 		}
 
 		public void ModificationMsgCallback(string msg)

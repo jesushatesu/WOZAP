@@ -18,3 +18,15 @@ C:\Users\JesusHatesU\WOZAP\MainWindow\obj\Debug\MainWindow.csproj.GenerateResour
 C:\Users\JesusHatesU\WOZAP\MainWindow\obj\Debug\MainWindow.csproj.CoreCompileInputs.cache
 C:\Users\JesusHatesU\WOZAP\MainWindow\obj\Debug\MainWindow.exe
 C:\Users\JesusHatesU\WOZAP\MainWindow\obj\Debug\MainWindow.pdb
+C:\Users\user\Desktop\WOZAP\MainWindow\bin\Debug\MainWindow.exe.config
+C:\Users\user\Desktop\WOZAP\MainWindow\obj\Debug\MainWindow.exe
+C:\Users\user\Desktop\WOZAP\MainWindow\obj\Debug\MainWindow.pdb
+C:\Users\user\Desktop\WOZAP\MainWindow\bin\Debug\MainWindow.exe
+C:\Users\user\Desktop\WOZAP\MainWindow\bin\Debug\MainWindow.pdb
+C:\Users\user\Desktop\WOZAP\MainWindow\bin\Debug\WOZAP.dll
+C:\Users\user\Desktop\WOZAP\MainWindow\bin\Debug\WOZAP.pdb
+C:\Users\user\Desktop\WOZAP\MainWindow\obj\Debug\MainWindow.csprojResolveAssemblyReference.cache
+C:\Users\user\Desktop\WOZAP\MainWindow\obj\Debug\MainWindow.Properties.Resources.resources
+C:\Users\user\Desktop\WOZAP\MainWindow\obj\Debug\MainWindow.SingInWindow.resources
+C:\Users\user\Desktop\WOZAP\MainWindow\obj\Debug\MainWindow.UserWindow.resources
+C:\Users\user\Desktop\WOZAP\MainWindow\obj\Debug\MainWindow.csproj.GenerateResource.Cache

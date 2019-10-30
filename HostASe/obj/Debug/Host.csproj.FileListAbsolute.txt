@@ -16,3 +16,13 @@ C:\Users\JesusHatesU\WOZAP\HostASe\obj\Debug\Host.csproj.CoreCompileInputs.cache
 C:\Users\JesusHatesU\WOZAP\HostASe\obj\Debug\Host.csproj.CopyComplete
 C:\Users\JesusHatesU\WOZAP\HostASe\obj\Debug\Host.exe
 C:\Users\JesusHatesU\WOZAP\HostASe\obj\Debug\Host.pdb
+C:\Users\user\Desktop\WOZAP\HostASe\bin\Debug\Host.exe.config
+C:\Users\user\Desktop\WOZAP\HostASe\obj\Debug\Host.exe
+C:\Users\user\Desktop\WOZAP\HostASe\obj\Debug\Host.pdb
+C:\Users\user\Desktop\WOZAP\HostASe\bin\Debug\Database.mdf
+C:\Users\user\Desktop\WOZAP\HostASe\bin\Debug\Database_log.ldf
+C:\Users\user\Desktop\WOZAP\HostASe\bin\Debug\Host.exe
+C:\Users\user\Desktop\WOZAP\HostASe\bin\Debug\Host.pdb
+C:\Users\user\Desktop\WOZAP\HostASe\bin\Debug\WOZAP.dll
+C:\Users\user\Desktop\WOZAP\HostASe\bin\Debug\WOZAP.pdb
+C:\Users\user\Desktop\WOZAP\HostASe\obj\Debug\Host.csprojResolveAssemblyReference.cache

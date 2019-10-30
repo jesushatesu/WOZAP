@@ -13,3 +13,11 @@ C:\Users\JesusHatesU\WOZAP\WOZAP\obj\Debug\WOZAP.csprojAssemblyReference.cache
 C:\Users\JesusHatesU\WOZAP\WOZAP\obj\Debug\WOZAP.csproj.CoreCompileInputs.cache
 C:\Users\JesusHatesU\WOZAP\WOZAP\obj\Debug\WOZAP.dll
 C:\Users\JesusHatesU\WOZAP\WOZAP\obj\Debug\WOZAP.pdb
+C:\Users\user\Desktop\WOZAP\WOZAP\bin\Debug\WOZAP.dll.config
+C:\Users\user\Desktop\WOZAP\WOZAP\bin\Debug\WOZAP.dll
+C:\Users\user\Desktop\WOZAP\WOZAP\bin\Debug\WOZAP.pdb
+C:\Users\user\Desktop\WOZAP\WOZAP\obj\Debug\WOZAP.csprojResolveAssemblyReference.cache
+C:\Users\user\Desktop\WOZAP\WOZAP\obj\Debug\WOZAP.dll
+C:\Users\user\Desktop\WOZAP\WOZAP\obj\Debug\WOZAP.pdb
+C:\Users\user\Desktop\WOZAP\WOZAP\bin\Debug\Database.mdf
+C:\Users\user\Desktop\WOZAP\WOZAP\bin\Debug\Database_log.ldf

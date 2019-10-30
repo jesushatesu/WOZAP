@@ -8,10 +8,11 @@
     <OutputType>WinExe</OutputType>
     <RootNamespace>MainWindow</RootNamespace>
     <AssemblyName>MainWindow</AssemblyName>
-    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -69,6 +70,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <EmbeddedResource Include="SingIn.resx">
       <DependentUpon>SingIn.cs</DependentUpon>
@@ -97,6 +99,12 @@
     <Content Include="images\user.png" />
     <Content Include="images\Whatsapp.png" />
     <Content Include="images\Whatsapp_black.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\WOZAP\WOZAP.csproj">
+      <Project>{8f51fd86-3961-4f08-be6f-afce6072f60c}</Project>
+      <Name>WOZAP</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
