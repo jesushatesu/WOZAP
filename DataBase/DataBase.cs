@@ -25,6 +25,11 @@ namespace DataBase
     {
         private static string[] UnsentMsg;
 
+        public DataBase()
+        {
+            UnsentMsg = new string[3] { " ", " ", " " };
+        }
+
         static void Main(string[] args)
         {
 
@@ -47,7 +52,13 @@ namespace DataBase
 
         public string[] GetUsers()
         {
-            return null;
+            //Исправить, сделал для того, чтобы компилировалось
+            string[] users = new string[10];
+            for (int i = 0; i < 10; i++)
+            {
+                users[i] = " ";
+            }
+            return users;
         }
 
         public string ModificationMsgDB(int idMsg, string newMsg)

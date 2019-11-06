@@ -5,11 +5,9 @@ using System.Linq;
 using System.Runtime.Serialization;
 using System.ServiceModel;
 using System.Text;
-using DataBase;
 
 namespace WOZAP
 {
-
     [ServiceBehavior(InstanceContextMode = InstanceContextMode.Single)]
     public class Service : IService
     {
@@ -18,8 +16,8 @@ namespace WOZAP
 
         Service()
         {
-            //users = this.GetUsers();
-            //dataBase = new DataBase.IDataBase();
+            dataBase = new DataBase.DataBase();
+            users = GetUsersList();
         }
 
         public string Connect(string userName, out List<User> listUsers)
@@ -27,28 +25,36 @@ namespace WOZAP
             dataBase.AddUser(userName);
             string messages = "";
 
-            foreach (User user in users)
+            for (int i = 0; i < users.LongCount(); i++)
             {
-                user.opCont.GetCallbackChannel<IServerChatCallback>().ConnectUserCallback(user.name);
+                User usr = users[i];
+                usr.opCont.GetCallbackChannel<IServerChatCallback>().DisconnectUserCallback(usr.name);
 
-                if (user.name == userName)
+                if (usr.name == userName)
                 {
                     messages = dataBase.GetMsg(userName);
-                    //user.isConnected = true;
+                    usr.isConnected = false;
                 }
             }
-            
-            listUsers = users;
+
+            listUsers = new List<User>();
+            foreach (User usr in users)
+            {
+                listUsers.Add(new User { name = usr.name, isConnected = usr.isConnected});
+            }
+
             return messages;
         }
 
         public void Disconnect(string userName)
         {
-            foreach (User user in users)
+            for (int i = 0; i < users.LongCount(); i++)
             {
-                user.opCont.GetCallbackChannel<IServerChatCallback>().DisconnectUserCallback(user.name);
-                //if (user.name == userName)
-                    //user.isConnected = false;
+                User usr = users[i];
+                usr.opCont.GetCallbackChannel<IServerChatCallback>().DisconnectUserCallback(usr.name);
+
+                if (usr.name == userName)
+                    usr.isConnected = false;
             }
         }
 
@@ -69,12 +75,12 @@ namespace WOZAP
                 }
             }
         }
-
-        [OperationContract]
-        public List<User> GetUsers()
+        
+        public List<User> GetUsersList()
         {
             List<User> users = new List<User> { };
-            string[] allUsers = dataBase.GetUsers();
+            string[] allUsers = new string[10];
+            allUsers = dataBase.GetUsers();
 
             foreach (string usr in allUsers)
             {
