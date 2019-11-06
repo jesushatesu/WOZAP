@@ -21,3 +21,5 @@ C:\Users\user\Desktop\WOZAP\WOZAP\obj\Debug\WOZAP.dll
 C:\Users\user\Desktop\WOZAP\WOZAP\obj\Debug\WOZAP.pdb
 C:\Users\user\Desktop\WOZAP\WOZAP\bin\Debug\Database.mdf
 C:\Users\user\Desktop\WOZAP\WOZAP\bin\Debug\Database_log.ldf
+C:\Users\user\Desktop\WOZAP\WOZAP\bin\Debug\DataBase.exe
+C:\Users\user\Desktop\WOZAP\WOZAP\bin\Debug\DataBase.pdb

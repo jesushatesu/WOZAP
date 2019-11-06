@@ -22,15 +22,13 @@ namespace MainWindow
          
 		public UserWindow(string userName, SingInWindow singInWindow)
 		{
+            InitializeComponent();
 			_userName = userName;
 			_singInWindow = singInWindow;
-            this.userName.Text = _userName;
-
-			InitializeComponent();
+            this.userName.Text = userName;
 			
 		}
 
-		//private void MainWindow_Load(object sender, EventArgs e)
 
 		private void closeButton_Click(object sender, EventArgs e)
 		{
@@ -81,12 +79,14 @@ namespace MainWindow
 
 		public void DisconnectUserCallback(string userName)
 		{
-			foreach()
+			
 		}
 
 		public void ModificationMsgCallback(string msg)
 		{
 			
 		}
+
+    
 	}
 }

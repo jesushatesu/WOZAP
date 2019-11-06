@@ -1,4 +1,4 @@
-namespace WOZAP
+namespace DataBase
 {
     partial class id_message
     {

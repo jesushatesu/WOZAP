@@ -7,11 +7,10 @@ using System.ServiceModel;
 
 namespace WOZAP
 {
-    public class User
+    public struct User
     {
         public string name { get; set; }
         public bool isConnected { get; set; }
         public OperationContext opCont { get; set; }
-
     }
 }

@@ -30,3 +30,7 @@ C:\Users\user\Desktop\WOZAP\MainWindow\obj\Debug\MainWindow.Properties.Resources
 C:\Users\user\Desktop\WOZAP\MainWindow\obj\Debug\MainWindow.SingInWindow.resources
 C:\Users\user\Desktop\WOZAP\MainWindow\obj\Debug\MainWindow.UserWindow.resources
 C:\Users\user\Desktop\WOZAP\MainWindow\obj\Debug\MainWindow.csproj.GenerateResource.Cache
+C:\Users\user\Desktop\WOZAP\MainWindow\bin\Debug\DataBase.exe
+C:\Users\user\Desktop\WOZAP\MainWindow\bin\Debug\DataBase.pdb
+C:\Users\user\Desktop\WOZAP\MainWindow\bin\Debug\Database.mdf
+C:\Users\user\Desktop\WOZAP\MainWindow\bin\Debug\Database_log.ldf
