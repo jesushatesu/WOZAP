@@ -10,15 +10,12 @@ namespace WOZAP
     public interface IServerChatCallback
     {
         [OperationContract]
-        void MsgCallback(string msg);
+        void MsgCallback(string fromUser, string msg);
 
         [OperationContract]
         void ConnectUserCallback(string userName);
 
         [OperationContract]
         void DisconnectUserCallback(string userName);
-
-        [OperationContract]
-        void ModificationMsgCallback(string msg);
     }
 }

@@ -69,7 +69,6 @@ namespace MainWindow
 				this.Hide();
 				UserWindow userWindow = new UserWindow(this.loginLine.Text, this);
 				userWindow.Show();
-
 			}
 			else
 			{

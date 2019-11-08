@@ -64,12 +64,12 @@ namespace WOZAP
             {
                 if (user.name == toUserName)
                 {
-                    string message = fromUserName;
-                    message += " " + DateTime.Now.ToShortTimeString() + "/n";
+					// исправил немного: мне удобней, когда имя отправителя отдельным параметром (и код читабельней)
+                    string message = DateTime.Now.ToShortTimeString() + "/n";
 
                     message += msg;
 
-                    user.opCont.GetCallbackChannel<IServerChatCallback>().MsgCallback(message);
+                    user.opCont.GetCallbackChannel<IServerChatCallback>().MsgCallback(fromUserName, message);
 
                     break;
                 }

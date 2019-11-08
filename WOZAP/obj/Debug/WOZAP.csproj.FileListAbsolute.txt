@@ -36,3 +36,10 @@ C:\Users\JesusHatesU\Desktop\Wowwwwww\WOZAP\WOZAP\obj\Debug\WOZAP.csproj.CoreCom
 C:\Users\JesusHatesU\Desktop\Wowwwwww\WOZAP\WOZAP\obj\Debug\WOZAP.csproj.CopyComplete
 C:\Users\JesusHatesU\Desktop\Wowwwwww\WOZAP\WOZAP\obj\Debug\WOZAP.dll
 C:\Users\JesusHatesU\Desktop\Wowwwwww\WOZAP\WOZAP\obj\Debug\WOZAP.pdb
+C:\Users\Илья\Desktop\ТиМП\WOZAP\WOZAP\bin\Debug\WOZAP.dll.config
+C:\Users\Илья\Desktop\ТиМП\WOZAP\WOZAP\bin\Debug\WOZAP.dll
+C:\Users\Илья\Desktop\ТиМП\WOZAP\WOZAP\bin\Debug\WOZAP.pdb
+C:\Users\Илья\Desktop\ТиМП\WOZAP\WOZAP\bin\Debug\DataBase.exe
+C:\Users\Илья\Desktop\ТиМП\WOZAP\WOZAP\bin\Debug\DataBase.pdb
+C:\Users\Илья\Desktop\ТиМП\WOZAP\WOZAP\bin\Debug\DataBase.exe.config
+C:\Users\Илья\Desktop\ТиМП\WOZAP\WOZAP\obj\Debug\WOZAP.csproj.CopyComplete

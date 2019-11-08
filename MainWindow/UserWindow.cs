@@ -17,8 +17,8 @@ namespace MainWindow
 	{
 		private SingInWindow _singInWindow;
 		private string _userName;
-        private List<User> _allUsers;
-        WOZAP.IService service; // ---------
+        private List<ChatUser> _allUsers;
+        WOZAP.IService service;
          
 		public UserWindow(string userName, SingInWindow singInWindow)
 		{
@@ -26,9 +26,21 @@ namespace MainWindow
 			_userName = userName;
 			_singInWindow = singInWindow;
             this.userName.Text = userName;
-			
-		}
+			List<User> allUsers;
 
+			//service.Connect(_userName, out allUsers);
+			//foreach (User user in allUsers)
+			//{
+			//	_allUsers.Add(new ChatUser { name = user.name, isConnected = user.isConnected });
+
+			//}
+			ChatUser u1 = new ChatUser { name = "user1", isConnected = true , haveMsg = true };
+			ChatUser u2 = new ChatUser { name = "user2", isConnected = false , haveMsg = false };
+			ChatUser u3 = new ChatUser { name = "user3", isConnected = true , haveMsg = true };
+			_allUsers.Add(u1);
+			_allUsers.Add(u2);
+			_allUsers.Add(u3);
+		}
 
 		private void closeButton_Click(object sender, EventArgs e)
 		{
@@ -67,24 +79,40 @@ namespace MainWindow
 			_singInWindow.Show();
 		}
 
-		public void MsgCallback(string msg)
+		public void MsgCallback(string fromUser, string msg)
 		{
 			
 		}
 
+		// Тут может быть вопрос с циклом List.ForEach
 		public void ConnectUserCallback(string userName)
 		{
-			
+			bool flag = true;
+			_allUsers.ForEach(user =>
+			{ 
+				if (user.name == userName) 
+				{
+					user.isConnected = true;
+					flag = false;
+				} 
+			});
+
+			if (flag)
+			{
+				_allUsers.Add(new ChatUser { name = userName, isConnected = true, haveMsg = false });
+			}
 		}
 
+		// Тут может быть вопрос с циклом List.ForEach
 		public void DisconnectUserCallback(string userName)
 		{
-			
-		}
-
-		public void ModificationMsgCallback(string msg)
-		{
-			
+			_allUsers.ForEach(user =>
+			{
+				if (user.name == userName)
+				{
+					user.isConnected = false;
+				}
+			});
 		}
 
     
