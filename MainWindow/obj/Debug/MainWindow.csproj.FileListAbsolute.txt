@@ -61,3 +61,4 @@ C:\Users\Илья\Desktop\ТиМП\WOZAP\MainWindow\obj\Debug\MainWindow.csproj.
 C:\Users\Илья\Desktop\ТиМП\WOZAP\MainWindow\bin\Debug\DataBase.exe
 C:\Users\Илья\Desktop\ТиМП\WOZAP\MainWindow\bin\Debug\DataBase.pdb
 C:\Users\Илья\Desktop\ТиМП\WOZAP\MainWindow\bin\Debug\DataBase.exe.config
+C:\Users\Илья\Desktop\ТиМП\WOZAP\MainWindow\obj\Debug\MainWindow.UserListItem.resources

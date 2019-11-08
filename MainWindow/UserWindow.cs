@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.ServiceModel;
 using WOZAP;
+using MainWindow.Properties;
 
 namespace MainWindow
 {
@@ -17,16 +18,17 @@ namespace MainWindow
 	{
 		private SingInWindow _singInWindow;
 		private string _userName;
-        private List<ChatUser> _allUsers;
-        WOZAP.IService service;
-         
+        private List<ChatUser> _allUsers = new List<ChatUser> { };
+        private WOZAP.IService service;
+		private Point lastPoint;
+
 		public UserWindow(string userName, SingInWindow singInWindow)
 		{
             InitializeComponent();
 			_userName = userName;
 			_singInWindow = singInWindow;
             this.userName.Text = userName;
-			List<User> allUsers;
+			List<User> allUsers = new List<User> { };
 
 			//service.Connect(_userName, out allUsers);
 			//foreach (User user in allUsers)
@@ -40,6 +42,93 @@ namespace MainWindow
 			_allUsers.Add(u1);
 			_allUsers.Add(u2);
 			_allUsers.Add(u3);
+		}
+
+		public void MsgCallback(string fromUser, string msg)
+		{
+			
+		}
+
+		// Тут может быть вопрос с циклом List.ForEach
+		public void ConnectUserCallback(string userName)
+		{
+			bool flag = true;
+			_allUsers.ForEach(user =>
+			{ 
+				if (user.name == userName) 
+				{
+					user.isConnected = true;
+					flag = false;
+				} 
+			});
+
+			if (flag)
+			{
+				_allUsers.Add(new ChatUser { name = userName, isConnected = true, haveMsg = false });
+			}
+		}
+
+		// Тут может быть вопрос с циклом List.ForEach
+		public void DisconnectUserCallback(string userName)
+		{
+			_allUsers.ForEach(user =>
+			{
+				if (user.name == userName)
+				{
+					user.isConnected = false;
+				}
+			});
+		}
+
+
+
+		//----------- дизайн -------------
+
+		private void UserWindow_Load(object sender, EventArgs e)
+		{
+			// создание списка Itens
+			PopulateItems();
+		}
+
+		private void PopulateItems()
+		{
+			UserListItem[] userListItems = new UserListItem[_allUsers.Count];
+			//bool flag = true;
+			for (int i = 0; i < userListItems.Length; ++i)
+			{
+				userListItems[i] = new UserListItem();
+				userListItems[i].UserName = _allUsers[i].name;
+				if (_allUsers[i].isConnected)
+				{
+					userListItems[i].ConnectedImage = Resources.Circle_Green;
+				}
+				else
+				{
+					userListItems[i].ConnectedImage = Resources.Circle_Red;
+				}
+
+				if (_allUsers[i].haveMsg)
+				{
+					userListItems[i].HaveMsgImage = Resources.haveMsg;
+				}
+
+				this.PanelListUsers.Controls.Add(userListItems[i]);
+				
+			}
+		}
+
+		private void topblokAuth_MouseMove(object sender, MouseEventArgs e)
+		{
+			if (e.Button == MouseButtons.Left)
+			{
+				this.Left += e.X - lastPoint.X;
+				this.Top += e.Y - lastPoint.Y;
+			}
+		}
+
+		private void topblokAuth_MouseDown(object sender, MouseEventArgs e)
+		{
+			lastPoint = new Point(e.X, e.Y);
 		}
 
 		private void closeButton_Click(object sender, EventArgs e)
@@ -79,42 +168,5 @@ namespace MainWindow
 			_singInWindow.Show();
 		}
 
-		public void MsgCallback(string fromUser, string msg)
-		{
-			
-		}
-
-		// Тут может быть вопрос с циклом List.ForEach
-		public void ConnectUserCallback(string userName)
-		{
-			bool flag = true;
-			_allUsers.ForEach(user =>
-			{ 
-				if (user.name == userName) 
-				{
-					user.isConnected = true;
-					flag = false;
-				} 
-			});
-
-			if (flag)
-			{
-				_allUsers.Add(new ChatUser { name = userName, isConnected = true, haveMsg = false });
-			}
-		}
-
-		// Тут может быть вопрос с циклом List.ForEach
-		public void DisconnectUserCallback(string userName)
-		{
-			_allUsers.ForEach(user =>
-			{
-				if (user.name == userName)
-				{
-					user.isConnected = false;
-				}
-			});
-		}
-
-    
 	}
 }

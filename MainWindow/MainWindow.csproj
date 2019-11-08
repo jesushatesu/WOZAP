@@ -57,6 +57,12 @@
     <Compile Include="SingIn.Designer.cs">
       <DependentUpon>SingIn.cs</DependentUpon>
     </Compile>
+    <Compile Include="UserListItem.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserListItem.Designer.cs">
+      <DependentUpon>UserListItem.cs</DependentUpon>
+    </Compile>
     <Compile Include="UserWindow.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -76,6 +82,9 @@
     <EmbeddedResource Include="SingIn.resx">
       <DependentUpon>SingIn.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="UserListItem.resx">
+      <DependentUpon>UserListItem.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UserWindow.resx">
       <DependentUpon>UserWindow.cs</DependentUpon>
     </EmbeddedResource>
@@ -94,12 +103,16 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="images\Cancel.png" />
+    <None Include="images\Circle_Green.png" />
+    <None Include="images\Circle_Red.png" />
     <Content Include="images\closeBig.png" />
+    <None Include="images\haveMsg.png" />
     <Content Include="images\minus.png" />
     <Content Include="images\minus_circle.png" />
     <Content Include="images\user.png" />
     <Content Include="images\Whatsapp.png" />
     <Content Include="images\Whatsapp_black.png" />
+    <None Include="Resources\OnlineDot.png" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\WOZAP\WOZAP.csproj">
