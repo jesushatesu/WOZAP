@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DataBase
 {
-
+	//заебали исправлять база данных не работает теперь 
     public interface IDataBase
     {
         void AddUser(string user);
@@ -52,14 +52,19 @@ namespace DataBase
 
         public string[] GetUsers()
         {
-            //Исправить, сделал для того, чтобы компилировалось
-            string[] users = new string[10];
-            for (int i = 0; i < 10; i++)
-            {
-                users[i] = " ";
-            }
-            return users;
-        }
+			//Исправить, сделал для того, чтобы компилировалось
+
+			using (var context = new DataClasses1DataContext())
+			{
+				var users1 = context.Table.ToList();
+			}
+			 string[] users = new string[10];
+			for (int i = 0; i < 10; i++)
+			{
+				users[i] = " ";
+			}
+			return users;
+		}
 
         public string ModificationMsgDB(int idMsg, string newMsg)
         {

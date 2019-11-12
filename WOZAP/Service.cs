@@ -17,7 +17,8 @@ namespace WOZAP
         Service()
         {
             dataBase = new DataBase.DataBase();
-            users = GetUsersList();
+
+			users = GetUsersList();
         }
 
         public string Connect(string userName, out List<User> listUsers)

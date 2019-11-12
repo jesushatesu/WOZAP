@@ -13,7 +13,8 @@ namespace Host
         {
             using (var host = new ServiceHost(typeof(WOZAP.Service)))
             {
-                host.Open();
+				
+				host.Open();
                 Console.WriteLine("Хост стартовал!");
                 Console.ReadLine();
             }
