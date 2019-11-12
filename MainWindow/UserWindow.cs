@@ -18,27 +18,22 @@ namespace MainWindow
 	{
 		private SingInWindow _singInWindow;
 		private string _userName;
-        private List<ChatUser> _allUsers = new List<ChatUser> { };
-        private WOZAP.IService service;
+		private List<ChatUser> _allUsers = new List<ChatUser> { };
+		private WOZAP.IService service;
 		private Point lastPoint;
 
 		public UserWindow(string userName, SingInWindow singInWindow)
 		{
-            InitializeComponent();
+			InitializeComponent();
 			_userName = userName;
 			_singInWindow = singInWindow;
-            this.userName.Text = userName;
+			this.userName.Text = userName;
 			List<User> allUsers = new List<User> { };
 
-			//service.Connect(_userName, out allUsers);
-			//foreach (User user in allUsers)
-			//{
-			//	_allUsers.Add(new ChatUser { name = user.name, isConnected = user.isConnected });
-
-			//}
-			ChatUser u1 = new ChatUser { name = "user1", isConnected = true , haveMsg = true };
-			ChatUser u2 = new ChatUser { name = "user2", isConnected = false , haveMsg = false };
-			ChatUser u3 = new ChatUser { name = "user3", isConnected = true , haveMsg = true };
+			// Это для визуального тестиования
+			ChatUser u1 = new ChatUser { name = "user1", isConnected = true, haveMsg = true };
+			ChatUser u2 = new ChatUser { name = "user2", isConnected = false, haveMsg = false };
+			ChatUser u3 = new ChatUser { name = "user3", isConnected = true, haveMsg = true };
 			_allUsers.Add(u1);
 			_allUsers.Add(u2);
 			_allUsers.Add(u3);
@@ -46,7 +41,7 @@ namespace MainWindow
 
 		public void MsgCallback(string fromUser, string msg)
 		{
-			
+
 		}
 
 		// Тут может быть вопрос с циклом List.ForEach
@@ -54,12 +49,12 @@ namespace MainWindow
 		{
 			bool flag = true;
 			_allUsers.ForEach(user =>
-			{ 
-				if (user.name == userName) 
+			{
+				if (user.name == userName)
 				{
 					user.isConnected = true;
 					flag = false;
-				} 
+				}
 			});
 
 			if (flag)
@@ -80,9 +75,42 @@ namespace MainWindow
 			});
 		}
 
+		// ----------- get --------------
 
+		public string GetUserName()
+		{
+			return _userName;
+		}
 
-		//----------- дизайн -------------
+		// вернёт список всех имён пользователей
+		public List<string> GetAllUsersName()
+		{
+			List<string> usersName = new List<string> { };
+			foreach (ChatUser cu in _allUsers)
+			{
+				usersName.Add(cu.name);
+			}
+
+			return usersName;
+		}
+
+		public bool ThisUserIsConnect(string username)
+		{
+			bool isConnect = false;
+			for (int i = 0; i < _allUsers.Count; ++i)
+			{
+				if (_allUsers[i].name == username)
+				{
+					isConnect = _allUsers[i].isConnected;
+					break;
+				}
+			}
+
+			return isConnect;
+		}
+		
+		
+		//----------- design -------------
 
 		private void UserWindow_Load(object sender, EventArgs e)
 		{
@@ -90,6 +118,7 @@ namespace MainWindow
 			PopulateItems();
 		}
 
+		// Отрисовка списка всех пользователей
 		private void PopulateItems()
 		{
 			UserListItem[] userListItems = new UserListItem[_allUsers.Count];

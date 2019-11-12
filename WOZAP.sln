@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2013
-VisualStudioVersion = 12.0.21005.1
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29418.71
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WOZAP", "WOZAP\WOZAP.csproj", "{8F51FD86-3961-4F08-BE6F-AFCE6072F60C}"
 EndProject
@@ -11,7 +11,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MainWindow", "MainWindow\Ma
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataBase", "DataBase\DataBase.csproj", "{B4E2B77D-5E27-4B68-94D7-180F6AD98214}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tests", "Tests\Tests.csproj", "{22CF651A-F263-4FE2-B76F-9CDD2859967C}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tests_MainWindow", "Tests_MainWindow\Tests_MainWindow.csproj", "{AA8C76E0-F6CD-4200-B44A-FAA4B1107D6A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -35,10 +35,10 @@ Global
 		{B4E2B77D-5E27-4B68-94D7-180F6AD98214}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B4E2B77D-5E27-4B68-94D7-180F6AD98214}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B4E2B77D-5E27-4B68-94D7-180F6AD98214}.Release|Any CPU.Build.0 = Release|Any CPU
-		{22CF651A-F263-4FE2-B76F-9CDD2859967C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{22CF651A-F263-4FE2-B76F-9CDD2859967C}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{22CF651A-F263-4FE2-B76F-9CDD2859967C}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{22CF651A-F263-4FE2-B76F-9CDD2859967C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AA8C76E0-F6CD-4200-B44A-FAA4B1107D6A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AA8C76E0-F6CD-4200-B44A-FAA4B1107D6A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AA8C76E0-F6CD-4200-B44A-FAA4B1107D6A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AA8C76E0-F6CD-4200-B44A-FAA4B1107D6A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

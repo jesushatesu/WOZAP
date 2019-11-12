@@ -16,7 +16,7 @@ namespace WOZAP
         [OperationContract]
         void Disconnect(string userName);
 
-        [OperationContract(IsOneWay = true)]
+		[OperationContract(IsOneWay = true)]
         void SendMsg(string fromUserName, string toUserName, string msg);
     }
 }
