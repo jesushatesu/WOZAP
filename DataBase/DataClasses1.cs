@@ -1,3 +1,4 @@
+using System.Data.Linq.Mapping;
 namespace DataBase
 {
 	partial class DataClasses1DataContext
@@ -12,6 +13,6 @@ namespace DataBase
 
 	partial class Table
 	{
-
+		
 	}
 }

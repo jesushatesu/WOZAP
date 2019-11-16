@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Data.Linq.Mapping;
 
 namespace DataBase
 {
@@ -54,16 +55,20 @@ namespace DataBase
         {
 			//Исправить, сделал для того, чтобы компилировалось
 
-			using (var context = new DataClasses1DataContext())
+			//using (var context = new DataClasses1DataContext())
+			//{
+			//	var users1 = context.GetTable<Table>;
+			//}
+			using (DataClasses1DataContext db = new DataClasses1DataContext())
 			{
-				var users1 = context.Table.ToList();
+				var user = db.GetTable<Table>();
 			}
-			 string[] users = new string[10];
-			for (int i = 0; i < 10; i++)
+			foreach (var user in users)
 			{
-				users[i] = " ";
+				Console.WriteLine("{0} \t{1} \t{2}", user.Id, user.FirstName, user.Age);
 			}
-			return users;
+
+			Console.Read();
 		}
 
         public string ModificationMsgDB(int idMsg, string newMsg)
