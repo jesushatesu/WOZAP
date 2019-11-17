@@ -56,3 +56,5 @@ C:\Users\228\Desktop\WOZAP\WOZAP\obj\Debug\WOZAP.csproj.CoreCompileInputs.cache
 C:\Users\228\Desktop\WOZAP\WOZAP\obj\Debug\WOZAP.csproj.CopyComplete
 C:\Users\228\Desktop\WOZAP\WOZAP\obj\Debug\WOZAP.dll
 C:\Users\228\Desktop\WOZAP\WOZAP\obj\Debug\WOZAP.pdb
+C:\Users\JesusHatesU\Desktop\WOZAP\WOZAP\obj\Debug\WOZAP.csprojAssemblyReference.cache
+C:\Users\JesusHatesU\Desktop\WOZAP\WOZAP\obj\Debug\WOZAP.csproj.CoreCompileInputs.cache
