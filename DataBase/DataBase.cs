@@ -36,7 +36,12 @@ namespace DataBase
 
 		public void AddUser(string user)
 		{
-
+			string connectionString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\228\Desktop\WOZAP\DataBase\Database1.mdf;Integrated Security=True";
+			DataContext db = new DataContext(connectionString);
+			User user1 = new User { name = "asa" };
+			// добавляем его в таблицу Users
+			db.GetTable<User>().InsertOnSubmit(user1);
+			db.SubmitChanges();
 		}
 
 		public void AddMsg(string Msg)
@@ -90,28 +95,51 @@ namespace DataBase
 	class Program
 	{
 		static string connectionString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\228\Desktop\WOZAP\DataBase\Database1.mdf;Integrated Security=True";
-		static void Main(string[] args)
+		static void Main(string[] args) 
 		{
-			DataContext db = new DataContext(connectionString);
-			Console.WriteLine("До добавления");
-			foreach (var user in db.GetTable<User>().OrderByDescending(u => u.Id).Take(5))
-			{
-				Console.WriteLine("{0} \t{1}", user.Id, user.name);
-			}
-			Console.WriteLine();
+			//DataContext db = new DataContext(connectionString);
+			//Console.WriteLine("До добавления");
+			//foreach (var user in db.GetTable<User>().OrderByDescending(u => u.Id).Take(10))
+			//{
+			//	Console.WriteLine("{0} \t{1}", user.Id, user.name);
+			//}
+			//Console.WriteLine();
 
-			// создаем нового пользователя
-			User user1 = new User { name = "Ronald"};
-			// добавляем его в таблицу Users
-			db.GetTable<User>().InsertOnSubmit(user1);
-			db.SubmitChanges();
 
-			Console.WriteLine();
-			Console.WriteLine("После добавления");
-			foreach (var user in db.GetTable<User>().OrderByDescending(u => u.Id).Take(5))
-			{
-				Console.WriteLine("{0} \t{1}", user.Id, user.name);
-			}
+
+			//// создаем нового пользователя
+			//User user1 = new User { name = "asa" };
+			//// добавляем его в таблицу Users
+			//db.GetTable<User>().InsertOnSubmit(user1);
+			//db.SubmitChanges();
+
+			//Console.WriteLine();
+			//Console.WriteLine("После добавления");
+			//foreach (var user in db.GetTable<User>().OrderByDescending(u => u.Id).Take(10))
+			//{
+			//	Console.WriteLine("{0} \t{1}", user.Id, user.name);
+			//}
+			//Console.WriteLine("До обновления");
+			//foreach (var user in db.GetTable<User>().Take(5))
+			//{
+			//	Console.WriteLine("{0} \t{1}", user.Id, user.name);
+			//}
+			//Console.WriteLine();
+
+			//// возьмем первого пользователя
+			//User user1 = db.GetTable<User>().FirstOrDefault();
+			//// и изменим у него возраст
+			//user1.Id = 11;
+			//// сохраним изменения
+			//db.SubmitChanges();
+
+			//Console.WriteLine();
+			//Console.WriteLine("После обновления");
+			//foreach (var user in db.GetTable<User>().Take(5))
+			//{
+			//	Console.WriteLine("{0} \t{1}", user.Id, user.name);
+			//}
+
 		}
 	}
 }
