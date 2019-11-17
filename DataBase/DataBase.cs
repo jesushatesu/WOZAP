@@ -18,7 +18,7 @@ namespace DataBase
 
 		string GetMsg(string UserName);
 
-		//string[] GetUsers();
+		string[] GetUsers();
 
 		string ModificationMsgDB(int idMsg, string newMsg);
 
@@ -92,18 +92,26 @@ namespace DataBase
 		static string connectionString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\228\Desktop\WOZAP\DataBase\Database1.mdf;Integrated Security=True";
 		static void Main(string[] args)
 		{
-			DataClasses1DataContext db = new DataClasses1DataContext(connectionString);
-
-				// Получаем таблицу пользователей
-			Table<User> users = db.GetTable<User>();
-
-			foreach (var user in users)
+			DataContext db = new DataContext(connectionString);
+			Console.WriteLine("До добавления");
+			foreach (var user in db.GetTable<User>().OrderByDescending(u => u.Id).Take(5))
 			{
-				Console.WriteLine("{0} \t{1} \t{2}", user.id, user.FirstName);
+				Console.WriteLine("{0} \t{1}", user.Id, user.name);
 			}
+			Console.WriteLine();
 
-			Console.Read();
+			// создаем нового пользователя
+			User user1 = new User { name = "Ronald"};
+			// добавляем его в таблицу Users
+			db.GetTable<User>().InsertOnSubmit(user1);
+			db.SubmitChanges();
 
+			Console.WriteLine();
+			Console.WriteLine("После добавления");
+			foreach (var user in db.GetTable<User>().OrderByDescending(u => u.Id).Take(5))
+			{
+				Console.WriteLine("{0} \t{1}", user.Id, user.name);
+			}
 		}
 	}
 }
