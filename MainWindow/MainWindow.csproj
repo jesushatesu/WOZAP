@@ -118,10 +118,10 @@
     <None Include="images\haveMsg.png" />
     <Content Include="images\minus.png" />
     <Content Include="images\minus_circle.png" />
+    <Content Include="images\Tick.png" />
     <Content Include="images\user.png" />
     <Content Include="images\Whatsapp.png" />
     <Content Include="images\Whatsapp_black.png" />
-    <None Include="Resources\OnlineDot.png" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\WOZAP\WOZAP.csproj">
@@ -131,6 +131,9 @@
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Resources\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

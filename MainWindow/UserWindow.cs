@@ -19,12 +19,14 @@ namespace MainWindow
 		private SingInWindow _singInWindow;
 		private string _userName;
 		private List<ChatUser> _allUsers = new List<ChatUser> { };
-		private WOZAP.IService service;
-		private Point lastPoint;
+		private WOZAP.IService _service;
+		private Point _lastPoint;
+		private UserListItem _currentUserItem;
 
 		public UserWindow(string userName, SingInWindow singInWindow)
 		{
 			InitializeComponent();
+			_currentUserItem = new UserListItem(this);
 			_userName = userName;
 			_singInWindow = singInWindow;
 			this.userName.Text = userName;
@@ -53,10 +55,9 @@ namespace MainWindow
 
 		public void MsgCallback(string fromUser, string msg)
 		{
-
+			
 		}
 
-		// Тут может быть вопрос с циклом List.ForEach
 		public void ConnectUserCallback(string userName)
 		{
 			bool flag = true;
@@ -72,10 +73,19 @@ namespace MainWindow
 			if (flag)
 			{
 				_allUsers.Add(new ChatUser { name = userName, isConnected = true, haveMsg = false });
+				UserListItem userItem = new UserListItem(this);
+				userItem.ConnectedImage = Resources.Circle_Green;
+				userItem.UserName = userName;
+				userItem.HaveMsgImage = Resources.Tick;
+				this.PanelListUsers.Controls.Add(userItem);
+			}
+			else
+			{
+				// Отобразим, что теперь онлайн
+				// Только как!?
 			}
 		}
 
-		// Тут может быть вопрос с циклом List.ForEach
 		public void DisconnectUserCallback(string userName)
 		{
 			_allUsers.ForEach(user =>
@@ -85,16 +95,20 @@ namespace MainWindow
 					user.isConnected = false;
 				}
 			});
+
+			// Нужно отобразаить, что теперь не онлайн!
+			// Только как не знаю!!
 		}
 
-		// ----------- get --------------
+		//--------------------------------
+		// ----------- get ---------------
+		//--------------------------------
 
 		public string GetUserName()
 		{
 			return _userName;
 		}
 
-		// вернёт список всех имён пользователей
 		public List<string> GetAllUsersName()
 		{
 			List<string> usersName = new List<string> { };
@@ -120,12 +134,24 @@ namespace MainWindow
 
 			return isConnect;
 		}
-		
+
+		//--------------------------------
 		// ---------- chat logic ---------
+		//--------------------------------
+
+		public void ClickUserItem(UserListItem item)
+		{
+			_currentUserItem.SetBackColor(Color.White);
+			_currentUserItem.clickAtThis = false;
+			_currentUserItem = item;
+			item.SetBackColor(Color.FromArgb(132, 133, 235));
+			item.HaveMsgImage = Resources.Tick;
+		}
 
 
-		
+		//--------------------------------
 		//----------- design -------------
+		//--------------------------------
 
 		private void UserWindow_Load(object sender, EventArgs e)
 		{
@@ -141,7 +167,6 @@ namespace MainWindow
 		private void PopulateInemsUser()
 		{
 			UserListItem[] userListItems = new UserListItem[_allUsers.Count];
-			//bool flag = true;
 			for (int i = 0; i < userListItems.Length; ++i)
 			{
 				userListItems[i] = new UserListItem(this);
@@ -159,9 +184,10 @@ namespace MainWindow
 				{
 					userListItems[i].HaveMsgImage = Resources.haveMsg;
 				}
+				else
+					userListItems[i].HaveMsgImage = Resources.Tick;
 
 				this.PanelListUsers.Controls.Add(userListItems[i]);
-				
 			}
 		}
 
@@ -169,14 +195,14 @@ namespace MainWindow
 		{
 			if (e.Button == MouseButtons.Left)
 			{
-				this.Left += e.X - lastPoint.X;
-				this.Top += e.Y - lastPoint.Y;
+				this.Left += e.X - _lastPoint.X;
+				this.Top += e.Y - _lastPoint.Y;
 			}
 		}
 
 		private void topblokAuth_MouseDown(object sender, MouseEventArgs e)
 		{
-			lastPoint = new Point(e.X, e.Y);
+			_lastPoint = new Point(e.X, e.Y);
 		}
 
 		private void closeButton_Click(object sender, EventArgs e)
@@ -216,5 +242,15 @@ namespace MainWindow
 			_singInWindow.Show();
 		}
 
+		private void msgButton_MouseClick(object sender, MouseEventArgs e)
+		{
+			string date = DateTime.Now.ToString();
+			MessageItem msg = new MessageItem(
+				this.msgTextBox.Text,
+				date,
+				_userName + _currentUserItem.UserName + date
+			);
+			this.msgFlowPanel.Controls.Add(msg);
+		}
 	}
 }

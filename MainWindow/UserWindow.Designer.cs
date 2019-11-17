@@ -46,6 +46,7 @@
 			this.pictureBox1 = new System.Windows.Forms.PictureBox();
 			this.buttonMinimized = new System.Windows.Forms.PictureBox();
 			this.closeButton = new System.Windows.Forms.PictureBox();
+			this.msgFlowPanel = new System.Windows.Forms.FlowLayoutPanel();
 			this.mainFoneSingIn.SuspendLayout();
 			this.msgPanel.SuspendLayout();
 			this.panel1.SuspendLayout();
@@ -74,6 +75,7 @@
 			// 
 			// msgPanel
 			// 
+			this.msgPanel.Controls.Add(this.msgFlowPanel);
 			this.msgPanel.Controls.Add(this.panel1);
 			this.msgPanel.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.msgPanel.Location = new System.Drawing.Point(397, 34);
@@ -100,6 +102,7 @@
 			this.msgButton.TabIndex = 1;
 			this.msgButton.Text = "button1";
 			this.msgButton.UseVisualStyleBackColor = true;
+			this.msgButton.MouseClick += new System.Windows.Forms.MouseEventHandler(this.msgButton_MouseClick);
 			// 
 			// msgTextBox
 			// 
@@ -254,6 +257,14 @@
 			this.closeButton.MouseEnter += new System.EventHandler(this.closeButton_MouseEnter);
 			this.closeButton.MouseLeave += new System.EventHandler(this.closeButton_MouseLeave);
 			// 
+			// msgFlowPanel
+			// 
+			this.msgFlowPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.msgFlowPanel.Location = new System.Drawing.Point(0, 0);
+			this.msgFlowPanel.Name = "msgFlowPanel";
+			this.msgFlowPanel.Size = new System.Drawing.Size(644, 473);
+			this.msgFlowPanel.TabIndex = 1;
+			// 
 			// UserWindow
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -303,5 +314,6 @@
 		private System.Windows.Forms.Panel panel1;
 		private System.Windows.Forms.Button msgButton;
 		private System.Windows.Forms.TextBox msgTextBox;
+		private System.Windows.Forms.FlowLayoutPanel msgFlowPanel;
 	}
 }

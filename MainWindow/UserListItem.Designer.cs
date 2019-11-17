@@ -43,6 +43,7 @@
 			this.isConnectImage.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
 			this.isConnectImage.TabIndex = 0;
 			this.isConnectImage.TabStop = false;
+			this.isConnectImage.MouseClick += new System.Windows.Forms.MouseEventHandler(this.isConnectImage_MouseClick);
 			this.isConnectImage.MouseLeave += new System.EventHandler(this.isConnectImage_MouseLeave);
 			this.isConnectImage.MouseMove += new System.Windows.Forms.MouseEventHandler(this.isConnectImage_MouseMove);
 			// 
@@ -54,19 +55,20 @@
 			this.userNameLabel.Size = new System.Drawing.Size(234, 35);
 			this.userNameLabel.TabIndex = 1;
 			this.userNameLabel.Text = "user name";
-			this.userNameLabel.Click += new System.EventHandler(this.userNameLabel_Click);
+			this.userNameLabel.MouseClick += new System.Windows.Forms.MouseEventHandler(this.userNameLabel_MouseClick);
 			this.userNameLabel.MouseLeave += new System.EventHandler(this.userNameLabel_MouseLeave);
 			this.userNameLabel.MouseMove += new System.Windows.Forms.MouseEventHandler(this.userNameLabel_MouseMove);
 			// 
 			// haveMsgImage
 			// 
 			this.haveMsgImage.BackColor = System.Drawing.Color.White;
-			this.haveMsgImage.Location = new System.Drawing.Point(313, 6);
+			this.haveMsgImage.Location = new System.Drawing.Point(319, 11);
 			this.haveMsgImage.Name = "haveMsgImage";
-			this.haveMsgImage.Size = new System.Drawing.Size(49, 35);
+			this.haveMsgImage.Size = new System.Drawing.Size(33, 27);
 			this.haveMsgImage.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
 			this.haveMsgImage.TabIndex = 2;
 			this.haveMsgImage.TabStop = false;
+			this.haveMsgImage.MouseClick += new System.Windows.Forms.MouseEventHandler(this.haveMsgImage_MouseClick);
 			this.haveMsgImage.MouseLeave += new System.EventHandler(this.haveMsgImage_MouseLeave);
 			this.haveMsgImage.MouseMove += new System.Windows.Forms.MouseEventHandler(this.haveMsgImage_MouseMove);
 			// 
@@ -79,6 +81,7 @@
 			this.Controls.Add(this.isConnectImage);
 			this.Name = "UserListItem";
 			this.Size = new System.Drawing.Size(365, 49);
+			this.MouseClick += new System.Windows.Forms.MouseEventHandler(this.UserListItem_MouseClick);
 			this.MouseLeave += new System.EventHandler(this.UserListItem_MouseLeave);
 			this.MouseMove += new System.Windows.Forms.MouseEventHandler(this.UserListItem_MouseMove);
 			((System.ComponentModel.ISupportInitialize)(this.isConnectImage)).EndInit();

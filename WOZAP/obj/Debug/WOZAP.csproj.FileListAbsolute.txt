@@ -81,3 +81,5 @@ C:\Users\Илья\Desktop\ТиМП\j nej\WOZAP\WOZAP\obj\Debug\WOZAP.csprojAssem
 C:\Users\Илья\Desktop\ТиМП\j nej\WOZAP\WOZAP\obj\Debug\WOZAP.csproj.CopyComplete
 C:\Users\Илья\Desktop\ТиМП\j nej\WOZAP\WOZAP\obj\Debug\WOZAP.dll
 C:\Users\Илья\Desktop\ТиМП\j nej\WOZAP\WOZAP\obj\Debug\WOZAP.pdb
+C:\Users\Илья\Desktop\ТиМП\WOZAP\WOZAP\bin\Debug\Database1.mdf
+C:\Users\Илья\Desktop\ТиМП\WOZAP\WOZAP\bin\Debug\Database1_log.ldf

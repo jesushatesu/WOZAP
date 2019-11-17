@@ -36,29 +36,32 @@
 			// messageTexBox
 			// 
 			this.messageTexBox.BackColor = System.Drawing.SystemColors.ButtonFace;
-			this.messageTexBox.Location = new System.Drawing.Point(22, 40);
+			this.messageTexBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
+			this.messageTexBox.Location = new System.Drawing.Point(0, 19);
 			this.messageTexBox.Multiline = true;
 			this.messageTexBox.Name = "messageTexBox";
 			this.messageTexBox.ReadOnly = true;
-			this.messageTexBox.Size = new System.Drawing.Size(266, 32);
+			this.messageTexBox.Size = new System.Drawing.Size(318, 32);
 			this.messageTexBox.TabIndex = 0;
 			// 
 			// timeMsgTextBox
 			// 
 			this.timeMsgTextBox.BackColor = System.Drawing.SystemColors.ButtonFace;
-			this.timeMsgTextBox.Location = new System.Drawing.Point(22, 12);
+			this.timeMsgTextBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
+			this.timeMsgTextBox.Location = new System.Drawing.Point(0, 0);
 			this.timeMsgTextBox.Name = "timeMsgTextBox";
 			this.timeMsgTextBox.ReadOnly = true;
-			this.timeMsgTextBox.Size = new System.Drawing.Size(156, 22);
+			this.timeMsgTextBox.Size = new System.Drawing.Size(219, 15);
 			this.timeMsgTextBox.TabIndex = 1;
 			// 
 			// isReadTexBox
 			// 
 			this.isReadTexBox.BackColor = System.Drawing.SystemColors.ButtonFace;
-			this.isReadTexBox.Location = new System.Drawing.Point(188, 12);
+			this.isReadTexBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
+			this.isReadTexBox.Location = new System.Drawing.Point(218, 0);
 			this.isReadTexBox.Name = "isReadTexBox";
 			this.isReadTexBox.ReadOnly = true;
-			this.isReadTexBox.Size = new System.Drawing.Size(100, 22);
+			this.isReadTexBox.Size = new System.Drawing.Size(100, 15);
 			this.isReadTexBox.TabIndex = 2;
 			// 
 			// MessageItem
