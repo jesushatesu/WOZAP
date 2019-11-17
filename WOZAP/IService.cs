@@ -19,4 +19,16 @@ namespace WOZAP
 		[OperationContract(IsOneWay = true)]
         void SendMsg(string fromUserName, string toUserName, string msg);
     }
+
+    public interface IServerChatCallback
+    {
+        [OperationContract(IsOneWay = true)]
+        void MsgCallback(string fromUser, string msg);
+
+        [OperationContract(IsOneWay = true)]
+        void ConnectUserCallback(string userName);
+
+        [OperationContract(IsOneWay = true)]
+        void DisconnectUserCallback(string userName);
+    }
 }

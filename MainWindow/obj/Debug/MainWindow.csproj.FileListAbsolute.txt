@@ -98,3 +98,9 @@ C:\Users\JesusHatesU\Desktop\WOZAP\MainWindow\obj\Debug\MainWindow.csproj.CoreCo
 C:\Users\JesusHatesU\Desktop\WOZAP\MainWindow\obj\Debug\MainWindow.csproj.CopyComplete
 C:\Users\JesusHatesU\Desktop\WOZAP\MainWindow\obj\Debug\MainWindow.exe
 C:\Users\JesusHatesU\Desktop\WOZAP\MainWindow\obj\Debug\MainWindow.pdb
+C:\Users\JesusHatesU\Desktop\WOZAP\MainWindow\bin\Debug\MainWindow.exe.config
+C:\Users\JesusHatesU\Desktop\WOZAP\MainWindow\bin\Debug\MainWindow.exe
+C:\Users\JesusHatesU\Desktop\WOZAP\MainWindow\bin\Debug\MainWindow.pdb
+C:\Users\JesusHatesU\Desktop\WOZAP\MainWindow\bin\Debug\DataBase.exe
+C:\Users\JesusHatesU\Desktop\WOZAP\MainWindow\bin\Debug\DataBase.pdb
+C:\Users\JesusHatesU\Desktop\WOZAP\MainWindow\bin\Debug\DataBase.exe.config

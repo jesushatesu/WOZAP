@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.ServiceModel;
+using System.ServiceModel.Description;
 
 namespace Host
 {
@@ -13,7 +14,6 @@ namespace Host
         {
             using (var host = new ServiceHost(typeof(WOZAP.Service)))
             {
-				
 				host.Open();
                 Console.WriteLine("Хост стартовал!");
                 Console.ReadLine();

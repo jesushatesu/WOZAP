@@ -81,7 +81,7 @@ namespace WOZAP
         {
             List<User> users = new List<User> { };
             string[] allUsers = new string[10];
-            allUsers = dataBase.GetUsers();
+            //allUsers = dataBase.GetUsers();
 
             foreach (string usr in allUsers)
             {

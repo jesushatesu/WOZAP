@@ -7,15 +7,4 @@ using System.ServiceModel;
 
 namespace WOZAP
 {
-    public interface IServerChatCallback
-    {
-        [OperationContract]
-        void MsgCallback(string fromUser, string msg);
-
-        [OperationContract]
-        void ConnectUserCallback(string userName);
-
-        [OperationContract]
-        void DisconnectUserCallback(string userName);
-    }
 }
