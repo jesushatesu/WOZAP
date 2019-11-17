@@ -49,20 +49,37 @@ namespace DataBase
 			return UserName;
 		}
 
-		//      public string[] GetUsers()
-		//      {
-		//	//Исправить, сделал для того, чтобы компилировалось
+		public string[] GetUsers()
+		{
+			string connectionString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\228\Desktop\WOZAP\DataBase\Database1.mdf;Integrated Security=True";
 
-		//	//using (var context = new DataClasses1DataContext())
-		//	//{
-		//	//	var users1 = context.GetTable<Table>;
-		//	//}
-		//	using (DataClasses1DataContext db = new DataClasses1DataContext())
-		//	{
-		//		var user = db.GetTable.ToString<Table>();
-		//	}
-		//        return 
-		//}
+			//string[] str = { "123", "123" };
+			DataClasses1DataContext db = new DataClasses1DataContext(connectionString);
+
+			// Получаем таблицу пользователей
+			Table<User> users = db.GetTable<User>();
+			int max_id = 1;
+			int i = 0;
+			string[] str = new string[max_id];
+			foreach (var user in users)
+			{
+				//Console.WriteLine("{0} \t{1}", user.Id, user.name);
+				if (i >= max_id)
+				{
+					string[] new_str = new string[max_id + 100];
+
+					for (int j = 0; j < max_id; j++)
+						new_str[j] = str[j];
+
+					max_id += 100;
+					str = new_str;
+				}
+
+				str[i++] = user.name;
+				//Console.WriteLine(str[i - 1]);
+			}
+			return str;
+		}
 
 		public string ModificationMsgDB(int idMsg, string newMsg)
 		{
