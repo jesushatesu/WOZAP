@@ -98,9 +98,23 @@ C:\Users\JesusHatesU\Desktop\WOZAP\MainWindow\obj\Debug\MainWindow.csproj.CoreCo
 C:\Users\JesusHatesU\Desktop\WOZAP\MainWindow\obj\Debug\MainWindow.csproj.CopyComplete
 C:\Users\JesusHatesU\Desktop\WOZAP\MainWindow\obj\Debug\MainWindow.exe
 C:\Users\JesusHatesU\Desktop\WOZAP\MainWindow\obj\Debug\MainWindow.pdb
-C:\Users\JesusHatesU\Desktop\WOZAP\MainWindow\bin\Debug\MainWindow.exe.config
-C:\Users\JesusHatesU\Desktop\WOZAP\MainWindow\bin\Debug\MainWindow.exe
-C:\Users\JesusHatesU\Desktop\WOZAP\MainWindow\bin\Debug\MainWindow.pdb
-C:\Users\JesusHatesU\Desktop\WOZAP\MainWindow\bin\Debug\DataBase.exe
-C:\Users\JesusHatesU\Desktop\WOZAP\MainWindow\bin\Debug\DataBase.pdb
-C:\Users\JesusHatesU\Desktop\WOZAP\MainWindow\bin\Debug\DataBase.exe.config
+C:\Users\Илья\Desktop\ТиМП\WOZAP\MainWindow\obj\Debug\MainWindow.MessageItem.resources
+C:\Users\Илья\Desktop\ТиМП\j nej\WOZAP\MainWindow\bin\Debug\MainWindow.exe.config
+C:\Users\Илья\Desktop\ТиМП\j nej\WOZAP\MainWindow\bin\Debug\MainWindow.exe
+C:\Users\Илья\Desktop\ТиМП\j nej\WOZAP\MainWindow\bin\Debug\MainWindow.pdb
+C:\Users\Илья\Desktop\ТиМП\j nej\WOZAP\MainWindow\bin\Debug\WOZAP.dll
+C:\Users\Илья\Desktop\ТиМП\j nej\WOZAP\MainWindow\bin\Debug\DataBase.exe
+C:\Users\Илья\Desktop\ТиМП\j nej\WOZAP\MainWindow\bin\Debug\WOZAP.pdb
+C:\Users\Илья\Desktop\ТиМП\j nej\WOZAP\MainWindow\bin\Debug\WOZAP.dll.config
+C:\Users\Илья\Desktop\ТиМП\j nej\WOZAP\MainWindow\bin\Debug\DataBase.pdb
+C:\Users\Илья\Desktop\ТиМП\j nej\WOZAP\MainWindow\bin\Debug\DataBase.exe.config
+C:\Users\Илья\Desktop\ТиМП\j nej\WOZAP\MainWindow\obj\Debug\MainWindow.csprojAssemblyReference.cache
+C:\Users\Илья\Desktop\ТиМП\j nej\WOZAP\MainWindow\obj\Debug\MainWindow.MessageItem.resources
+C:\Users\Илья\Desktop\ТиМП\j nej\WOZAP\MainWindow\obj\Debug\MainWindow.Properties.Resources.resources
+C:\Users\Илья\Desktop\ТиМП\j nej\WOZAP\MainWindow\obj\Debug\MainWindow.SingInWindow.resources
+C:\Users\Илья\Desktop\ТиМП\j nej\WOZAP\MainWindow\obj\Debug\MainWindow.UserListItem.resources
+C:\Users\Илья\Desktop\ТиМП\j nej\WOZAP\MainWindow\obj\Debug\MainWindow.UserWindow.resources
+C:\Users\Илья\Desktop\ТиМП\j nej\WOZAP\MainWindow\obj\Debug\MainWindow.csproj.GenerateResource.cache
+C:\Users\Илья\Desktop\ТиМП\j nej\WOZAP\MainWindow\obj\Debug\MainWindow.csproj.CopyComplete
+C:\Users\Илья\Desktop\ТиМП\j nej\WOZAP\MainWindow\obj\Debug\MainWindow.exe
+C:\Users\Илья\Desktop\ТиМП\j nej\WOZAP\MainWindow\obj\Debug\MainWindow.pdb

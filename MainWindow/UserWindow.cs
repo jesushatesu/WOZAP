@@ -34,9 +34,21 @@ namespace MainWindow
 			ChatUser u1 = new ChatUser { name = "user1", isConnected = true, haveMsg = true };
 			ChatUser u2 = new ChatUser { name = "user2", isConnected = false, haveMsg = false };
 			ChatUser u3 = new ChatUser { name = "user3", isConnected = true, haveMsg = true };
+			ChatUser u4 = new ChatUser { name = "user1", isConnected = true, haveMsg = true };
+			ChatUser u5 = new ChatUser { name = "user2", isConnected = false, haveMsg = false };
+			ChatUser u6 = new ChatUser { name = "user3", isConnected = true, haveMsg = true };
+			ChatUser u7 = new ChatUser { name = "user1", isConnected = true, haveMsg = true };
+			ChatUser u8 = new ChatUser { name = "user2", isConnected = false, haveMsg = false };
+			ChatUser u9 = new ChatUser { name = "user3", isConnected = true, haveMsg = true };
 			_allUsers.Add(u1);
 			_allUsers.Add(u2);
 			_allUsers.Add(u3);
+			_allUsers.Add(u4);
+			_allUsers.Add(u5);
+			_allUsers.Add(u6);
+			_allUsers.Add(u7);
+			_allUsers.Add(u8);
+			_allUsers.Add(u9);
 		}
 
 		public void MsgCallback(string fromUser, string msg)
@@ -109,23 +121,30 @@ namespace MainWindow
 			return isConnect;
 		}
 		
+		// ---------- chat logic ---------
+
+
 		
 		//----------- design -------------
 
 		private void UserWindow_Load(object sender, EventArgs e)
 		{
 			// создание списка Itens
-			PopulateItems();
+			PopulateInemsUser();
+			Label newLabel = new Label { };
+			newLabel.Text = "cqnknk";
+			newLabel.AutoSize = true;
+			this.msgPanel.Controls.Add(newLabel);
 		}
 
 		// Отрисовка списка всех пользователей
-		private void PopulateItems()
+		private void PopulateInemsUser()
 		{
 			UserListItem[] userListItems = new UserListItem[_allUsers.Count];
 			//bool flag = true;
 			for (int i = 0; i < userListItems.Length; ++i)
 			{
-				userListItems[i] = new UserListItem();
+				userListItems[i] = new UserListItem(this);
 				userListItems[i].UserName = _allUsers[i].name;
 				if (_allUsers[i].isConnected)
 				{

@@ -49,6 +49,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ChatUser.cs" />
+    <Compile Include="MessageItem.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MessageItem.Designer.cs">
+      <DependentUpon>MessageItem.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SingIn.cs">
@@ -69,6 +75,9 @@
     <Compile Include="UserWindow.Designer.cs">
       <DependentUpon>UserWindow.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="MessageItem.resx">
+      <DependentUpon>MessageItem.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
