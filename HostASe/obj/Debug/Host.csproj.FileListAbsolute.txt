@@ -84,6 +84,5 @@ C:\Users\JesusHatesU\Desktop\WOZAP\HostASe\obj\Debug\Host.pdb
 C:\Users\JesusHatesU\Desktop\WOZAP\HostASe\bin\Debug\Host.exe.config
 C:\Users\JesusHatesU\Desktop\WOZAP\HostASe\bin\Debug\Host.exe
 C:\Users\JesusHatesU\Desktop\WOZAP\HostASe\bin\Debug\Host.pdb
-C:\Users\JesusHatesU\Desktop\WOZAP\HostASe\bin\Debug\DataBase.exe
-C:\Users\JesusHatesU\Desktop\WOZAP\HostASe\bin\Debug\DataBase.pdb
-C:\Users\JesusHatesU\Desktop\WOZAP\HostASe\bin\Debug\DataBase.exe.config
+C:\Users\JesusHatesU\Desktop\WOZAP\HostASe\bin\Debug\Database1.mdf
+C:\Users\JesusHatesU\Desktop\WOZAP\HostASe\bin\Debug\Database1_log.ldf
