@@ -11,8 +11,8 @@ namespace WOZAP
     [ServiceBehavior(InstanceContextMode = InstanceContextMode.Single)]
     public class Service : IService
     {
-        /*IDataBase dataBase;
-        static List<User> users;
+        DataBase.DataBase dataBase;
+        static List<User> users = new List<User>();
 
         Service()
         {
@@ -79,9 +79,8 @@ namespace WOZAP
         
         public List<User> GetUsersList()
         {
-            List<User> users = new List<User> { };
             string[] allUsers = new string[10];
-            //allUsers = dataBase.GetUsers();
+            allUsers = dataBase.GetUsers();
 
             foreach (string usr in allUsers)
             {
@@ -92,20 +91,5 @@ namespace WOZAP
             return users;
         }
 
-	}*/
-        public string Connect(string userName, out List<User> listUsers)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void Disconnect(string userName)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void SendMsg(string fromUserName, string toUserName, string msg)
-        {
-            throw new NotImplementedException();
-        }
     }
 }
