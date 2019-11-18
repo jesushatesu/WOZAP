@@ -30,7 +30,12 @@
 		{
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(UserWindow));
 			this.mainFoneSingIn = new System.Windows.Forms.Panel();
+			this.msgPanel = new System.Windows.Forms.Panel();
+			this.panel1 = new System.Windows.Forms.Panel();
+			this.msgButton = new System.Windows.Forms.Button();
+			this.msgTextBox = new System.Windows.Forms.TextBox();
 			this.userWindowLeft = new System.Windows.Forms.Panel();
+			this.PanelListUsers = new System.Windows.Forms.FlowLayoutPanel();
 			this.userInfoBox = new System.Windows.Forms.Panel();
 			this.userName = new System.Windows.Forms.Label();
 			this.buttonLogOut = new System.Windows.Forms.Button();
@@ -41,8 +46,10 @@
 			this.pictureBox1 = new System.Windows.Forms.PictureBox();
 			this.buttonMinimized = new System.Windows.Forms.PictureBox();
 			this.closeButton = new System.Windows.Forms.PictureBox();
-			this.PanelListUsers = new System.Windows.Forms.FlowLayoutPanel();
+			this.msgFlowPanel = new System.Windows.Forms.FlowLayoutPanel();
 			this.mainFoneSingIn.SuspendLayout();
+			this.msgPanel.SuspendLayout();
+			this.panel1.SuspendLayout();
 			this.userWindowLeft.SuspendLayout();
 			this.userInfoBox.SuspendLayout();
 			this.topblokAuth.SuspendLayout();
@@ -56,6 +63,7 @@
 			// mainFoneSingIn
 			// 
 			this.mainFoneSingIn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(134)))), ((int)(((byte)(191)))), ((int)(((byte)(239)))));
+			this.mainFoneSingIn.Controls.Add(this.msgPanel);
 			this.mainFoneSingIn.Controls.Add(this.userWindowLeft);
 			this.mainFoneSingIn.Controls.Add(this.topblokAuth);
 			this.mainFoneSingIn.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -64,6 +72,45 @@
 			this.mainFoneSingIn.Name = "mainFoneSingIn";
 			this.mainFoneSingIn.Size = new System.Drawing.Size(1041, 574);
 			this.mainFoneSingIn.TabIndex = 1;
+			// 
+			// msgPanel
+			// 
+			this.msgPanel.Controls.Add(this.msgFlowPanel);
+			this.msgPanel.Controls.Add(this.panel1);
+			this.msgPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.msgPanel.Location = new System.Drawing.Point(397, 34);
+			this.msgPanel.Name = "msgPanel";
+			this.msgPanel.Size = new System.Drawing.Size(644, 540);
+			this.msgPanel.TabIndex = 8;
+			// 
+			// panel1
+			// 
+			this.panel1.BackColor = System.Drawing.Color.White;
+			this.panel1.Controls.Add(this.msgButton);
+			this.panel1.Controls.Add(this.msgTextBox);
+			this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
+			this.panel1.Location = new System.Drawing.Point(0, 473);
+			this.panel1.Name = "panel1";
+			this.panel1.Size = new System.Drawing.Size(644, 67);
+			this.panel1.TabIndex = 0;
+			// 
+			// msgButton
+			// 
+			this.msgButton.Location = new System.Drawing.Point(512, 16);
+			this.msgButton.Name = "msgButton";
+			this.msgButton.Size = new System.Drawing.Size(120, 39);
+			this.msgButton.TabIndex = 1;
+			this.msgButton.Text = "button1";
+			this.msgButton.UseVisualStyleBackColor = true;
+			this.msgButton.MouseClick += new System.Windows.Forms.MouseEventHandler(this.msgButton_MouseClick);
+			// 
+			// msgTextBox
+			// 
+			this.msgTextBox.Location = new System.Drawing.Point(19, 16);
+			this.msgTextBox.Multiline = true;
+			this.msgTextBox.Name = "msgTextBox";
+			this.msgTextBox.Size = new System.Drawing.Size(478, 39);
+			this.msgTextBox.TabIndex = 0;
 			// 
 			// userWindowLeft
 			// 
@@ -76,6 +123,16 @@
 			this.userWindowLeft.Name = "userWindowLeft";
 			this.userWindowLeft.Size = new System.Drawing.Size(397, 540);
 			this.userWindowLeft.TabIndex = 7;
+			// 
+			// PanelListUsers
+			// 
+			this.PanelListUsers.AutoScroll = true;
+			this.PanelListUsers.BackColor = System.Drawing.Color.White;
+			this.PanelListUsers.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.PanelListUsers.Location = new System.Drawing.Point(0, 60);
+			this.PanelListUsers.Name = "PanelListUsers";
+			this.PanelListUsers.Size = new System.Drawing.Size(397, 480);
+			this.PanelListUsers.TabIndex = 1;
 			// 
 			// userInfoBox
 			// 
@@ -101,10 +158,10 @@
 			// 
 			// buttonLogOut
 			// 
-			this.buttonLogOut.Location = new System.Drawing.Point(243, 14);
+			this.buttonLogOut.Location = new System.Drawing.Point(300, 14);
 			this.buttonLogOut.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
 			this.buttonLogOut.Name = "buttonLogOut";
-			this.buttonLogOut.Size = new System.Drawing.Size(151, 30);
+			this.buttonLogOut.Size = new System.Drawing.Size(91, 30);
 			this.buttonLogOut.TabIndex = 0;
 			this.buttonLogOut.Text = "log out";
 			this.buttonLogOut.UseVisualStyleBackColor = true;
@@ -200,14 +257,13 @@
 			this.closeButton.MouseEnter += new System.EventHandler(this.closeButton_MouseEnter);
 			this.closeButton.MouseLeave += new System.EventHandler(this.closeButton_MouseLeave);
 			// 
-			// PanelListUsers
+			// msgFlowPanel
 			// 
-			this.PanelListUsers.BackColor = System.Drawing.Color.White;
-			this.PanelListUsers.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.PanelListUsers.Location = new System.Drawing.Point(0, 60);
-			this.PanelListUsers.Name = "PanelListUsers";
-			this.PanelListUsers.Size = new System.Drawing.Size(397, 480);
-			this.PanelListUsers.TabIndex = 1;
+			this.msgFlowPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.msgFlowPanel.Location = new System.Drawing.Point(0, 0);
+			this.msgFlowPanel.Name = "msgFlowPanel";
+			this.msgFlowPanel.Size = new System.Drawing.Size(644, 473);
+			this.msgFlowPanel.TabIndex = 1;
 			// 
 			// UserWindow
 			// 
@@ -222,6 +278,9 @@
 			this.Text = "UserWindow";
 			this.Load += new System.EventHandler(this.UserWindow_Load);
 			this.mainFoneSingIn.ResumeLayout(false);
+			this.msgPanel.ResumeLayout(false);
+			this.panel1.ResumeLayout(false);
+			this.panel1.PerformLayout();
 			this.userWindowLeft.ResumeLayout(false);
 			this.userInfoBox.ResumeLayout(false);
 			this.userInfoBox.PerformLayout();
@@ -251,5 +310,10 @@
 		private System.Windows.Forms.Label userName;
 		private System.Windows.Forms.Button buttonLogOut;
 		private System.Windows.Forms.FlowLayoutPanel PanelListUsers;
+		private System.Windows.Forms.Panel msgPanel;
+		private System.Windows.Forms.Panel panel1;
+		private System.Windows.Forms.Button msgButton;
+		private System.Windows.Forms.TextBox msgTextBox;
+		private System.Windows.Forms.FlowLayoutPanel msgFlowPanel;
 	}
 }

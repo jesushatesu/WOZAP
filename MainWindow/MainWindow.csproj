@@ -49,6 +49,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ChatUser.cs" />
+    <Compile Include="MessageItem.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MessageItem.Designer.cs">
+      <DependentUpon>MessageItem.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SingIn.cs">
@@ -69,6 +75,9 @@
     <Compile Include="UserWindow.Designer.cs">
       <DependentUpon>UserWindow.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="MessageItem.resx">
+      <DependentUpon>MessageItem.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -109,10 +118,10 @@
     <None Include="images\haveMsg.png" />
     <Content Include="images\minus.png" />
     <Content Include="images\minus_circle.png" />
+    <Content Include="images\Tick.png" />
     <Content Include="images\user.png" />
     <Content Include="images\Whatsapp.png" />
     <Content Include="images\Whatsapp_black.png" />
-    <None Include="Resources\OnlineDot.png" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\WOZAP\WOZAP.csproj">
@@ -122,6 +131,9 @@
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Resources\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
