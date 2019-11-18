@@ -4,7 +4,7 @@ namespace DataBase
 	{
 	}
 
-	partial class Table2
+	partial class Message
 	{
 	}
 

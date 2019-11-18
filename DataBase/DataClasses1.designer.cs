@@ -33,9 +33,6 @@ namespace DataBase
     partial void InsertUser(User instance);
     partial void UpdateUser(User instance);
     partial void DeleteUser(User instance);
-    partial void InsertTable2(Table2 instance);
-    partial void UpdateTable2(Table2 instance);
-    partial void DeleteTable2(Table2 instance);
     #endregion
 		
 		public DataClasses1DataContext() : 
@@ -68,6 +65,14 @@ namespace DataBase
 			OnCreated();
 		}
 		
+		public System.Data.Linq.Table<Message> Message
+		{
+			get
+			{
+				return this.GetTable<Message>();
+			}
+		}
+		
 		public System.Data.Linq.Table<User> User
 		{
 			get
@@ -75,12 +80,67 @@ namespace DataBase
 				return this.GetTable<User>();
 			}
 		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Message")]
+	public partial class Message
+	{
 		
-		public System.Data.Linq.Table<Table2> Table2
+		private int _Id1;
+		
+		private int _Id2;
+		
+		private string _Msg;
+		
+		public Message()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Id1", DbType="Int NOT NULL")]
+		public int Id1
 		{
 			get
 			{
-				return this.GetTable<Table2>();
+				return this._Id1;
+			}
+			set
+			{
+				if ((this._Id1 != value))
+				{
+					this._Id1 = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Id2", DbType="Int NOT NULL")]
+		public int Id2
+		{
+			get
+			{
+				return this._Id2;
+			}
+			set
+			{
+				if ((this._Id2 != value))
+				{
+					this._Id2 = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Msg", DbType="Text", UpdateCheck=UpdateCheck.Never)]
+		public string Msg
+		{
+			get
+			{
+				return this._Msg;
+			}
+			set
+			{
+				if ((this._Msg != value))
+				{
+					this._Msg = value;
+				}
 			}
 		}
 	}
@@ -110,7 +170,7 @@ namespace DataBase
 			OnCreated();
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Id", DbType="Int NOT NULL", IsPrimaryKey=true, IsDbGenerated = true)]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
 		public int Id
 		{
 			get
@@ -146,92 +206,6 @@ namespace DataBase
 					this._name = value;
 					this.SendPropertyChanged("name");
 					this.OnnameChanged();
-				}
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Table2")]
-	public partial class Table2 : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private int _Id;
-		
-		private string _message;
-		
-    #region Определения метода расширяемости
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnIdChanging(int value);
-    partial void OnIdChanged();
-    partial void OnmessageChanging(string value);
-    partial void OnmessageChanged();
-    #endregion
-		
-		public Table2()
-		{
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Id", DbType="Int NOT NULL", IsPrimaryKey=true, IsDbGenerated = true)]
-		public int Id
-		{
-			get
-			{
-				return this._Id;
-			}
-			set
-			{
-				if ((this._Id != value))
-				{
-					this.OnIdChanging(value);
-					this.SendPropertyChanging();
-					this._Id = value;
-					this.SendPropertyChanged("Id");
-					this.OnIdChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_message", DbType="Text", UpdateCheck=UpdateCheck.Never)]
-		public string message
-		{
-			get
-			{
-				return this._message;
-			}
-			set
-			{
-				if ((this._message != value))
-				{
-					this.OnmessageChanging(value);
-					this.SendPropertyChanging();
-					this._message = value;
-					this.SendPropertyChanged("message");
-					this.OnmessageChanged();
 				}
 			}
 		}
