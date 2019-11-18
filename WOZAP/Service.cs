@@ -12,9 +12,21 @@ namespace WOZAP
     public class Service : IService
     {
         DataBase.DataBase dataBase;
-        static List<User> users = new List<User>();
+        List<User> users = new List<User>();
 
-        Service()
+        public List<User> GetUsr()
+        {
+            /*List<User> listUsers = new List<User>();
+            foreach (User usr in users)
+            {
+                listUsers.Add(new User { name = usr.name, isConnected = usr.isConnected });
+            }
+
+            return listUsers;*/
+            return users;
+        }
+
+        public Service()
         {
             dataBase = new DataBase.DataBase();
 
@@ -76,7 +88,7 @@ namespace WOZAP
             }
         }
         
-        public List<User> GetUsersList()
+        List<User> GetUsersList()
         {
             string[] allUsers = new string[10];
             allUsers = dataBase.GetUsers();
