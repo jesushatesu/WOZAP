@@ -11,7 +11,7 @@ namespace WOZAP
     public interface IService
     {
         [OperationContract]
-        string Connect(string userName, out List<User> listUsers);
+        string Connect(string userName);
 
         [OperationContract]
         void Disconnect(string userName);

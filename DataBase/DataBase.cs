@@ -51,10 +51,10 @@ namespace DataBase
 
 		public string[] GetUsers()
 		{
-			string connectionString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\228\Desktop\WOZAP\DataBase\Database1.mdf;Integrated Security=True";
+			//string connectionString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\228\Desktop\WOZAP\DataBase\Database1.mdf;Integrated Security=True";
 
 			//string[] str = { "123", "123" };
-			DataClasses1DataContext db = new DataClasses1DataContext(connectionString);
+			DataClasses1DataContext db = new DataClasses1DataContext();
 
 			// Получаем таблицу пользователей
 			Table<User> users = db.GetTable<User>();

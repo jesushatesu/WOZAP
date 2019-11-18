@@ -21,7 +21,7 @@ namespace WOZAP
 			users = GetUsersList();
         }
 
-        public string Connect(string userName, out List<User> listUsers)
+        public string Connect(string userName)
         {
             dataBase.AddUser(userName);
             string messages = "";
@@ -29,20 +29,19 @@ namespace WOZAP
             for (int i = 0; i < users.LongCount(); i++)
             {
                 User usr = users[i];
-                usr.opCont.GetCallbackChannel<IServerChatCallback>().DisconnectUserCallback(usr.name);
+                usr.opCont.GetCallbackChannel<IServerChatCallback>().ConnectUserCallback(usr.name);
 
                 if (usr.name == userName)
                 {
                     messages = dataBase.GetMsg(userName);
-                    usr.isConnected = false;
+                    usr.isConnected = true;
                 }
             }
-
-            listUsers = new List<User>();
-            foreach (User usr in users)
+            
+            /*foreach (User usr in users)
             {
                 listUsers.Add(new User { name = usr.name, isConnected = usr.isConnected});
-            }
+            }*/
 
             return messages;
         }
@@ -90,6 +89,5 @@ namespace WOZAP
 
             return users;
         }
-
     }
 }
