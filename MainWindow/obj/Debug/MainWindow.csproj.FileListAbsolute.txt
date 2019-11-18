@@ -118,3 +118,15 @@ C:\Users\Илья\Desktop\ТиМП\j nej\WOZAP\MainWindow\obj\Debug\MainWindow.c
 C:\Users\Илья\Desktop\ТиМП\j nej\WOZAP\MainWindow\obj\Debug\MainWindow.csproj.CopyComplete
 C:\Users\Илья\Desktop\ТиМП\j nej\WOZAP\MainWindow\obj\Debug\MainWindow.exe
 C:\Users\Илья\Desktop\ТиМП\j nej\WOZAP\MainWindow\obj\Debug\MainWindow.pdb
+C:\Users\JesusHatesU\Desktop\WOZAP\MainWindow\bin\Debug\MainWindow.exe.config
+C:\Users\JesusHatesU\Desktop\WOZAP\MainWindow\bin\Debug\MainWindow.exe
+C:\Users\JesusHatesU\Desktop\WOZAP\MainWindow\bin\Debug\MainWindow.pdb
+C:\Users\JesusHatesU\Desktop\WOZAP\MainWindow\bin\Debug\DataBase.exe
+C:\Users\JesusHatesU\Desktop\WOZAP\MainWindow\bin\Debug\DataBase.pdb
+C:\Users\JesusHatesU\Desktop\WOZAP\MainWindow\bin\Debug\DataBase.exe.config
+C:\Users\JesusHatesU\Desktop\WOZAP\MainWindow\obj\Debug\MainWindow.MessageItem.resources
+C:\Users\JesusHatesU\Desktop\WOZAP\bin\Debug\Database1.mdf
+C:\Users\JesusHatesU\Desktop\WOZAP\bin\Debug\Database1_log.ldf
+C:\Users\JesusHatesU\Desktop\WOZAP\bin\Debug\MainWindow.exe.config
+C:\Users\JesusHatesU\Desktop\WOZAP\bin\Debug\MainWindow.exe
+C:\Users\JesusHatesU\Desktop\WOZAP\bin\Debug\MainWindow.pdb
