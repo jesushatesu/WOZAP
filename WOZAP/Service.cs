@@ -41,7 +41,7 @@ namespace WOZAP
 			users = GetUsersList();
         }
 
-        public void Connect(string userName)
+        public string[] Connect(string userName)
         {
             dataBase.AddUser(userName);
             string[] userStruct = new string[users.LongCount()];
@@ -59,6 +59,8 @@ namespace WOZAP
                 userStruct[i] = usr.name + "&&" + ((usr.isConnected)?"1":"0")/* + ((dataBase.HaveMsg) ? "1" : "0")*/;
                 //userNameConnectHaveMsg.ToArray()[i].haveMsg = dataBase.HaveMsg(userName);
             }
+
+            return userStruct;
         }
 
         public void Disconnect(string userName)
