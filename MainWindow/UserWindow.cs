@@ -318,6 +318,7 @@ namespace MainWindow
 				}
 			}
 
+			_client.SendMsg(_userName, _currentUserItem.UserName, this.msgTextBox.Text);
 			this.msgTextBox.Text = "";
 		}
 	}
