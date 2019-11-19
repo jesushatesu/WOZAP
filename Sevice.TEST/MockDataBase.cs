@@ -44,5 +44,20 @@ namespace Sevice.TEST
         {
             throw new NotImplementedException();
         }
+
+        public int GetId(string username)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void AddMsg(string from, string to, string msgg)
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool HaveMsg(string userName)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
