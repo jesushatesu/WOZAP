@@ -148,3 +148,15 @@ C:\Users\Илья\Desktop\ТиМП\Новая папка\WOZAP\MainWindow\obj\De
 C:\Users\228\Desktop\WOZAP\MainWindow\obj\Debug\MainWindow.MessageItem.resources
 >>>>>>> Stashed changes
 >>>>>>> dce0b233fa681b068d1626b7e631a41fc5cdd766
+C:\Users\Илья\Desktop\ТиМП\Рабочаяя версия\WOZAP\bin\Debug\MainWindow.exe.config
+C:\Users\Илья\Desktop\ТиМП\Рабочаяя версия\WOZAP\bin\Debug\MainWindow.exe
+C:\Users\Илья\Desktop\ТиМП\Рабочаяя версия\WOZAP\bin\Debug\MainWindow.pdb
+C:\Users\Илья\Desktop\ТиМП\Рабочаяя версия\WOZAP\MainWindow\obj\Debug\MainWindow.csprojAssemblyReference.cache
+C:\Users\Илья\Desktop\ТиМП\Рабочаяя версия\WOZAP\MainWindow\obj\Debug\MainWindow.MessageItem.resources
+C:\Users\Илья\Desktop\ТиМП\Рабочаяя версия\WOZAP\MainWindow\obj\Debug\MainWindow.Properties.Resources.resources
+C:\Users\Илья\Desktop\ТиМП\Рабочаяя версия\WOZAP\MainWindow\obj\Debug\MainWindow.SingInWindow.resources
+C:\Users\Илья\Desktop\ТиМП\Рабочаяя версия\WOZAP\MainWindow\obj\Debug\MainWindow.UserListItem.resources
+C:\Users\Илья\Desktop\ТиМП\Рабочаяя версия\WOZAP\MainWindow\obj\Debug\MainWindow.UserWindow.resources
+C:\Users\Илья\Desktop\ТиМП\Рабочаяя версия\WOZAP\MainWindow\obj\Debug\MainWindow.csproj.GenerateResource.cache
+C:\Users\Илья\Desktop\ТиМП\Рабочаяя версия\WOZAP\MainWindow\obj\Debug\MainWindow.exe
+C:\Users\Илья\Desktop\ТиМП\Рабочаяя версия\WOZAP\MainWindow\obj\Debug\MainWindow.pdb

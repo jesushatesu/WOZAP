@@ -31,15 +31,6 @@ namespace MainWindow
 			_userName = userName;
 			_singInWindow = singInWindow;
 			this.userName.Text = userName;
-			MessageItem m1 = new MessageItem("bbb", "ve", "user3qwee", "user3qwee");
-
-			// Это для визуального тестиования
-			ChatUser u1 = new ChatUser { userName = "user1kmv", isConnected = true, haveMsg = true, msgItems = new List<MessageItem>() };
-			ChatUser u2 = new ChatUser { userName = "user2d", isConnected = false, haveMsg = false, msgItems = new List<MessageItem>() };
-			ChatUser u3 = new ChatUser { userName = "user36e", isConnected = true, haveMsg = true, msgItems = new List<MessageItem>() };
-			_allUsers.Add(u1);
-			_allUsers.Add(u2);
-			_allUsers.Add(u3);
 		}
 
 		public void MsgCallback(string fromUser, string msg)
@@ -96,8 +87,14 @@ namespace MainWindow
 			}
 			else
 			{
-				// Отобразим, что теперь онлайн
-				// Только как!?
+				for (int i = 0; i < _userListItems.Length; ++i)
+				{
+					if (_userListItems[i].UserName == userName)
+					{
+						_userListItems[i].HaveMsgImage = Resources.Circle_Green;
+						break;
+					}
+				}
 			}
 		}
 
@@ -111,8 +108,14 @@ namespace MainWindow
 				}
 			});
 
-			// Нужно отобразаить, что теперь не онлайн!
-			// Только как не знаю!!
+			for (int i = 0; i < _userListItems.Length; ++i)
+			{
+				if (_userListItems[i].UserName == userName)
+				{
+					_userListItems[i].HaveMsgImage = Resources.Circle_Red;
+					break;
+				}
+			}
 		}
 
 		//--------------------------------
@@ -162,7 +165,7 @@ namespace MainWindow
 			{
 				if (_allUsers[i].userName == item.UserName)
 				{
-					// тут нужно добавить сообщения пользователю
+					// Взять сообщения с сервиса и отобрпзить их(сохранить как items)
 					DrowMsg(_allUsers[i]);
 					break;
 				}
@@ -254,6 +257,7 @@ namespace MainWindow
 		private void closeButton_Click(object sender, EventArgs e)
 		{
 			this.Close();
+			_client.Disconnect(_userName);
 			_singInWindow.Close();
 		}
 
@@ -285,6 +289,7 @@ namespace MainWindow
 		private void buttonLogOut_Click(object sender, EventArgs e)
 		{
 			this.Close();
+			_client.Disconnect(_userName);
 			_singInWindow.Show();
 		}
 
