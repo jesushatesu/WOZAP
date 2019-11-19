@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace MainWindow
 {
-	class ChatUser
+	public struct ChatUser
 	{
 		public string userName { get; set; }
 		public bool isConnected { get; set; }

@@ -145,7 +145,6 @@ C:\Users\Илья\Desktop\ТиМП\Новая папка\WOZAP\MainWindow\obj\De
 C:\Users\Илья\Desktop\ТиМП\Новая папка\WOZAP\MainWindow\obj\Debug\MainWindow.exe
 C:\Users\Илья\Desktop\ТиМП\Новая папка\WOZAP\MainWindow\obj\Debug\MainWindow.pdb
 =======
-=======
 C:\Users\228\Desktop\WOZAP\MainWindow\obj\Debug\MainWindow.MessageItem.resources
 >>>>>>> Stashed changes
 >>>>>>> dce0b233fa681b068d1626b7e631a41fc5cdd766

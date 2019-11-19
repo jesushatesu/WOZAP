@@ -21,7 +21,7 @@ namespace MainWindow
 		private List<ChatUser> _allUsers = new List<ChatUser> { };
 		private Point _lastPoint;
 		private UserListItem _currentUserItem;
-
+		private UserListItem[] _userListItems;
 		private ServiceClient _client;
 
 		public UserWindow(string userName, SingInWindow singInWindow)
@@ -37,26 +37,40 @@ namespace MainWindow
 			ChatUser u1 = new ChatUser { userName = "user1kmv", isConnected = true, haveMsg = true, msgItems = new List<MessageItem>() };
 			ChatUser u2 = new ChatUser { userName = "user2d", isConnected = false, haveMsg = false, msgItems = new List<MessageItem>() };
 			ChatUser u3 = new ChatUser { userName = "user36e", isConnected = true, haveMsg = true, msgItems = new List<MessageItem>() };
-			ChatUser u4 = new ChatUser { userName = "user1sd", isConnected = true, haveMsg = true, msgItems = new List<MessageItem>() };
-			ChatUser u5 = new ChatUser { userName = "user2ld", isConnected = false, haveMsg = false, msgItems = new List<MessageItem>() };
-			ChatUser u6 = new ChatUser { userName = "user3qwee", isConnected = true, haveMsg = true, msgItems = new List<MessageItem>() };
-			ChatUser u7 = new ChatUser { userName = "usec1", isConnected = true, haveMsg = true, msgItems = new List<MessageItem>() };
-			ChatUser u8 = new ChatUser { userName = "IIser2", isConnected = false, haveMsg = false, msgItems = new List<MessageItem>() };
-			ChatUser u9 = new ChatUser { userName = "cokser3", isConnected = true, haveMsg = true, msgItems = new List<MessageItem>() };
 			_allUsers.Add(u1);
 			_allUsers.Add(u2);
 			_allUsers.Add(u3);
-			_allUsers.Add(u4);
-			_allUsers.Add(u5);
-			_allUsers.Add(u6);
-			_allUsers.Add(u7);
-			_allUsers.Add(u8);
-			_allUsers.Add(u9);
 		}
 
 		public void MsgCallback(string fromUser, string msg)
 		{
-			
+			for (int i = 0; i < _allUsers.Count; ++i)
+			{
+				if (_allUsers[i].userName == fromUser)
+				{
+					MessageItem msgItem = new MessageItem(msg, DateTime.Now.ToString(),
+							_userName + fromUser + DateTime.Now.ToString(), fromUser);
+					_allUsers[i].msgItems.Add(msgItem);
+
+					if (_currentUserItem.UserName == fromUser)
+					{
+						this.msgFlowPanel.Controls.Add(msgItem);
+					}
+					else
+					{
+						_allUsers.ToArray()[i].haveMsg = true;
+						for (int k = 0; k < _userListItems.Length; ++k)
+						{
+							if (_userListItems[k].UserName == fromUser)
+							{
+								_userListItems[k].HaveMsgImage = Resources.haveMsg;
+								break;
+							}
+						}
+					}
+					break;
+				}
+			}
 		}
 
 		public void ConnectUserCallback(string userName)
@@ -148,6 +162,7 @@ namespace MainWindow
 			{
 				if (_allUsers[i].userName == item.UserName)
 				{
+					// тут нужно добавить сообщения пользователю
 					DrowMsg(_allUsers[i]);
 					break;
 				}
@@ -163,8 +178,11 @@ namespace MainWindow
 		private void UserWindow_Load(object sender, EventArgs e)
 		{
 			_client = new ServiceClient(new System.ServiceModel.InstanceContext(this));
-			_client.Connect(_userName);
-			
+
+			// Конектим
+			//  _client.Connect(_userName, ref _allUsers);
+			//
+
 			// создание списка Itens
 			PopulateInemsUser();
 			Label newLabel = new Label { };
@@ -176,28 +194,28 @@ namespace MainWindow
 		// Отрисовка списка всех пользователей
 		private void PopulateInemsUser()
 		{
-			UserListItem[] userListItems = new UserListItem[_allUsers.Count];
-			for (int i = 0; i < userListItems.Length; ++i)
+			_userListItems = new UserListItem[_allUsers.Count];
+			for (int i = 0; i < _userListItems.Length; ++i)
 			{
-				userListItems[i] = new UserListItem(this);
-				userListItems[i].UserName = _allUsers[i].userName;
+				_userListItems[i] = new UserListItem(this);
+				_userListItems[i].UserName = _allUsers[i].userName;
 				if (_allUsers[i].isConnected)
 				{
-					userListItems[i].ConnectedImage = Resources.Circle_Green;
+					_userListItems[i].ConnectedImage = Resources.Circle_Green;
 				}
 				else
 				{
-					userListItems[i].ConnectedImage = Resources.Circle_Red;
+					_userListItems[i].ConnectedImage = Resources.Circle_Red;
 				}
 
 				if (_allUsers[i].haveMsg)
 				{
-					userListItems[i].HaveMsgImage = Resources.haveMsg;
+					_userListItems[i].HaveMsgImage = Resources.haveMsg;
 				}
 				else
-					userListItems[i].HaveMsgImage = Resources.Tick;
+					_userListItems[i].HaveMsgImage = Resources.Tick;
 
-				this.PanelListUsers.Controls.Add(userListItems[i]);
+				this.PanelListUsers.Controls.Add(_userListItems[i]);
 			}
 		}
 
