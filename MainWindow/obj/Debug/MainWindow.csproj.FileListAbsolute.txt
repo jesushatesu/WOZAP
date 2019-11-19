@@ -147,6 +147,7 @@ C:\Users\Илья\Desktop\ТиМП\Новая папка\WOZAP\MainWindow\obj\De
 =======
 C:\Users\228\Desktop\WOZAP\MainWindow\obj\Debug\MainWindow.MessageItem.resources
 >>>>>>> Stashed changes
+<<<<<<< HEAD
 >>>>>>> dce0b233fa681b068d1626b7e631a41fc5cdd766
 C:\Users\Илья\Desktop\ТиМП\Рабочаяя версия\WOZAP\bin\Debug\MainWindow.exe.config
 C:\Users\Илья\Desktop\ТиМП\Рабочаяя версия\WOZAP\bin\Debug\MainWindow.exe
@@ -160,3 +161,10 @@ C:\Users\Илья\Desktop\ТиМП\Рабочаяя версия\WOZAP\MainWindo
 C:\Users\Илья\Desktop\ТиМП\Рабочаяя версия\WOZAP\MainWindow\obj\Debug\MainWindow.csproj.GenerateResource.cache
 C:\Users\Илья\Desktop\ТиМП\Рабочаяя версия\WOZAP\MainWindow\obj\Debug\MainWindow.exe
 C:\Users\Илья\Desktop\ТиМП\Рабочаяя версия\WOZAP\MainWindow\obj\Debug\MainWindow.pdb
+=======
+C:\Users\228\Desktop\WOZAP\bin\Debug\Database1.mdf
+C:\Users\228\Desktop\WOZAP\bin\Debug\Database1_log.ldf
+C:\Users\228\Desktop\WOZAP\bin\Debug\MainWindow.exe.config
+C:\Users\228\Desktop\WOZAP\bin\Debug\MainWindow.exe
+C:\Users\228\Desktop\WOZAP\bin\Debug\MainWindow.pdb
+>>>>>>> 3ebe067... доделал базу данных
