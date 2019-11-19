@@ -42,7 +42,13 @@ namespace MainWindow
 			_allUsers.Add(u3);
 		}
 
-		public void MsgCallback(string fromUser, string msg)
+
+        public void ChatUserCallback(string userStruct)
+        {
+
+        }
+
+        public void MsgCallback(string fromUser, string msg)
 		{
 			for (int i = 0; i < _allUsers.Count; ++i)
 			{

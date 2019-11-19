@@ -12,7 +12,7 @@ namespace WOZAP
     public interface IService
     {
         [OperationContract]
-        void Connect(string userName, ref List<ChatUser> userNameConnectHaveMsg);
+        void Connect(string userName);
 
         [OperationContract]
         void Disconnect(string userName);
@@ -20,7 +20,7 @@ namespace WOZAP
 		[OperationContract(IsOneWay = true)]
         void SendMsg(string fromUserName, string toUserName, string msg);
 
-        [OperationContract(IsOneWay = true)]
+        [OperationContract]
         string[] GetUnsentMsg(string userNameFrom, string userNameTo);
     }
 
