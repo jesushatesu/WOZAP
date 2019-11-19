@@ -41,9 +41,10 @@ namespace WOZAP
 			users = GetUsersList();
         }
 
-        public void Connect(string userName, ref List<ChatUser> userNameConnectHaveMsg)
+        public void Connect(string userName)
         {
             dataBase.AddUser(userName);
+            string[] userStruct = new string[users.LongCount()];
 
             for (int i = 0; i < users.LongCount(); i++)
             {
@@ -55,11 +56,9 @@ namespace WOZAP
                     usr.isConnected = true;
                 }
 
-                userNameConnectHaveMsg.ToArray()[i].isConnected = usr.isConnected;
-                userNameConnectHaveMsg.ToArray()[i].userName = usr.name;
+                userStruct[i] = usr.name + "&&" + ((usr.isConnected)?"1":"0")/* + ((dataBase.HaveMsg) ? "1" : "0")*/;
                 //userNameConnectHaveMsg.ToArray()[i].haveMsg = dataBase.HaveMsg(userName);
             }
-            
         }
 
         public void Disconnect(string userName)
@@ -95,8 +94,6 @@ namespace WOZAP
         public string[] GetUnsentMsg(string userNameFrom, string userNameTo)
         {
             string[] str = dataBase.GetMsg(userNameFrom, userNameTo);
-
-
 
             return str;
         }

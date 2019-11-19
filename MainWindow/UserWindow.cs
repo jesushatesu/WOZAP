@@ -33,7 +33,13 @@ namespace MainWindow
 			this.userName.Text = userName;
 		}
 
-		public void MsgCallback(string fromUser, string msg)
+
+        public void ChatUserCallback(string userStruct)
+        {
+
+        }
+
+        public void MsgCallback(string fromUser, string msg)
 		{
 			for (int i = 0; i < _allUsers.Count; ++i)
 			{
