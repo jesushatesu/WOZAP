@@ -40,7 +40,7 @@ namespace WOZAP
 			users = GetUsersList();
         }
 
-        public string Connect(string userName)
+        public string Connect(string userName, ref string[,] userNameConnectHaveMsg)
         {
             dataBase.AddUser(userName);
             string messages = "";
@@ -48,7 +48,7 @@ namespace WOZAP
             for (int i = 0; i < users.LongCount(); i++)
             {
                 User usr = users[i];
-                //usr.opCont.GetCallbackChannel<IServerChatCallback>().ConnectUserCallback(usr.name);
+                usr.opCont.GetCallbackChannel<IServerChatCallback>().ConnectUserCallback(usr.name);
 
                 if (usr.name == userName)
                 {

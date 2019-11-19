@@ -8,20 +8,21 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.ServiceModel;
-using WOZAP;
+using MainWindow.ServiceReference;
 using MainWindow.Properties;
 
 namespace MainWindow
 {
 
-	public partial class UserWindow : Form, IServerChatCallback
+	public partial class UserWindow : Form, IServiceCallback
 	{
 		private SingInWindow _singInWindow;
 		private string _userName;
 		private List<ChatUser> _allUsers = new List<ChatUser> { };
-		private WOZAP.IService _service;
 		private Point _lastPoint;
 		private UserListItem _currentUserItem;
+
+		private ServiceClient _client;
 
 		public UserWindow(string userName, SingInWindow singInWindow)
 		{
@@ -30,7 +31,6 @@ namespace MainWindow
 			_userName = userName;
 			_singInWindow = singInWindow;
 			this.userName.Text = userName;
-			List<User> allUsers = new List<User> { };
 			MessageItem m1 = new MessageItem("bbb", "ve", "user3qwee", "user3qwee");
 
 			// Это для визуального тестиования
@@ -162,6 +162,9 @@ namespace MainWindow
 
 		private void UserWindow_Load(object sender, EventArgs e)
 		{
+			_client = new ServiceClient(new System.ServiceModel.InstanceContext(this));
+			_client.Connect(_userName);
+			
 			// создание списка Itens
 			PopulateInemsUser();
 			Label newLabel = new Label { };
