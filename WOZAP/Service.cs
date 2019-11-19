@@ -56,7 +56,7 @@ namespace WOZAP
                     usr.isConnected = true;
                 }
 
-                userStruct[i] = usr.name + "&&" + ((usr.isConnected)?"1":"0")/* + ((dataBase.HaveMsg) ? "1" : "0")*/;
+                userStruct[i] = usr.name + "&" + ((usr.isConnected)?"1":"0")/* + ((dataBase.HaveMsg) ? "1" : "0")*/;
                 //userNameConnectHaveMsg.ToArray()[i].haveMsg = dataBase.HaveMsg(userName);
             }
 
