@@ -12,7 +12,7 @@ namespace WOZAP
     public interface IService
     {
         [OperationContract]
-        void Connect(string userName);
+        string[] Connect(string userName);
 
         [OperationContract]
         void Disconnect(string userName);
