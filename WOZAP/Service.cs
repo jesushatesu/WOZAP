@@ -11,7 +11,7 @@ namespace WOZAP
     [ServiceBehavior(InstanceContextMode = InstanceContextMode.Single)]
     public class Service : IService
     {
-        DataBase.DataBase dataBase;
+        DataBase.IDataBase dataBase;
         List<User> users = new List<User>();
 
         public List<User> GetUsr()
@@ -30,6 +30,13 @@ namespace WOZAP
         {
             dataBase = new DataBase.DataBase();
 
+            users = GetUsersList();
+        }
+
+        public Service(DataBase.IDataBase db)
+        {
+            dataBase = db;
+
 			users = GetUsersList();
         }
 
@@ -41,7 +48,7 @@ namespace WOZAP
             for (int i = 0; i < users.LongCount(); i++)
             {
                 User usr = users[i];
-                usr.opCont.GetCallbackChannel<IServerChatCallback>().ConnectUserCallback(usr.name);
+                //usr.opCont.GetCallbackChannel<IServerChatCallback>().ConnectUserCallback(usr.name);
 
                 if (usr.name == userName)
                 {
@@ -49,11 +56,6 @@ namespace WOZAP
                     usr.isConnected = true;
                 }
             }
-            
-            /*foreach (User usr in users)
-            {
-                listUsers.Add(new User { name = usr.name, isConnected = usr.isConnected});
-            }*/
 
             return messages;
         }
