@@ -31,17 +31,18 @@ namespace MainWindow
 			_singInWindow = singInWindow;
 			this.userName.Text = userName;
 			List<User> allUsers = new List<User> { };
+			MessageItem m1 = new MessageItem("bbb", "ve", "user3qwee", "user3qwee");
 
 			// Это для визуального тестиования
-			ChatUser u1 = new ChatUser { name = "user1", isConnected = true, haveMsg = true };
-			ChatUser u2 = new ChatUser { name = "user2", isConnected = false, haveMsg = false };
-			ChatUser u3 = new ChatUser { name = "user3", isConnected = true, haveMsg = true };
-			ChatUser u4 = new ChatUser { name = "user1", isConnected = true, haveMsg = true };
-			ChatUser u5 = new ChatUser { name = "user2", isConnected = false, haveMsg = false };
-			ChatUser u6 = new ChatUser { name = "user3", isConnected = true, haveMsg = true };
-			ChatUser u7 = new ChatUser { name = "user1", isConnected = true, haveMsg = true };
-			ChatUser u8 = new ChatUser { name = "user2", isConnected = false, haveMsg = false };
-			ChatUser u9 = new ChatUser { name = "user3", isConnected = true, haveMsg = true };
+			ChatUser u1 = new ChatUser { userName = "user1kmv", isConnected = true, haveMsg = true, msgItems = new List<MessageItem>() };
+			ChatUser u2 = new ChatUser { userName = "user2d", isConnected = false, haveMsg = false, msgItems = new List<MessageItem>() };
+			ChatUser u3 = new ChatUser { userName = "user36e", isConnected = true, haveMsg = true, msgItems = new List<MessageItem>() };
+			ChatUser u4 = new ChatUser { userName = "user1sd", isConnected = true, haveMsg = true, msgItems = new List<MessageItem>() };
+			ChatUser u5 = new ChatUser { userName = "user2ld", isConnected = false, haveMsg = false, msgItems = new List<MessageItem>() };
+			ChatUser u6 = new ChatUser { userName = "user3qwee", isConnected = true, haveMsg = true, msgItems = new List<MessageItem>() };
+			ChatUser u7 = new ChatUser { userName = "usec1", isConnected = true, haveMsg = true, msgItems = new List<MessageItem>() };
+			ChatUser u8 = new ChatUser { userName = "IIser2", isConnected = false, haveMsg = false, msgItems = new List<MessageItem>() };
+			ChatUser u9 = new ChatUser { userName = "cokser3", isConnected = true, haveMsg = true, msgItems = new List<MessageItem>() };
 			_allUsers.Add(u1);
 			_allUsers.Add(u2);
 			_allUsers.Add(u3);
@@ -63,7 +64,7 @@ namespace MainWindow
 			bool flag = true;
 			_allUsers.ForEach(user =>
 			{
-				if (user.name == userName)
+				if (user.userName == userName)
 				{
 					user.isConnected = true;
 					flag = false;
@@ -72,7 +73,7 @@ namespace MainWindow
 
 			if (flag)
 			{
-				_allUsers.Add(new ChatUser { name = userName, isConnected = true, haveMsg = false });
+				_allUsers.Add(new ChatUser { userName = userName, isConnected = true, haveMsg = false });
 				UserListItem userItem = new UserListItem(this);
 				userItem.ConnectedImage = Resources.Circle_Green;
 				userItem.UserName = userName;
@@ -90,7 +91,7 @@ namespace MainWindow
 		{
 			_allUsers.ForEach(user =>
 			{
-				if (user.name == userName)
+				if (user.userName == userName)
 				{
 					user.isConnected = false;
 				}
@@ -114,7 +115,7 @@ namespace MainWindow
 			List<string> usersName = new List<string> { };
 			foreach (ChatUser cu in _allUsers)
 			{
-				usersName.Add(cu.name);
+				usersName.Add(cu.userName);
 			}
 
 			return usersName;
@@ -125,7 +126,7 @@ namespace MainWindow
 			bool isConnect = false;
 			for (int i = 0; i < _allUsers.Count; ++i)
 			{
-				if (_allUsers[i].name == username)
+				if (_allUsers[i].userName == username)
 				{
 					isConnect = _allUsers[i].isConnected;
 					break;
@@ -141,12 +142,18 @@ namespace MainWindow
 
 		public void ClickUserItem(UserListItem item)
 		{
-			_currentUserItem.SetBackColor(Color.White);
-			_currentUserItem.clickAtThis = false;
-			_currentUserItem = item;
-			item.SetBackColor(Color.FromArgb(132, 133, 235));
-			item.HaveMsgImage = Resources.Tick;
+			СhangeCurrentUserItem(item);
+
+			for (int i = 0; i < _allUsers.Count; ++i)
+			{
+				if (_allUsers[i].userName == item.UserName)
+				{
+					DrowMsg(_allUsers[i]);
+					break;
+				}
+			}
 		}
+
 
 
 		//--------------------------------
@@ -170,7 +177,7 @@ namespace MainWindow
 			for (int i = 0; i < userListItems.Length; ++i)
 			{
 				userListItems[i] = new UserListItem(this);
-				userListItems[i].UserName = _allUsers[i].name;
+				userListItems[i].UserName = _allUsers[i].userName;
 				if (_allUsers[i].isConnected)
 				{
 					userListItems[i].ConnectedImage = Resources.Circle_Green;
@@ -189,6 +196,24 @@ namespace MainWindow
 
 				this.PanelListUsers.Controls.Add(userListItems[i]);
 			}
+		}
+
+		private void DrowMsg(ChatUser cu)
+		{
+			this.msgFlowPanel.Controls.Clear();
+			for (int i = 0; i < cu.msgItems.Count; ++i)
+			{
+				this.msgFlowPanel.Controls.Add(cu.msgItems[i]);
+			}
+		}
+
+		private void СhangeCurrentUserItem(UserListItem item)
+		{
+			_currentUserItem.SetBackColor(Color.White);
+			_currentUserItem.clickAtThis = false;
+			_currentUserItem = item;
+			item.SetBackColor(Color.FromArgb(132, 133, 235));
+			item.HaveMsgImage = Resources.Tick;
 		}
 
 		private void topblokAuth_MouseMove(object sender, MouseEventArgs e)
@@ -244,13 +269,30 @@ namespace MainWindow
 
 		private void msgButton_MouseClick(object sender, MouseEventArgs e)
 		{
+			if (this.msgTextBox.Text == "")
+				return;
+
 			string date = DateTime.Now.ToString();
+			
 			MessageItem msg = new MessageItem(
 				this.msgTextBox.Text,
 				date,
-				_userName + _currentUserItem.UserName + date
+				_userName + _currentUserItem.UserName + date,
+				_currentUserItem.UserName
 			);
+
 			this.msgFlowPanel.Controls.Add(msg);
+
+			for (int i = 0; i < _allUsers.Count; ++i)
+			{
+				if (_allUsers[i].userName == _currentUserItem.UserName)
+				{
+					_allUsers[i].msgItems.Add(msg);
+					break;
+				}
+			}
+
+			this.msgTextBox.Text = "";
 		}
 	}
 }

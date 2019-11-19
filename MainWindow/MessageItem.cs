@@ -17,8 +17,9 @@ namespace MainWindow
 		private string _time;
 		private bool _isRead;
 		private bool _isModificat;
+		private string _fromUser;
 
-		public MessageItem(string msg, string timeMsg, string idMsg)
+		public MessageItem(string msg, string timeMsg, string idMsg, string fromUser)
 		{
 			InitializeComponent();
 			_idMsg = idMsg;
@@ -26,6 +27,7 @@ namespace MainWindow
 			_isModificat = false;
 			_msg = msg;
 			_time = timeMsg;
+			_fromUser = fromUser;
 		}
 
 		private void MessageItem_Load(object sender, EventArgs e)
@@ -33,6 +35,11 @@ namespace MainWindow
 			this.timeMsgTextBox.Text = _time;
 			this.messageTexBox.Text = _msg;
 			this.isReadTexBox.Text = "shipped";
+		}
+
+		public string GetFromUser()
+		{
+			return _fromUser;
 		}
 
 		public string GetMsg()
@@ -73,6 +80,7 @@ namespace MainWindow
 		public void SetIsRead(bool isRead)
 		{
 			_isRead = isRead;
+			this.isReadTexBox.Text = "read";
 		}
 	}
 }
