@@ -38,7 +38,7 @@ namespace Sevice.TEST
             MockDataBase db = new MockDataBase();
             Service testService = new Service(db);
 
-            testService.Connect("artem");
+            //testService.Connect("artem");
             Assert.AreEqual("artem", db.users[0]);
         }
 

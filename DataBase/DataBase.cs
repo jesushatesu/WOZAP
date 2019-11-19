@@ -16,7 +16,7 @@ namespace DataBase
 
 		void AddMsg(string Msg);
 
-		string GetMsg(string UserName);
+		string[] GetMsg(string userNameFrom, string userNameTo);
 
 		string[] GetUsers();
 
@@ -49,10 +49,10 @@ namespace DataBase
 
 		}
 
-		public string GetMsg(string UserName)
-		{
-			return UserName;
-		}
+        /*string[] GetMsg(string userNameFrom, string userNameTo)
+        {
+
+		}*/
 
 		public string[] GetUsers()
 		{
@@ -90,7 +90,12 @@ namespace DataBase
 		{
 			return null;
 		}
-	}
+
+        string[] IDataBase.GetMsg(string userNameFrom, string userNameTo)
+        {
+            throw new NotImplementedException();
+        }
+    }
 
 	class Program
 	{

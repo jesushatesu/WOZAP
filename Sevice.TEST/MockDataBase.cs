@@ -39,5 +39,10 @@ namespace Sevice.TEST
             string str = " ";
             return str;
         }
+
+        public string[] GetMsg(string userNameFrom, string userNameTo)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

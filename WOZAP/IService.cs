@@ -4,6 +4,7 @@ using System.Linq;
 using System.Runtime.Serialization;
 using System.ServiceModel;
 using System.Text;
+using MainWindow;
 
 namespace WOZAP
 {
@@ -11,13 +12,16 @@ namespace WOZAP
     public interface IService
     {
         [OperationContract]
-        string Connect(string userName, ref string[,] userNameConnectHaveMsg);
+        void Connect(string userName, ref List<ChatUser> userNameConnectHaveMsg);
 
         [OperationContract]
         void Disconnect(string userName);
 
 		[OperationContract(IsOneWay = true)]
         void SendMsg(string fromUserName, string toUserName, string msg);
+
+        [OperationContract(IsOneWay = true)]
+        string[] GetUnsentMsg(string userNameFrom, string userNameTo);
     }
 
     public interface IServerChatCallback

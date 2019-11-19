@@ -5,6 +5,7 @@ using System.Linq;
 using System.Runtime.Serialization;
 using System.ServiceModel;
 using System.Text;
+using MainWindow;
 
 namespace WOZAP
 {
@@ -40,10 +41,9 @@ namespace WOZAP
 			users = GetUsersList();
         }
 
-        public string Connect(string userName, ref string[,] userNameConnectHaveMsg)
+        public void Connect(string userName, ref List<ChatUser> userNameConnectHaveMsg)
         {
             dataBase.AddUser(userName);
-            string messages = "";
 
             for (int i = 0; i < users.LongCount(); i++)
             {
@@ -52,12 +52,14 @@ namespace WOZAP
 
                 if (usr.name == userName)
                 {
-                    messages = dataBase.GetMsg(userName);
                     usr.isConnected = true;
                 }
-            }
 
-            return messages;
+                userNameConnectHaveMsg.ToArray()[i].isConnected = usr.isConnected;
+                userNameConnectHaveMsg.ToArray()[i].userName = usr.name;
+                //userNameConnectHaveMsg.ToArray()[i].haveMsg = dataBase.HaveMsg(userName);
+            }
+            
         }
 
         public void Disconnect(string userName)
@@ -79,15 +81,24 @@ namespace WOZAP
                 if (user.name == toUserName)
                 {
 					// исправил немного: мне удобней, когда имя отправителя отдельным параметром (и код читабельней)
-                    string message = DateTime.Now.ToShortTimeString() + "/n";
+                    //string message = DateTime.Now.ToShortTimeString() + "/n";
 
-                    message += msg;
+                    string message = msg;
 
                     user.opCont.GetCallbackChannel<IServerChatCallback>().MsgCallback(fromUserName, message);
 
                     break;
                 }
             }
+        }
+
+        public string[] GetUnsentMsg(string userNameFrom, string userNameTo)
+        {
+            string[] str = dataBase.GetMsg(userNameFrom, userNameTo);
+
+
+
+            return str;
         }
         
         List<User> GetUsersList()

@@ -104,6 +104,10 @@
       <Project>{b4e2b77d-5e27-4b68-94d7-180f6ad98214}</Project>
       <Name>DataBase</Name>
     </ProjectReference>
+    <ProjectReference Include="..\MainWindow\MainWindow.csproj">
+      <Project>{55d9bfc3-6ea9-4124-9da1-a2cff76828da}</Project>
+      <Name>MainWindow</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
