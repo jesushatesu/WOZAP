@@ -9,7 +9,7 @@ using System.Data.Linq;
 namespace DataBase
 {
 
-	//заебали исправлять база данных не работает теперь 
+	
 	public interface IDataBase
 	{
 		void AddUser(string user);
@@ -36,9 +36,9 @@ namespace DataBase
 
 		public void AddUser(string user)
 		{
-			string connectionString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\228\Desktop\WOZAP\DataBase\Database1.mdf;Integrated Security=True";
-			DataContext db = new DataContext(connectionString);
-			User user1 = new User { name = "asa" };
+			//string connectionString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\228\Desktop\WOZAP\DataBase\Database1.mdf;Integrated Security=True";
+			DataClasses1DataContext db = new DataClasses1DataContext();
+			User user1 = new User { name = "user" };
 			// добавляем его в таблицу Users
 			db.GetTable<User>().InsertOnSubmit(user1);
 			db.SubmitChanges();
@@ -97,25 +97,23 @@ namespace DataBase
 		static string connectionString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\228\Desktop\WOZAP\DataBase\Database1.mdf;Integrated Security=True";
 		static void Main(string[] args) 
 		{
-			//DataContext db = new DataContext(connectionString);
+			DataContext db = new DataContext(connectionString);
 			//Console.WriteLine("До добавления");
-			//foreach (var user in db.GetTable<User>().OrderByDescending(u => u.Id).Take(10))
-			//{
-			//	Console.WriteLine("{0} \t{1}", user.Id, user.name);
-			//}
+			foreach (var user in db.GetTable<Message>().OrderByDescending(u => u.Id1).Take(5))
+			{
+				Console.WriteLine("{0} \t{1} \t{2}", user.Id1, user.Id2, user.Msg);
+			}
 			//Console.WriteLine();
 
-
-
 			//// создаем нового пользователя
-			//User user1 = new User { name = "asa" };
+			//User user1 = new User { name = "vadik" };
 			//// добавляем его в таблицу Users
 			//db.GetTable<User>().InsertOnSubmit(user1);
 			//db.SubmitChanges();
 
 			//Console.WriteLine();
 			//Console.WriteLine("После добавления");
-			//foreach (var user in db.GetTable<User>().OrderByDescending(u => u.Id).Take(10))
+			//foreach (var user in db.GetTable<User>().OrderByDescending(u => u.Id).Take(5))
 			//{
 			//	Console.WriteLine("{0} \t{1}", user.Id, user.name);
 			//}
