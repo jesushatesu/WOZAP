@@ -109,7 +109,7 @@
 			this.msgButton.Name = "msgButton";
 			this.msgButton.Size = new System.Drawing.Size(120, 39);
 			this.msgButton.TabIndex = 1;
-			this.msgButton.Text = "button1";
+			this.msgButton.Text = "send";
 			this.msgButton.UseVisualStyleBackColor = true;
 			this.msgButton.MouseClick += new System.Windows.Forms.MouseEventHandler(this.msgButton_MouseClick);
 			// 
