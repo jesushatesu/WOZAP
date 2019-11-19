@@ -13,7 +13,7 @@ namespace DataBase
 		int GetId(string username);
 		void AddUser(string user);
 
-		void AddMsg(string Msg);
+		void AddMsg(string from, string to, string msgg);
 
 		string[] GetMsg(string userNameFrom, string userNameTo);
 
@@ -73,17 +73,32 @@ namespace DataBase
 			db.SubmitChanges();
 		}
 
-		public void AddMsg(string Msg)
+		public void AddMsg(string from,string to,string msgg)
 		{
+			string a = from; string b = to;
+			string msg = msgg;
+			DataClasses1DataContext db2 = new DataClasses1DataContext();
+			
+			int ida = GetId(a);
+			int idb = GetId(b);
+			//Console.WriteLine("До добавления");
+			//foreach (var user in db2.GetTable<Message>().OrderByDescending(u => u.Id1).Take(5))
+			//{
+			//	Console.WriteLine("{0} \t{1} \t{2}", user.Id1, user.Id2, user.Msg);
+			//}
+			//Console.WriteLine();
 
+			Message user12 = new Message { Id1 = ida, Id2 = idb, Msg = msg };
+			// добавляем его в таблицу Message
+			db2.GetTable<Message>().InsertOnSubmit(user12);
+			db2.SubmitChanges();
+			//Console.WriteLine("После добавления");
+			//foreach (var user in db2.GetTable<Message>())
+			//{
+			//	Console.WriteLine("{0} \t{1} \t{2}", user.Id1, user.Id2, user.Msg);
+			//}
 		}
 
-<<<<<<< HEAD
-        /*string[] GetMsg(string userNameFrom, string userNameTo)
-        {
-
-		}*/
-=======
 		public string[] GetMsg(string userNameFrom, string userNameTo)
 		{
 			//DataBase db = new DataBase();
@@ -124,7 +139,6 @@ namespace DataBase
 			}
 			return str;
 		}
->>>>>>> 3ebe067... доделал базу данных
 
 		public string[] GetUsers()
 		{
@@ -168,16 +182,8 @@ namespace DataBase
 	{
 		static void Main(string[] args) 
 		{
-			//DataBase db = new DataBase();
-			//string from = "vadik";
-			//string [] a;
-			//string to = "sada";
-			//a= db.GetMsg(from, to);
-
-			//for (int i = 0; i <3; i++)
-			//{
-			//	Console.WriteLine(a[i]);
-			//}
+			
+	
 		}
 	}
 }

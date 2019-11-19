@@ -33,6 +33,9 @@ namespace DataBase
     partial void InsertUser(User instance);
     partial void UpdateUser(User instance);
     partial void DeleteUser(User instance);
+    partial void InsertMessage(Message instance);
+    partial void UpdateMessage(Message instance);
+    partial void DeleteMessage(Message instance);
     #endregion
 		
 		public DataClasses1DataContext() : 
@@ -65,14 +68,6 @@ namespace DataBase
 			OnCreated();
 		}
 		
-		public System.Data.Linq.Table<Message> Message
-		{
-			get
-			{
-				return this.GetTable<Message>();
-			}
-		}
-		
 		public System.Data.Linq.Table<User> User
 		{
 			get
@@ -80,67 +75,12 @@ namespace DataBase
 				return this.GetTable<User>();
 			}
 		}
-	}
-	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Message")]
-	public partial class Message
-	{
 		
-		private int _Id1;
-		
-		private int _Id2;
-		
-		private string _Msg;
-		
-		public Message()
-		{
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Id1", DbType="Int NOT NULL")]
-		public int Id1
+		public System.Data.Linq.Table<Message> Message
 		{
 			get
 			{
-				return this._Id1;
-			}
-			set
-			{
-				if ((this._Id1 != value))
-				{
-					this._Id1 = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Id2", DbType="Int NOT NULL")]
-		public int Id2
-		{
-			get
-			{
-				return this._Id2;
-			}
-			set
-			{
-				if ((this._Id2 != value))
-				{
-					this._Id2 = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Msg", DbType="Text", UpdateCheck=UpdateCheck.Never)]
-		public string Msg
-		{
-			get
-			{
-				return this._Msg;
-			}
-			set
-			{
-				if ((this._Msg != value))
-				{
-					this._Msg = value;
-				}
+				return this.GetTable<Message>();
 			}
 		}
 	}
@@ -206,6 +146,116 @@ namespace DataBase
 					this._name = value;
 					this.SendPropertyChanged("name");
 					this.OnnameChanged();
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Message")]
+	public partial class Message : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _Id1;
+		
+		private int _Id2;
+		
+		private string _Msg;
+		
+    #region Определения метода расширяемости
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnId1Changing(int value);
+    partial void OnId1Changed();
+    partial void OnId2Changing(int value);
+    partial void OnId2Changed();
+    partial void OnMsgChanging(string value);
+    partial void OnMsgChanged();
+    #endregion
+		
+		public Message()
+		{
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Id1", DbType="Int NOT NULL", IsPrimaryKey=true)]
+		public int Id1
+		{
+			get
+			{
+				return this._Id1;
+			}
+			set
+			{
+				if ((this._Id1 != value))
+				{
+					this.OnId1Changing(value);
+					this.SendPropertyChanging();
+					this._Id1 = value;
+					this.SendPropertyChanged("Id1");
+					this.OnId1Changed();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Id2", DbType="Int NOT NULL")]
+		public int Id2
+		{
+			get
+			{
+				return this._Id2;
+			}
+			set
+			{
+				if ((this._Id2 != value))
+				{
+					this.OnId2Changing(value);
+					this.SendPropertyChanging();
+					this._Id2 = value;
+					this.SendPropertyChanged("Id2");
+					this.OnId2Changed();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Msg", DbType="Text", UpdateCheck=UpdateCheck.Never)]
+		public string Msg
+		{
+			get
+			{
+				return this._Msg;
+			}
+			set
+			{
+				if ((this._Msg != value))
+				{
+					this.OnMsgChanging(value);
+					this.SendPropertyChanging();
+					this._Msg = value;
+					this.SendPropertyChanged("Msg");
+					this.OnMsgChanged();
 				}
 			}
 		}
