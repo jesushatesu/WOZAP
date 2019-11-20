@@ -36,8 +36,11 @@ namespace MainWindow
 		}
 
 
-        public void MsgCallback(string fromUser, string msg)
+        public void MsgCallback(string fromUser, string toUser, string msg)
 		{
+			if (toUser != _userName)
+				return;
+
 			for (int i = 0; i < _allUsers.Count; ++i)
 			{
 				if (_allUsers[i].userName == fromUser)
@@ -102,6 +105,8 @@ namespace MainWindow
 					}
 				}
 			}
+
+			//PopulateInemsUser();
 		}
 
 		public void DisconnectUserCallback(string userName)
@@ -219,6 +224,7 @@ namespace MainWindow
 		// Отрисовка списка всех пользователей
 		private void PopulateInemsUser()
 		{
+			this.PanelListUsers.Controls.Clear();
 			_userListItems = new UserListItem[_allUsers.Count];
 			for (int i = 0; i < _userListItems.Length; ++i)
 			{
@@ -242,6 +248,8 @@ namespace MainWindow
 
 				this.PanelListUsers.Controls.Add(_userListItems[i]);
 			}
+
+			//СhangeCurrentUserItem(_currentUserItem);
 		}
 
 		private void DrowMsg(ChatUser cu)

@@ -153,12 +153,12 @@ namespace DataBase
 			{
 				if (i >= max_id)
 				{
-					string[] new_str = new string[max_id + 100];
+					string[] new_str = new string[max_id + 1];
 
 					for (int j = 0; j < max_id; j++)
 						new_str[j] = str[j];
 
-					max_id += 100;
+					max_id += 1;
 					str = new_str;
 				}
 

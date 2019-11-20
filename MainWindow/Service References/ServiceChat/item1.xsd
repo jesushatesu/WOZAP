@@ -55,6 +55,7 @@
     <xs:complexType>
       <xs:sequence>
         <xs:element minOccurs="0" name="fromUser" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="toUser" nillable="true" type="xs:string" />
         <xs:element minOccurs="0" name="msg" nillable="true" type="xs:string" />
       </xs:sequence>
     </xs:complexType>

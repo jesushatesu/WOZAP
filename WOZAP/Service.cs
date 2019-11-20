@@ -40,6 +40,8 @@ namespace WOZAP
 
 			Console.WriteLine(users[0].name);
 			dataBase.AddUser(userName);
+			users.Clear();
+			users = GetUsersList();
 			Console.WriteLine("Connect connected with DB");
 			string[] userStruct = new string[users.Count()];
 
@@ -95,7 +97,7 @@ namespace WOZAP
                     //string message = DateTime.Now.ToShortTimeString() + "/n";
 
                     if (user.isConnected)
-                        user.opCont.GetCallbackChannel<IServerChatCallback>().MsgCallback(fromUserName, msg);
+                        user.opCont.GetCallbackChannel<IServerChatCallback>().MsgCallback(fromUserName, toUserName, msg);
                     else
                         dataBase.AddMsg(fromUserName, toUserName, msg);
 
@@ -118,8 +120,8 @@ namespace WOZAP
 
             foreach (string usr in allUsers)
             {
-                User user = new User { name = usr, isConnected = false};
-                users.Add(user);
+					User user = new User { name = usr, isConnected = false };
+				users.Add(user);
             }
 
             return users;

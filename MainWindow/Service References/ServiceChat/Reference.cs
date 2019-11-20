@@ -44,7 +44,7 @@ namespace MainWindow.ServiceChat {
     public interface IServiceCallback {
         
         [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IService/MsgCallback")]
-        void MsgCallback(string fromUser, string msg);
+        void MsgCallback(string fromUser, string toUser, string msg);
         
         [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IService/ConnectUserCallback")]
         void ConnectUserCallback(string userName);
