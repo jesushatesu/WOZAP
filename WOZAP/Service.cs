@@ -37,34 +37,47 @@ namespace WOZAP
         public string[] Connect(string userName)
         {
 			Console.WriteLine("Connect started");
-
-			Console.WriteLine(users[0].name);
+            
 			dataBase.AddUser(userName);
-			users.Clear();
-			users = GetUsersList();
+            for (int i = 0; i < users.Count(); i++)
+                Console.WriteLine(users.ToArray()[i].name + " ---- " + users.ToArray()[i].isConnected.ToString());
+
+            bool flag = false;
+            for (int i = 0; i < users.Count(); i++)
+            {
+                if (users.ToArray()[i].name == userName)
+                {
+                    users.ToArray()[i].opCont = OperationContext.Current;
+                    users.ToArray()[i].isConnected = true;
+                    flag = true;
+                }
+            }
+
+            if (!flag)
+            {
+                User newUser = new User()
+                {
+                    name = userName,
+                    isConnected = true,
+                    opCont = OperationContext.Current
+                };
+                users.Add(newUser);
+            }
+
 			Console.WriteLine("Connect connected with DB");
 			string[] userStruct = new string[users.Count()];
 
 			Console.WriteLine("users.Count() = " + users.Count().ToString());
-			for (int i = 0; i < users.LongCount(); i++)
+			for (int i = 0; i < users.Count(); i++)
             {
-                User usr = users[i];
-				
-				if (usr.isConnected)
+				if (users.ToArray()[i].isConnected & users.ToArray()[i].name != userName)
 				{
 					Console.WriteLine("before Callback on iteration " + i.ToString());
-					usr.opCont.GetCallbackChannel<IServerChatCallback>().ConnectUserCallback(usr.name);
+                    users.ToArray()[i].opCont.GetCallbackChannel<IServerChatCallback>().ConnectUserCallback(users.ToArray()[i].name);
 					Console.WriteLine("after Callback on iteration " + i.ToString());
 				}
-				
-				
 
-				if (usr.name == userName)
-                {
-                    usr.isConnected = true;
-                }
-
-                userStruct[i] = usr.name + "&" + ((usr.isConnected)?"1":"0") + ((dataBase.HaveMsg(userName)) ? "1" : "0");
+                userStruct[i] = users.ToArray()[i].name + "&" + ((users.ToArray()[i].isConnected)?"1":"0") + ((dataBase.HaveMsg(userName)) ? "1" : "0");
 				//userNameConnectHaveMsg.ToArray()[i].haveMsg = dataBase.HaveMsg(userName);
 			}
 			Console.WriteLine("Connect finished");
@@ -74,16 +87,13 @@ namespace WOZAP
 
         public void Disconnect(string userName)
         {
-            for (int i = 0; i < users.LongCount(); i++)
+            for (int i = 0; i < users.Count(); i++)
             {
-                User usr = users[i];
-				if (usr.isConnected)
-				{
-					usr.opCont.GetCallbackChannel<IServerChatCallback>().DisconnectUserCallback(usr.name);
-				}
+				if (users.ToArray()[i].isConnected & users.ToArray()[i].name != userName)
+                    users.ToArray()[i].opCont.GetCallbackChannel<IServerChatCallback>().DisconnectUserCallback(users.ToArray()[i].name);
 
-                if (usr.name == userName)
-                    usr.isConnected = false;
+                if (users.ToArray()[i].name == userName)
+                    users.ToArray()[i].isConnected = false;
             }
         }
 
