@@ -182,8 +182,12 @@ namespace DataBase
 	{
 		static void Main(string[] args) 
 		{
-			
-	
+			DataBase db = new DataBase();
+			string[] a = db.GetMsg("sss", "ddd");
+			foreach (var user in a)
+			{
+				Console.WriteLine(user);
+			}
 		}
 	}
 }
