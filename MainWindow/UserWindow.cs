@@ -18,7 +18,7 @@ namespace MainWindow
 	{
 		private SingInWindow _singInWindow;
 		private string _userName;
-		private List<ChatUser> _allUsers = new List<ChatUser> { };
+		private List<ChatUser> _allUsers;
 		private Point _lastPoint;
 		private UserListItem _currentUserItem;
 		private UserListItem[] _userListItems;
@@ -27,10 +27,12 @@ namespace MainWindow
 		public UserWindow(string userName, SingInWindow singInWindow)
 		{
 			InitializeComponent();
+			
 			_currentUserItem = new UserListItem(this);
 			_userName = userName;
 			_singInWindow = singInWindow;
 			this.userName.Text = userName;
+			_allUsers = new List<ChatUser>();
 		}
 
 
@@ -67,6 +69,9 @@ namespace MainWindow
 
 		public void ConnectUserCallback(string userName)
 		{
+			if (_userName == userName)
+				return;
+			
 			bool flag = true;
 			_allUsers.ForEach(user =>
 			{
@@ -101,6 +106,9 @@ namespace MainWindow
 
 		public void DisconnectUserCallback(string userName)
 		{
+			if (_userName == userName)
+				return;
+
 			_allUsers.ForEach(user =>
 			{
 				if (user.userName == userName)
@@ -181,8 +189,7 @@ namespace MainWindow
 
 		private void UserWindow_Load(object sender, EventArgs e)
 		{
-			ServiceBehaviorAttribute behavior = new ServiceBehaviorAttribute();
-			
+
 			_client = new ServiceClient(new System.ServiceModel.InstanceContext(this));
 			string[] allUserArr = allUserArr = _client.Connect(_userName);
 

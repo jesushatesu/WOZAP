@@ -12,7 +12,7 @@ namespace WOZAP
     [ServiceBehavior(InstanceContextMode = InstanceContextMode.Single)]
     public class Service : IService
     {
-        DataBase.IDataBase dataBase;
+        DataBase.DataBase dataBase;
         List<User> users = new List<User>();
 
         public List<User> GetUsr()
@@ -27,33 +27,47 @@ namespace WOZAP
             users = GetUsersList();
         }
 
-        public Service(DataBase.IDataBase db)
+        /*public Service(DataBase.IDataBase db)
         {
             dataBase = db;
 
 			users = GetUsersList();
-        }
+        }*/
 
         public string[] Connect(string userName)
         {
-            dataBase.AddUser(userName);
-            string[] userStruct = new string[users.LongCount()];
+			Console.WriteLine("Connect started");
 
-            for (int i = 0; i < users.LongCount(); i++)
+			Console.WriteLine(users[0].name);
+			dataBase.AddUser(userName);
+			Console.WriteLine("Connect connected with DB");
+			string[] userStruct = new string[users.Count()];
+
+			Console.WriteLine("users.Count() = " + users.Count().ToString());
+			for (int i = 0; i < users.LongCount(); i++)
             {
                 User usr = users[i];
-                usr.opCont.GetCallbackChannel<IServerChatCallback>().ConnectUserCallback(usr.name);
+				
+				if (usr.isConnected)
+				{
+					Console.WriteLine("before Callback on iteration " + i.ToString());
+					usr.opCont.GetCallbackChannel<IServerChatCallback>().ConnectUserCallback(usr.name);
+					Console.WriteLine("after Callback on iteration " + i.ToString());
+				}
+				
+				
 
-                if (usr.name == userName)
+				if (usr.name == userName)
                 {
                     usr.isConnected = true;
                 }
 
                 userStruct[i] = usr.name + "&" + ((usr.isConnected)?"1":"0") + ((dataBase.HaveMsg(userName)) ? "1" : "0");
-                //userNameConnectHaveMsg.ToArray()[i].haveMsg = dataBase.HaveMsg(userName);
-            }
+				//userNameConnectHaveMsg.ToArray()[i].haveMsg = dataBase.HaveMsg(userName);
+			}
+			Console.WriteLine("Connect finished");
 
-            return userStruct;
+			return userStruct;
         }
 
         public void Disconnect(string userName)
@@ -61,7 +75,10 @@ namespace WOZAP
             for (int i = 0; i < users.LongCount(); i++)
             {
                 User usr = users[i];
-                usr.opCont.GetCallbackChannel<IServerChatCallback>().DisconnectUserCallback(usr.name);
+				if (usr.isConnected)
+				{
+					usr.opCont.GetCallbackChannel<IServerChatCallback>().DisconnectUserCallback(usr.name);
+				}
 
                 if (usr.name == userName)
                     usr.isConnected = false;
