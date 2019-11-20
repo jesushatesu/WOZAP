@@ -76,18 +76,21 @@ namespace MainWindow
 				return;
 			
 			bool flag = true;
-			_allUsers.ForEach(user =>
+			for (int i = 0; i < _allUsers.Count; ++i)
 			{
-				if (user.userName == userName)
+				if (_allUsers.ToArray()[i].userName == userName)
 				{
-					user.isConnected = true;
+					_allUsers.ToArray()[i].isConnected = true;
 					flag = false;
+					break;
 				}
-			});
+			}
 
 			if (flag)
 			{
-				_allUsers.Add(new ChatUser { userName = userName, isConnected = true, haveMsg = false });
+				ChatUser cu = new ChatUser { userName = userName, isConnected = true, haveMsg = false };
+				_allUsers.Add(cu);
+
 				UserListItem userItem = new UserListItem(this);
 				userItem.ConnectedImage = Resources.Circle_Green;
 				userItem.UserName = userName;
@@ -100,7 +103,7 @@ namespace MainWindow
 				{
 					if (_userListItems[i].UserName == userName)
 					{
-						_userListItems[i].HaveMsgImage = Resources.Circle_Green;
+						_userListItems.ToArray()[i].HaveMsgImage = Resources.Circle_Green;
 						break;
 					}
 				}
@@ -130,6 +133,7 @@ namespace MainWindow
 					break;
 				}
 			}
+			PopulateInemsUser();
 		}
 
 		//--------------------------------
