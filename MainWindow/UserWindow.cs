@@ -34,11 +34,6 @@ namespace MainWindow
 		}
 
 
-        public void ChatUserCallback(string userStruct)
-        {
-
-        }
-
         public void MsgCallback(string fromUser, string msg)
 		{
 			for (int i = 0; i < _allUsers.Count; ++i)
@@ -188,9 +183,18 @@ namespace MainWindow
 		{
 			_client = new ServiceClient(new System.ServiceModel.InstanceContext(this));
 
-			// Конектим
-			//  _client.Connect(_userName, ref _allUsers);
-			//
+			string[] allUserArr = _client.Connect(_userName);
+
+			for (int i = 0; i < allUserArr.Length; ++i)
+			{
+				string[] words = allUserArr[i].Split(new char[] { '&' });
+				ChatUser newCU = new ChatUser();
+				newCU.userName = words[0];
+				newCU.isConnected = ('1' == words[1][0]) ? true : false;
+				newCU.haveMsg = ('1' == words[1][1]) ? true : false;
+				newCU.msgItems = new List<MessageItem>();
+				_allUsers.Add(newCU);
+			}
 
 			// создание списка Itens
 			PopulateInemsUser();

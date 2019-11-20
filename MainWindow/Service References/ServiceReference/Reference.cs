@@ -16,10 +16,10 @@ namespace MainWindow.ServiceReference {
     public interface IService {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/Connect", ReplyAction="http://tempuri.org/IService/ConnectResponse")]
-        string Connect(string userName);
+        string[] Connect(string userName);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/Connect", ReplyAction="http://tempuri.org/IService/ConnectResponse")]
-        System.Threading.Tasks.Task<string> ConnectAsync(string userName);
+        System.Threading.Tasks.Task<string[]> ConnectAsync(string userName);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/Disconnect", ReplyAction="http://tempuri.org/IService/DisconnectResponse")]
         void Disconnect(string userName);
@@ -32,6 +32,12 @@ namespace MainWindow.ServiceReference {
         
         [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IService/SendMsg")]
         System.Threading.Tasks.Task SendMsgAsync(string fromUserName, string toUserName, string msg);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/GetUnsentMsg", ReplyAction="http://tempuri.org/IService/GetUnsentMsgResponse")]
+        string[] GetUnsentMsg(string userNameFrom, string userNameTo);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/GetUnsentMsg", ReplyAction="http://tempuri.org/IService/GetUnsentMsgResponse")]
+        System.Threading.Tasks.Task<string[]> GetUnsentMsgAsync(string userNameFrom, string userNameTo);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -75,11 +81,11 @@ namespace MainWindow.ServiceReference {
                 base(callbackInstance, binding, remoteAddress) {
         }
         
-        public string Connect(string userName) {
+        public string[] Connect(string userName) {
             return base.Channel.Connect(userName);
         }
         
-        public System.Threading.Tasks.Task<string> ConnectAsync(string userName) {
+        public System.Threading.Tasks.Task<string[]> ConnectAsync(string userName) {
             return base.Channel.ConnectAsync(userName);
         }
         
@@ -97,6 +103,14 @@ namespace MainWindow.ServiceReference {
         
         public System.Threading.Tasks.Task SendMsgAsync(string fromUserName, string toUserName, string msg) {
             return base.Channel.SendMsgAsync(fromUserName, toUserName, msg);
+        }
+        
+        public string[] GetUnsentMsg(string userNameFrom, string userNameTo) {
+            return base.Channel.GetUnsentMsg(userNameFrom, userNameTo);
+        }
+        
+        public System.Threading.Tasks.Task<string[]> GetUnsentMsgAsync(string userNameFrom, string userNameTo) {
+            return base.Channel.GetUnsentMsgAsync(userNameFrom, userNameTo);
         }
     }
 }
