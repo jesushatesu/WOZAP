@@ -8,11 +8,11 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace MainWindow.ServiceReference {
+namespace MainWindow.ServiceChat {
     
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ServiceModel.ServiceContractAttribute(ConfigurationName="ServiceReference.IService", CallbackContract=typeof(MainWindow.ServiceReference.IServiceCallback))]
+    [System.ServiceModel.ServiceContractAttribute(ConfigurationName="ServiceChat.IService", CallbackContract=typeof(MainWindow.ServiceChat.IServiceCallback))]
     public interface IService {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService/Connect", ReplyAction="http://tempuri.org/IService/ConnectResponse")]
@@ -54,12 +54,12 @@ namespace MainWindow.ServiceReference {
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public interface IServiceChannel : MainWindow.ServiceReference.IService, System.ServiceModel.IClientChannel {
+    public interface IServiceChannel : MainWindow.ServiceChat.IService, System.ServiceModel.IClientChannel {
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public partial class ServiceClient : System.ServiceModel.DuplexClientBase<MainWindow.ServiceReference.IService>, MainWindow.ServiceReference.IService {
+    public partial class ServiceClient : System.ServiceModel.DuplexClientBase<MainWindow.ServiceChat.IService>, MainWindow.ServiceChat.IService {
         
         public ServiceClient(System.ServiceModel.InstanceContext callbackInstance) : 
                 base(callbackInstance) {

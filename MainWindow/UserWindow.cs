@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.ServiceModel;
-using MainWindow.ServiceReference;
+using MainWindow.ServiceChat;
 using MainWindow.Properties;
 
 namespace MainWindow
@@ -181,19 +181,24 @@ namespace MainWindow
 
 		private void UserWindow_Load(object sender, EventArgs e)
 		{
+			ServiceBehaviorAttribute behavior = new ServiceBehaviorAttribute();
+			
 			_client = new ServiceClient(new System.ServiceModel.InstanceContext(this));
-
-			string[] allUserArr = _client.Connect(_userName);
+			string[] allUserArr = allUserArr = _client.Connect(_userName);
 
 			for (int i = 0; i < allUserArr.Length; ++i)
 			{
+				//  allUserArr[i] = userName&01 - for example
 				string[] words = allUserArr[i].Split(new char[] { '&' });
-				ChatUser newCU = new ChatUser();
-				newCU.userName = words[0];
-				newCU.isConnected = ('1' == words[1][0]) ? true : false;
-				newCU.haveMsg = ('1' == words[1][1]) ? true : false;
-				newCU.msgItems = new List<MessageItem>();
-				_allUsers.Add(newCU);
+				if (_userName != words[0])
+				{
+					ChatUser newCU = new ChatUser();
+					newCU.userName = words[0];
+					newCU.isConnected = ('1' == words[1][0]) ? true : false;
+					newCU.haveMsg = ('1' == words[1][1]) ? true : false;
+					newCU.msgItems = new List<MessageItem>();
+					_allUsers.Add(newCU);
+				}
 			}
 
 			// создание списка Itens
