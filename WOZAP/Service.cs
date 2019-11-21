@@ -76,7 +76,7 @@ namespace WOZAP
             {
 				if (users.ToArray()[i].isConnected & users.ToArray()[i].name != userName)
 				{
-                    users.ToArray()[i].opCont.GetCallbackChannel<IServerChatCallback>().ConnectUserCallback(users.ToArray()[i].name);
+					users.ToArray()[i].opCont.GetCallbackChannel<IServerChatCallback>().ConnectUserCallback(userName);
 				}
 
                 userStruct[i] = users.ToArray()[i].name + "&" + ((users.ToArray()[i].isConnected)?"1":"0") + ((dataBase.HaveMsg(userName)) ? "1" : "0");
@@ -95,7 +95,10 @@ namespace WOZAP
 			for (int i = 0; i < users.Count(); i++)
             {
 				if (users.ToArray()[i].isConnected & users.ToArray()[i].name != userName)
-                    users.ToArray()[i].opCont.GetCallbackChannel<IServerChatCallback>().DisconnectUserCallback(users.ToArray()[i].name);
+				{
+					users.ToArray()[i].opCont.GetCallbackChannel<IServerChatCallback>().DisconnectUserCallback(userName);
+				}
+                    
 
 
 				if (users.ToArray()[i].name == userName)

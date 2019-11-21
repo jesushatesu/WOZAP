@@ -72,15 +72,20 @@ namespace MainWindow
 
 		public void ConnectUserCallback(string userName)
 		{
-			if (_userName == userName)
+			if (userName == _userName)
 				return;
-			
+
 			bool flag = true;
 			for (int i = 0; i < _allUsers.Count; ++i)
 			{
 				if (_allUsers.ToArray()[i].userName == userName)
 				{
-					_allUsers.ToArray()[i].isConnected = true;
+					ChatUser newCU = new ChatUser();
+					newCU = _allUsers.ToArray()[i];
+					newCU.isConnected = true;
+					_allUsers.Remove(_allUsers[i]);
+					_allUsers.Insert(i, newCU);
+
 					flag = false;
 					break;
 				}
@@ -90,49 +95,29 @@ namespace MainWindow
 			{
 				ChatUser cu = new ChatUser { userName = userName, isConnected = true, haveMsg = false };
 				_allUsers.Add(cu);
-
-				UserListItem userItem = new UserListItem(this);
-				userItem.ConnectedImage = Resources.Circle_Green;
-				userItem.UserName = userName;
-				userItem.HaveMsgImage = Resources.Tick;
-				this.PanelListUsers.Controls.Add(userItem);
 			}
-			else
-			{
-				for (int i = 0; i < _userListItems.Length; ++i)
-				{
-					if (_userListItems[i].UserName == userName)
-					{
-						_userListItems.ToArray()[i].HaveMsgImage = Resources.Circle_Green;
-						break;
-					}
-				}
-			}
+			PopulateInemsUser();
 
-			//PopulateInemsUser();
 		}
 
 		public void DisconnectUserCallback(string userName)
 		{
-			if (_userName == userName)
+			if (userName == _userName)
 				return;
 
-			_allUsers.ForEach(user =>
+			for (int i = 0; i < _allUsers.Count; ++i)
 			{
-				if (user.userName == userName)
+				if (_allUsers[i].userName == userName)
 				{
-					user.isConnected = false;
-				}
-			});
-
-			for (int i = 0; i < _userListItems.Length; ++i)
-			{
-				if (_userListItems[i].UserName == userName)
-				{
-					_userListItems[i].HaveMsgImage = Resources.Circle_Red;
+					ChatUser ncu = new ChatUser();
+					ncu = _allUsers.ToArray()[i];
+					ncu.isConnected = false;
+					_allUsers.Remove(_allUsers[i]);
+					_allUsers.Insert(i, ncu);
 					break;
 				}
 			}
+
 			PopulateInemsUser();
 		}
 
@@ -204,7 +189,6 @@ namespace MainWindow
 
 			for (int i = 0; i < allUserArr.Length; ++i)
 			{
-				//  allUserArr[i] = userName&01 - for example
 				string[] words = allUserArr[i].Split(new char[] { '&' });
 				if (_userName != words[0])
 				{
@@ -217,44 +201,68 @@ namespace MainWindow
 				}
 			}
 
-			// создание списка Itens
 			PopulateInemsUser();
-			Label newLabel = new Label { };
-			newLabel.Text = "cqnknk";
-			newLabel.AutoSize = true;
-			this.msgPanel.Controls.Add(newLabel);
 		}
 
 		// Отрисовка списка всех пользователей
 		private void PopulateInemsUser()
 		{
 			this.PanelListUsers.Controls.Clear();
+			
 			_userListItems = new UserListItem[_allUsers.Count];
+			
 			for (int i = 0; i < _userListItems.Length; ++i)
 			{
 				_userListItems[i] = new UserListItem(this);
 				_userListItems[i].UserName = _allUsers[i].userName;
+
+
 				if (_allUsers[i].isConnected)
-				{
 					_userListItems[i].ConnectedImage = Resources.Circle_Green;
-				}
 				else
-				{
 					_userListItems[i].ConnectedImage = Resources.Circle_Red;
-				}
+
 
 				if (_allUsers[i].haveMsg)
-				{
 					_userListItems[i].HaveMsgImage = Resources.haveMsg;
-				}
 				else
 					_userListItems[i].HaveMsgImage = Resources.Tick;
-
+				
 				this.PanelListUsers.Controls.Add(_userListItems[i]);
 			}
 
 			//СhangeCurrentUserItem(_currentUserItem);
 		}
+
+		private void PopulateInemsUserNew()
+		{
+			this.PanelListUsers.Controls.Clear();
+
+			//_userListItems = new UserListItem[_allUsers.Count];
+			//for (int i = 0; i < _userListItems.Length; ++i)
+			//{
+			//	_userListItems[i] = new UserListItem(this);
+			//	_userListItems[i].UserName = _allUsers[i].userName;
+
+
+			//	if (_allUsers[i].isConnected)
+			//		_userListItems[i].ConnectedImage = Resources.Circle_Green;
+			//	else
+			//		_userListItems[i].ConnectedImage = Resources.Circle_Red;
+
+
+			//	if (_allUsers[i].haveMsg)
+			//		_userListItems[i].HaveMsgImage = Resources.haveMsg;
+			//	else
+			//		_userListItems[i].HaveMsgImage = Resources.Tick;
+
+			//	this.PanelListUsers.Controls.Add(_userListItems[i]);
+			//}
+
+			//СhangeCurrentUserItem(_currentUserItem);
+		}
+
+
 
 		private void DrowMsg(ChatUser cu)
 		{
