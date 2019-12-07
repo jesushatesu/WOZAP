@@ -12,27 +12,28 @@ namespace WOZAP
     [ServiceBehavior(InstanceContextMode = InstanceContextMode.Single)]
     public class Service : IService
     {
-        DataBase.DataBase dataBase;
-        List<User> users = new List<User>();
-
-        public List<User> GetUsr()
-        {
-            return users;
-        }
+        private DataBase.IDataBase dataBase { get; set; }
+        private List<User> users { get; set; }
 
         public Service()
         {
             dataBase = new DataBase.DataBase();
 
+            users = new List<User>();
             users = GetUsersList();
         }
 
-        /*public Service(DataBase.IDataBase db)
+        public Service(DataBase.IDataBase db)
         {
             dataBase = db;
 
-			users = GetUsersList();
-        }*/
+            users = GetUsersList();
+        }
+
+        public List<User> GetUsr()
+        {
+            return users;
+        }
 
         public string[] Connect(string userName)
         {
@@ -94,7 +95,7 @@ namespace WOZAP
 		{
 			for (int i = 0; i < users.Count(); i++)
             {
-				if (users.ToArray()[i].isConnected & users.ToArray()[i].name != userName)
+				if (users.ToArray()[i].isConnected && users.ToArray()[i].name != userName)
 				{
 					users.ToArray()[i].opCont.GetCallbackChannel<IServerChatCallback>().DisconnectUserCallback(userName);
 				}
@@ -147,12 +148,11 @@ namespace WOZAP
         
         List<User> GetUsersList()
         {
-            string[] allUsers = new string[10];
-            allUsers = dataBase.GetUsers();
+            string[] allUsers = dataBase.GetUsers();
 
             foreach (string usr in allUsers)
             {
-					User user = new User { name = usr, isConnected = false };
+                User user = new User { name = usr, isConnected = false };
 				users.Add(user);
             }
 

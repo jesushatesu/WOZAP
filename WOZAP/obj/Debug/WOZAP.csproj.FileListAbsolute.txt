@@ -114,3 +114,13 @@ C:\Users\228\Desktop\WOZAP\bin\Debug\WOZAP.dll.config
 C:\Users\228\Desktop\WOZAP\bin\Debug\WOZAP.dll
 C:\Users\228\Desktop\WOZAP\bin\Debug\WOZAP.pdb
 >>>>>>> 3ebe067... доделал базу данных
+C:\WOZAP\bin\Debug\Database1.mdf
+C:\WOZAP\bin\Debug\Database1_log.ldf
+C:\WOZAP\bin\Debug\WOZAP.dll.config
+C:\WOZAP\bin\Debug\WOZAP.dll
+C:\WOZAP\bin\Debug\WOZAP.pdb
+C:\WOZAP\WOZAP\obj\Debug\WOZAP.csprojAssemblyReference.cache
+C:\WOZAP\WOZAP\obj\Debug\WOZAP.csproj.CoreCompileInputs.cache
+C:\WOZAP\WOZAP\obj\Debug\WOZAP.csproj.CopyComplete
+C:\WOZAP\WOZAP\obj\Debug\WOZAP.dll
+C:\WOZAP\WOZAP\obj\Debug\WOZAP.pdb
