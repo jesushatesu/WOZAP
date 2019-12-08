@@ -18,10 +18,10 @@ namespace MainWindow
 	{
 		private SingInWindow _singInWindow;
 		private string _userName;
-		private List<ChatUser> _allUsers;
+		private List<ChatUser> _allChatUsers;
 		private Point _lastPoint;
 		private UserListItem _currentUserItem;
-		private UserListItem[] _userListItems;
+		private List<UserListItem> _userListItems;
 		private ServiceClient _client;
 
 		public UserWindow(string userName, SingInWindow singInWindow)
@@ -32,7 +32,8 @@ namespace MainWindow
 			_userName = userName;
 			_singInWindow = singInWindow;
 			this.userName.Text = userName;
-			_allUsers = new List<ChatUser>();
+			_allChatUsers = new List<ChatUser>();
+			_userListItems = new List<UserListItem>();
 		}
 
 
@@ -40,14 +41,16 @@ namespace MainWindow
 		{
 			if (toUser != _userName)
 				return;
-
-			for (int i = 0; i < _allUsers.Count; ++i)
+			string[] words = msg.Split(new char[] { ' ' });
+			words[words.Length - 1] = "";
+			string msgWithoutDate = String.Join(" ", words);
+			for (int i = 0; i < _allChatUsers.Count; ++i)
 			{
-				if (_allUsers[i].userName == fromUser)
+				if (_allChatUsers[i].userName == fromUser)
 				{
-					MessageItem msgItem = new MessageItem(msg, DateTime.Now.ToString(),
+					MessageItem msgItem = new MessageItem(msgWithoutDate, DateTime.Now.ToString(),
 							_userName + fromUser + DateTime.Now.ToString(), fromUser);
-					_allUsers[i].msgItems.Add(msgItem);
+					_allChatUsers[i].msgItems.Add(msgItem);
 
 					if (_currentUserItem.UserName == fromUser)
 					{
@@ -55,12 +58,12 @@ namespace MainWindow
 					}
 					else
 					{
-						_allUsers.ToArray()[i].haveMsg = true;
-						for (int k = 0; k < _userListItems.Length; ++k)
+						_allChatUsers.ToArray()[i].haveMsg = true; // ------ Сомнительная вещь
+						for (int k = 0; k < _userListItems.Count; ++k)
 						{
 							if (_userListItems[k].UserName == fromUser)
 							{
-								_userListItems[k].HaveMsgImage = Resources.haveMsg;
+								_userListItems[k].HaveMsgImage = Resources.haveMsg; //-работает изменение элемента LIST!!!
 								break;
 							}
 						}
@@ -75,29 +78,32 @@ namespace MainWindow
 			if (userName == _userName)
 				return;
 
-			bool flag = true;
-			for (int i = 0; i < _allUsers.Count; ++i)
+			bool isNewUser = true;
+			for (int i = 0; i < _allChatUsers.Count; ++i)
 			{
-				if (_allUsers.ToArray()[i].userName == userName)
+				if (_allChatUsers.ToArray()[i].userName == userName)
 				{
 					ChatUser newCU = new ChatUser();
-					newCU = _allUsers.ToArray()[i];
+					newCU = _allChatUsers.ToArray()[i];
 					newCU.isConnected = true;
-					_allUsers.Remove(_allUsers[i]);
-					_allUsers.Insert(i, newCU);
+					_allChatUsers.Remove(_allChatUsers[i]);
+					_allChatUsers.Insert(i, newCU);
 
-					flag = false;
+					isNewUser = false;
 					break;
 				}
 			}
 
-			if (flag)
+			if (isNewUser)
 			{
-				ChatUser cu = new ChatUser { userName = userName, isConnected = true, haveMsg = false };
-				_allUsers.Add(cu);
+				ChatUser cu = new ChatUser { userName = userName, 
+						isConnected = true, haveMsg = false , msgItems = new List<MessageItem>()};
+				_allChatUsers.Add(cu);
 			}
-			PopulateInemsUser();
+			else if (_currentUserItem.UserName == userName)
+				_currentUserItem.ConnectedImage = Resources.Circle_Green;
 
+			PopulateInemsUser();
 		}
 
 		public void DisconnectUserCallback(string userName)
@@ -105,18 +111,21 @@ namespace MainWindow
 			if (userName == _userName)
 				return;
 
-			for (int i = 0; i < _allUsers.Count; ++i)
+			for (int i = 0; i < _allChatUsers.Count; ++i)
 			{
-				if (_allUsers[i].userName == userName)
+				if (_allChatUsers[i].userName == userName)
 				{
-					ChatUser ncu = new ChatUser();
-					ncu = _allUsers.ToArray()[i];
-					ncu.isConnected = false;
-					_allUsers.Remove(_allUsers[i]);
-					_allUsers.Insert(i, ncu);
+					ChatUser newCU = new ChatUser();
+					newCU = _allChatUsers.ToArray()[i];
+					newCU.isConnected = false;
+					_allChatUsers.Remove(_allChatUsers[i]);
+					_allChatUsers.Insert(i, newCU);
 					break;
 				}
 			}
+
+			if (_currentUserItem.UserName == userName)
+				_currentUserItem.ConnectedImage = Resources.Circle_Red;
 
 			PopulateInemsUser();
 		}
@@ -133,7 +142,7 @@ namespace MainWindow
 		public List<string> GetAllUsersName()
 		{
 			List<string> usersName = new List<string> { };
-			foreach (ChatUser cu in _allUsers)
+			foreach (ChatUser cu in _allChatUsers)
 			{
 				usersName.Add(cu.userName);
 			}
@@ -144,11 +153,11 @@ namespace MainWindow
 		public bool ThisUserIsConnect(string username)
 		{
 			bool isConnect = false;
-			for (int i = 0; i < _allUsers.Count; ++i)
+			for (int i = 0; i < _allChatUsers.Count; ++i)
 			{
-				if (_allUsers[i].userName == username)
+				if (_allChatUsers[i].userName == username)
 				{
-					isConnect = _allUsers[i].isConnected;
+					isConnect = _allChatUsers[i].isConnected;
 					break;
 				}
 			}
@@ -164,12 +173,17 @@ namespace MainWindow
 		{
 			СhangeCurrentUserItem(item);
 
-			for (int i = 0; i < _allUsers.Count; ++i)
+			for (int i = 0; i < _allChatUsers.Count; ++i)
 			{
-				if (_allUsers[i].userName == item.UserName)
+				if (_allChatUsers[i].userName == item.UserName)
 				{
-					// Взять сообщения с сервиса и отобрпзить их(сохранить как items)
-					DrowMsg(_allUsers[i]);
+					// Взять сообщения с сервиса и отобразить их(сохранить как items)
+					this.msgFlowPanel.Controls.Clear();
+
+					for (int k = 0; k < _allChatUsers[i].msgItems.Count; ++k)
+					{
+						this.msgFlowPanel.Controls.Add(_allChatUsers[i].msgItems[k]);
+					}
 					break;
 				}
 			}
@@ -197,7 +211,7 @@ namespace MainWindow
 					newCU.isConnected = ('1' == words[1][0]) ? true : false;
 					newCU.haveMsg = ('1' == words[1][1]) ? true : false;
 					newCU.msgItems = new List<MessageItem>();
-					_allUsers.Add(newCU);
+					_allChatUsers.Add(newCU);
 				}
 			}
 
@@ -208,68 +222,32 @@ namespace MainWindow
 		private void PopulateInemsUser()
 		{
 			this.PanelListUsers.Controls.Clear();
+
+			_userListItems.Clear();
 			
-			_userListItems = new UserListItem[_allUsers.Count];
-			
-			for (int i = 0; i < _userListItems.Length; ++i)
+			for (int i = 0; i < _allChatUsers.Count; ++i)
 			{
-				_userListItems[i] = new UserListItem(this);
-				_userListItems[i].UserName = _allUsers[i].userName;
+				UserListItem item = new UserListItem(this);
+				item.UserName = _allChatUsers[i].userName;
 
-
-				if (_allUsers[i].isConnected)
-					_userListItems[i].ConnectedImage = Resources.Circle_Green;
+				if (_allChatUsers[i].isConnected)
+					item.ConnectedImage = Resources.Circle_Green;
 				else
-					_userListItems[i].ConnectedImage = Resources.Circle_Red;
+					item.ConnectedImage = Resources.Circle_Red;
 
 
-				if (_allUsers[i].haveMsg)
-					_userListItems[i].HaveMsgImage = Resources.haveMsg;
+				if (_allChatUsers[i].haveMsg)
+					item.HaveMsgImage = Resources.haveMsg;
 				else
-					_userListItems[i].HaveMsgImage = Resources.Tick;
-				
-				this.PanelListUsers.Controls.Add(_userListItems[i]);
-			}
+					item.HaveMsgImage = Resources.Tick;
 
-			//СhangeCurrentUserItem(_currentUserItem);
-		}
+				if (item == _currentUserItem)
+				{
+					СhangeCurrentUserItem(item);
+				}
 
-		private void PopulateInemsUserNew()
-		{
-			this.PanelListUsers.Controls.Clear();
-
-			//_userListItems = new UserListItem[_allUsers.Count];
-			//for (int i = 0; i < _userListItems.Length; ++i)
-			//{
-			//	_userListItems[i] = new UserListItem(this);
-			//	_userListItems[i].UserName = _allUsers[i].userName;
-
-
-			//	if (_allUsers[i].isConnected)
-			//		_userListItems[i].ConnectedImage = Resources.Circle_Green;
-			//	else
-			//		_userListItems[i].ConnectedImage = Resources.Circle_Red;
-
-
-			//	if (_allUsers[i].haveMsg)
-			//		_userListItems[i].HaveMsgImage = Resources.haveMsg;
-			//	else
-			//		_userListItems[i].HaveMsgImage = Resources.Tick;
-
-			//	this.PanelListUsers.Controls.Add(_userListItems[i]);
-			//}
-
-			//СhangeCurrentUserItem(_currentUserItem);
-		}
-
-
-
-		private void DrowMsg(ChatUser cu)
-		{
-			this.msgFlowPanel.Controls.Clear();
-			for (int i = 0; i < cu.msgItems.Count; ++i)
-			{
-				this.msgFlowPanel.Controls.Add(cu.msgItems[i]);
+				_userListItems.Add(item);
+				this.PanelListUsers.Controls.Add(item);
 			}
 		}
 
@@ -340,6 +318,9 @@ namespace MainWindow
 			if (this.msgTextBox.Text == "")
 				return;
 
+			if (_currentUserItem == null)
+				return;
+
 			string date = DateTime.Now.ToString();
 			
 			MessageItem msg = new MessageItem(
@@ -351,16 +332,16 @@ namespace MainWindow
 
 			this.msgFlowPanel.Controls.Add(msg);
 
-			for (int i = 0; i < _allUsers.Count; ++i)
+			for (int i = 0; i < _allChatUsers.Count; ++i)
 			{
-				if (_allUsers[i].userName == _currentUserItem.UserName)
+				if (_allChatUsers[i].userName == _currentUserItem.UserName)
 				{
-					_allUsers[i].msgItems.Add(msg);
+					_allChatUsers[i].msgItems.Add(msg);
 					break;
 				}
 			}
 
-			_client.SendMsg(_userName, _currentUserItem.UserName, this.msgTextBox.Text);
+			_client.SendMsg(_userName, _currentUserItem.UserName, this.msgTextBox.Text + " " + date);
 			this.msgTextBox.Text = "";
 		}
 	}

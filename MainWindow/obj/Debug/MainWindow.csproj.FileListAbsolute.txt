@@ -166,3 +166,15 @@ C:\Users\228\Desktop\WOZAP\bin\Debug\MainWindow.exe.config
 C:\Users\228\Desktop\WOZAP\bin\Debug\MainWindow.exe
 C:\Users\228\Desktop\WOZAP\bin\Debug\MainWindow.pdb
 >>>>>>> 3ebe067... доделал базу данных
+D:\Programming\ТиМП\working version\WOZAP\bin\Debug\MainWindow.exe.config
+D:\Programming\ТиМП\working version\WOZAP\bin\Debug\MainWindow.exe
+D:\Programming\ТиМП\working version\WOZAP\bin\Debug\MainWindow.pdb
+D:\Programming\ТиМП\working version\WOZAP\MainWindow\obj\Debug\MainWindow.csprojAssemblyReference.cache
+D:\Programming\ТиМП\working version\WOZAP\MainWindow\obj\Debug\MainWindow.MessageItem.resources
+D:\Programming\ТиМП\working version\WOZAP\MainWindow\obj\Debug\MainWindow.Properties.Resources.resources
+D:\Programming\ТиМП\working version\WOZAP\MainWindow\obj\Debug\MainWindow.SingInWindow.resources
+D:\Programming\ТиМП\working version\WOZAP\MainWindow\obj\Debug\MainWindow.UserListItem.resources
+D:\Programming\ТиМП\working version\WOZAP\MainWindow\obj\Debug\MainWindow.UserWindow.resources
+D:\Programming\ТиМП\working version\WOZAP\MainWindow\obj\Debug\MainWindow.csproj.GenerateResource.cache
+D:\Programming\ТиМП\working version\WOZAP\MainWindow\obj\Debug\MainWindow.exe
+D:\Programming\ТиМП\working version\WOZAP\MainWindow\obj\Debug\MainWindow.pdb
