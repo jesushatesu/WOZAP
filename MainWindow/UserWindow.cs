@@ -49,7 +49,7 @@ namespace MainWindow
 				if (_allChatUsers[i].userName == fromUser)
 				{
 					MessageItem msgItem = new MessageItem(msgWithoutDate, DateTime.Now.ToString(),
-							_userName + fromUser + DateTime.Now.ToString(), fromUser);
+							_userName + fromUser + DateTime.Now.ToString(), fromUser, false);
 					_allChatUsers[i].msgItems.Add(msgItem);
 
 					if (_currentUserItem.UserName == fromUser)
@@ -322,12 +322,13 @@ namespace MainWindow
 				return;
 
 			string date = DateTime.Now.ToString();
-			
+
 			MessageItem msg = new MessageItem(
 				this.msgTextBox.Text,
 				date,
 				_userName + _currentUserItem.UserName + date,
-				_currentUserItem.UserName
+				_currentUserItem.UserName,
+				true
 			);
 
 			this.msgFlowPanel.Controls.Add(msg);

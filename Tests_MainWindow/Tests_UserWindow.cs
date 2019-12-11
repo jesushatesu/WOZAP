@@ -8,52 +8,57 @@ namespace Tests_MainWindow
 	[TestClass]
 	public class Tests_UserWindow
 	{
-		private SingInWindow sw = new SingInWindow();
+		private SingInWindow _sw;
+		private const string _testNameUser = "testNameUser";
+		private const string _newNameUser = "newNameUser";
+		private UserWindow _testUW;
+		private UserWindow _newUser;
+
+		private void InitializationsTest()
+		{
+			_sw = new SingInWindow();
+			_testUW = new UserWindow(_testNameUser, _sw);
+			_newUser = new UserWindow(_newNameUser, _sw);
+		}
 
 		[TestMethod]
 		public void DesignerUserWindow()
 		{
-			string ex = "my user name";
-			UserWindow uw = new UserWindow(ex, sw);
-			string userName = uw.GetUserName();
-
-			Assert.AreEqual(ex, userName);
+			InitializationsTest();
+			string userName = _testUW.GetUserName();
+			Assert.AreEqual(_testNameUser, userName);
 		}
 
 		[TestMethod]
 		public void ConnectUserCallback()
 		{
-			UserWindow uw = new UserWindow("user name", sw);
-			string newUser = "new user";
-			uw.ConnectUserCallback(newUser);
-			List<string> allUserName = uw.GetAllUsersName();
-			bool addNewUser = false;
+			InitializationsTest();
 
-			// проверим, есть ли такой пользовватель
+			_testUW.ConnectUserCallback(_newNameUser);
+			List<string> allUserName = _testUW.GetAllUsersName();
+			bool addNewUser = false;
 			for (int i = 0; i < allUserName.Count; ++i)
-			{
-				if (allUserName[i] == newUser)
+				if (allUserName[i] == _newNameUser)
 				{
 					addNewUser = true;
 					break;
-				}	
-			}
+				}
 			
 			Assert.IsTrue(addNewUser);
-			Assert.IsTrue(uw.ThisUserIsConnect(newUser));
+			Assert.IsTrue(_testUW.ThisUserIsConnect(_newNameUser));
 		}
 
 
 		[TestMethod]
 		public void DisconnectUserCallback()
 		{
-			UserWindow uw = new UserWindow("user name", sw);
-			string newUser = "new user";
-			uw.ConnectUserCallback(newUser);
+			InitializationsTest();
 
-			uw.DisconnectUserCallback(newUser);
+			_testUW.ConnectUserCallback(_newNameUser);
 
-			Assert.IsFalse(uw.ThisUserIsConnect(newUser));
+			_testUW.DisconnectUserCallback(_newNameUser);
+
+			Assert.IsFalse(_testUW.ThisUserIsConnect(_newNameUser));
 		}
 	}
 }

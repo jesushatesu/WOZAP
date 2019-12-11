@@ -19,7 +19,7 @@ namespace MainWindow
 		private bool _isModificat;
 		private string _fromUser;
 
-		public MessageItem(string msg, string timeMsg, string idMsg, string fromUser)
+		public MessageItem(string msg, string timeMsg, string idMsg, string fromUser, bool myMsg)
 		{
 			InitializeComponent();
 			_idMsg = idMsg;
@@ -28,6 +28,8 @@ namespace MainWindow
 			_msg = msg;
 			_time = timeMsg;
 			_fromUser = fromUser;
+			if (myMsg)
+				this.flowLayoutPanelWithPanelMsg.FlowDirection = FlowDirection.RightToLeft;
 		}
 
 		private void MessageItem_Load(object sender, EventArgs e)

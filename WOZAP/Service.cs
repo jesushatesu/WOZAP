@@ -23,8 +23,8 @@ namespace WOZAP
         public Service()
         {
             _dataBase = new DataBase.DataBase();
-
-            _users = GetUsersList();
+			
+			_users = GetUsersList();
         }
 
         /*public Service(DataBase.IDataBase db)
@@ -59,9 +59,7 @@ namespace WOZAP
 
 			_users.Insert(0, newUser);
 
-			Console.WriteLine("-------------------------------------------------------------");
-			for (int i = 0; i < _users.Count(); i++)
-				Console.WriteLine(_users[i].name + " ---- " + _users[i].isConnected.ToString());
+			Console.WriteLine("[" + userName + "] => Connect = " + newUser.isConnected.ToString());
 
 			return SayOnlineAndGetInfoAboutOtherUsers(userName);
         }
@@ -102,15 +100,19 @@ namespace WOZAP
 				newUser.ChangeCon(false);
 				_users.Remove(_users[indexDisconUser]);
 				_users.Add(newUser);
+
+				Console.WriteLine("[" + userName + "] => Connect = " + newUser.isConnected.ToString());
+			}
+			else
+			{
+				Console.WriteLine("Error: [" + userName + "] can't disconnect: can't find [" + userName + "] in all users");
 			}
 
-			Console.WriteLine("-------------------------------------------------------------");
-			for (int i = 0; i < _users.Count(); i++)
-				Console.WriteLine(_users[i].name + " ---- " + _users[i].isConnected.ToString());
 		}
 
         public void SendMsg(string fromUserName, string toUserName, string msg)
         {
+			bool sendMsg = false;
             foreach(User user in _users)
             {
                 if (user.name == toUserName)
@@ -119,10 +121,19 @@ namespace WOZAP
                         user.opCont.GetCallbackChannel<IServerChatCallback>().MsgCallback(fromUserName, toUserName, msg);
                     else
                         _dataBase.AddMsg(fromUserName, toUserName, msg);  // Не работает !!!!!
-                    break;
+
+					sendMsg = true;
+					break;
                 }
             }
-        }
+			if (!sendMsg)
+			{
+				Console.WriteLine("Error: Can't sendMsg from [" + fromUserName + "] to [" + toUserName + "]");
+			}
+			else
+				Console.WriteLine("sendMsg from [" + fromUserName + "] to [" + toUserName + "]");
+
+		}
 
         public string[] GetUnsentMsg(string userNameFrom, string userNameTo)
         {
