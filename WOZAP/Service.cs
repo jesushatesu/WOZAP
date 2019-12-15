@@ -74,7 +74,7 @@ namespace WOZAP
 				if (users[i].isConnected & users[i].name != toUserName)
 					users[i].opCont.GetCallbackChannel<IServerChatCallback>().ConnectUserCallback(toUserName);
 
-				userStruct[i] = users[i].name + "&"
+				userStruct[i] = users[i].name
 					+ ((users[i].isConnected) ? "1" : "0")
 					+ ((dataBase.HaveMsg(toUserName)) ? "1" : "0"); // Нужно так !!! HaveMsg(string fromUser, toUser)
 			}
@@ -139,6 +139,7 @@ namespace WOZAP
 
         public string[] GetUnsentMsg(string userNameFrom, string userNameTo)
         {
+			Console.WriteLine("GetUnsentMsg for [" + userNameFrom + "] to [" + userNameTo + "]");
             string[] str = dataBase.GetMsg(userNameFrom, userNameTo);
 
             return str;
