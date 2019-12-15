@@ -130,3 +130,13 @@ C:\WOZAP\WOZAP\obj\Debug\WOZAP.csproj.CoreCompileInputs.cache
 C:\WOZAP\WOZAP\obj\Debug\WOZAP.csproj.CopyComplete
 C:\WOZAP\WOZAP\obj\Debug\WOZAP.dll
 C:\WOZAP\WOZAP\obj\Debug\WOZAP.pdb
+D:\5 сем\ТИМП\WOZAP\bin\Debug\Database1.mdf
+D:\5 сем\ТИМП\WOZAP\bin\Debug\Database1_log.ldf
+D:\5 сем\ТИМП\WOZAP\bin\Debug\WOZAP.dll.config
+D:\5 сем\ТИМП\WOZAP\bin\Debug\WOZAP.dll
+D:\5 сем\ТИМП\WOZAP\bin\Debug\WOZAP.pdb
+D:\5 сем\ТИМП\WOZAP\WOZAP\obj\Debug\WOZAP.csprojAssemblyReference.cache
+D:\5 сем\ТИМП\WOZAP\WOZAP\obj\Debug\WOZAP.csproj.CoreCompileInputs.cache
+D:\5 сем\ТИМП\WOZAP\WOZAP\obj\Debug\WOZAP.csproj.CopyComplete
+D:\5 сем\ТИМП\WOZAP\WOZAP\obj\Debug\WOZAP.dll
+D:\5 сем\ТИМП\WOZAP\WOZAP\obj\Debug\WOZAP.pdb

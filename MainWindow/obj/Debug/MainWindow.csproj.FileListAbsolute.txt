@@ -172,3 +172,16 @@ D:\Programming\ТиМП\working version\WOZAP\MainWindow\obj\Debug\MainWindow.Us
 D:\Programming\ТиМП\working version\WOZAP\MainWindow\obj\Debug\MainWindow.csproj.GenerateResource.cache
 D:\Programming\ТиМП\working version\WOZAP\MainWindow\obj\Debug\MainWindow.exe
 D:\Programming\ТиМП\working version\WOZAP\MainWindow\obj\Debug\MainWindow.pdb
+D:\5 сем\ТИМП\WOZAP\bin\Debug\MainWindow.exe.config
+D:\5 сем\ТИМП\WOZAP\bin\Debug\MainWindow.exe
+D:\5 сем\ТИМП\WOZAP\bin\Debug\MainWindow.pdb
+D:\5 сем\ТИМП\WOZAP\MainWindow\obj\Debug\MainWindow.csprojAssemblyReference.cache
+D:\5 сем\ТИМП\WOZAP\MainWindow\obj\Debug\MainWindow.MessageItem.resources
+D:\5 сем\ТИМП\WOZAP\MainWindow\obj\Debug\MainWindow.Properties.Resources.resources
+D:\5 сем\ТИМП\WOZAP\MainWindow\obj\Debug\MainWindow.SingInWindow.resources
+D:\5 сем\ТИМП\WOZAP\MainWindow\obj\Debug\MainWindow.UserListItem.resources
+D:\5 сем\ТИМП\WOZAP\MainWindow\obj\Debug\MainWindow.UserWindow.resources
+D:\5 сем\ТИМП\WOZAP\MainWindow\obj\Debug\MainWindow.csproj.GenerateResource.cache
+D:\5 сем\ТИМП\WOZAP\MainWindow\obj\Debug\MainWindow.csproj.CoreCompileInputs.cache
+D:\5 сем\ТИМП\WOZAP\MainWindow\obj\Debug\MainWindow.exe
+D:\5 сем\ТИМП\WOZAP\MainWindow\obj\Debug\MainWindow.pdb
