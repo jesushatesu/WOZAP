@@ -55,6 +55,10 @@
     <None Include="app.manifest" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\DataBase\DataBase.csproj">
+      <Project>{b4e2b77d-5e27-4b68-94d7-180f6ad98214}</Project>
+      <Name>DataBase</Name>
+    </ProjectReference>
     <ProjectReference Include="..\WOZAP\WOZAP.csproj">
       <Project>{8f51fd86-3961-4f08-be6f-afce6072f60c}</Project>
       <Name>WOZAP</Name>

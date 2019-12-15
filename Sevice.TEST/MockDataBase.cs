@@ -7,19 +7,30 @@ using DataBase;
 
 namespace Sevice.TEST
 {
-    class MockDataBase : IDataBase
+    public class MockDataBase : IDataBase
     {
-        public string[] users = new string[10];
-        public static int next = 0;
+        public List<string> users;
+
+        public MockDataBase()
+        {
+            users.Add("vadik");
+            users.Add("iluxa");
+            users.Add("tema");
+            users.Add("roma");
+            users.Add("solyzra");
+            users.Add("ridux");
+            users.Add("dima");
+            users.Add("maks");
+        }
 
         public void AddMsg(string Msg)
         {
             return;
         }
 
-        public void AddUser(string user)
+        public void AddUser(string userName)
         {
-            users[next++] = user;
+            users.Insert(0, userName);
         }
 
         public string GetMsg(string UserName)

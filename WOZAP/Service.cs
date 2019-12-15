@@ -18,8 +18,7 @@ namespace WOZAP
         public Service()
         {
             dataBase = new DataBase.DataBase();
-
-            users = new List<User>();
+            
             users = GetUsersList();
         }
 
@@ -74,9 +73,9 @@ namespace WOZAP
 				if (users[i].isConnected & users[i].name != toUserName)
 					users[i].opCont.GetCallbackChannel<IServerChatCallback>().ConnectUserCallback(toUserName);
 
-				userStruct[i] = users[i].name + "&"
+				userStruct[i] = users[i].name
 					+ ((users[i].isConnected) ? "1" : "0")
-					+ ((dataBase.HaveMsg(toUserName)) ? "1" : "0"); // Нужно так !!! HaveMsg(string fromUser, toUser)
+					+ ((dataBase.HaveMsg(/*user[i],*/ toUserName)) ? "1" : "0"); // Нужно так !!! HaveMsg(string fromUser, toUser)
 			}
 
 			return userStruct;
@@ -122,7 +121,7 @@ namespace WOZAP
 					if (user.isConnected)
                         user.opCont.GetCallbackChannel<IServerChatCallback>().MsgCallback(fromUserName, toUserName, msg);
                     else
-                        dataBase.AddMsg(fromUserName, toUserName, msg);  // Не работает !!!!!
+                        dataBase.AddMsg(fromUserName, toUserName, msg);
 
 					sendMsg = true;
 					break;

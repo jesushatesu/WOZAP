@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.ServiceModel;
+using DataBase;
 
 namespace WOZAP
 {
@@ -11,9 +12,9 @@ namespace WOZAP
     {
         static void Main()
         {
-            var service = new Service();
-            string uri = "localhost:8080";
-            using (var host = new ServiceHost(service, new Uri(uri)))
+            var db = new DataBase.DataBase();
+            var service = new Service(db);
+            using (var host = new ServiceHost(service, new Uri("http://localhost:8080/")))
             {
                 host.Open();
                 Console.WriteLine("host started!");

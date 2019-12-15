@@ -83,23 +83,23 @@ namespace DataBase
 			
 			int ida = GetId(a);
 			int idb = GetId(b);
-			//Console.WriteLine("До добавления");
-			//foreach (var user in db2.GetTable<Message>().OrderByDescending(u => u.Id1).Take(5))
-			//{
-			//	Console.WriteLine("{0} \t{1} \t{2}", user.Id1, user.Id2, user.Msg);
-			//}
-			//Console.WriteLine();
-
-			Message user12 = new Message { Id1 = ida, Id2 = idb, Msg = msg };
+            //Console.WriteLine("До добавления");
+            //foreach (var user in db2.GetTable<Message>().OrderByDescending(u => u.Id1).Take(5))
+            //{
+            //	Console.WriteLine("{0} \t{1} \t{2}", user.Id1, user.Id2, user.Msg);
+            //}
+            //Console.WriteLine();
+            Message user12 = new Message { Id1 = ida, Id2 = idb, Msg = msg };
 			// добавляем его в таблицу Message
 			db2.GetTable<Message>().InsertOnSubmit(user12);
-			db2.SubmitChanges();
-			//Console.WriteLine("После добавления");
-			//foreach (var user in db2.GetTable<Message>())
-			//{
-			//	Console.WriteLine("{0} \t{1} \t{2}", user.Id1, user.Id2, user.Msg);
-			//}
-		}
+
+            db2.SubmitChanges();
+            //Console.WriteLine("После добавления");
+            //foreach (var user in db2.GetTable<Message>())
+            //{
+            //	Console.WriteLine("{0} \t{1} \t{2}", user.Id1, user.Id2, user.Msg);
+            //}
+        }
 
 		public string[] GetMsg(string userNameFrom, string userNameTo)
 		{
@@ -173,11 +173,6 @@ namespace DataBase
 		{
 			return null;
 		}
-
-        string[] IDataBase.GetMsg(string userNameFrom, string userNameTo)
-        {
-            throw new NotImplementedException();
-        }
     }
 
 	class Program
