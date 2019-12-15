@@ -75,5 +75,17 @@ namespace MainWindow
 				this.loginLine.Focus();
 			}
 		}
+
+		private void SingInWindow_KeyDown(object sender, KeyEventArgs e)
+		{
+			if (this.loginLine.Text != "" & e.KeyData == Keys.Enter)
+				buttonSingIn_Click(sender, e);
+		}
+
+		private void loginLine_KeyDown(object sender, KeyEventArgs e)
+		{
+			if (this.loginLine.Text != "" & e.KeyData == Keys.Enter)
+				buttonSingIn_Click(sender, e);
+		}
 	}
 }

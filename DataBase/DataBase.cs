@@ -108,6 +108,7 @@ namespace DataBase
 			int b;
 			a = GetId(userNameFrom);
 			b = GetId(userNameTo);
+
 			DataClasses1DataContext db2 = new DataClasses1DataContext();
 			int count = 0;
 			foreach (var user in db2.GetTable<Message>().OrderByDescending(u => u.Id2))
@@ -117,7 +118,6 @@ namespace DataBase
 					count++;
 				}
 			}
-			//Console.WriteLine(count);
 
 			string[] str = new string[count];
 			int i = 0;
@@ -174,10 +174,6 @@ namespace DataBase
 			return null;
 		}
 
-        string[] IDataBase.GetMsg(string userNameFrom, string userNameTo)
-        {
-            throw new NotImplementedException();
-        }
     }
 
 	class Program

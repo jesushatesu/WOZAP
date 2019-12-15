@@ -1,13 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.ServiceModel;
 using MainWindow.ServiceChat;
 using MainWindow.Properties;
 
@@ -42,14 +36,15 @@ namespace MainWindow
 			if (toUser != _userName)
 				return;
 			string[] words = msg.Split(new char[] { ' ' });
+			string dataMsg = words[words.Length - 1];
 			words[words.Length - 1] = "";
 			string msgWithoutDate = String.Join(" ", words);
 			for (int i = 0; i < _allChatUsers.Count; ++i)
 			{
 				if (_allChatUsers[i].userName == fromUser)
 				{
-					MessageItem msgItem = new MessageItem(msgWithoutDate, DateTime.Now.ToString(),
-							_userName + fromUser + DateTime.Now.ToString(), fromUser, false);
+					MessageItem msgItem = new MessageItem(msgWithoutDate, dataMsg,
+							_userName + fromUser + dataMsg, fromUser, false);
 					_allChatUsers[i].msgItems.Add(msgItem);
 
 					if (_currentUserItem.UserName == fromUser)
@@ -63,7 +58,7 @@ namespace MainWindow
 						{
 							if (_userListItems[k].UserName == fromUser)
 							{
-								_userListItems[k].HaveMsgImage = Resources.haveMsg; //-работает изменение элемента LIST!!!
+								_userListItems[k].HaveMsgImage = Resources.haveMsg;
 								break;
 							}
 						}
@@ -90,20 +85,33 @@ namespace MainWindow
 					_allChatUsers.Insert(i, newCU);
 
 					isNewUser = false;
-					break;
 				}
 			}
 
 			if (isNewUser)
 			{
-				ChatUser cu = new ChatUser { userName = userName, 
-						isConnected = true, haveMsg = false , msgItems = new List<MessageItem>()};
+				ChatUser cu = new ChatUser
+				{
+					userName = userName,
+					isConnected = true,
+					haveMsg = false,
+					msgItems = new List<MessageItem>()
+				};
 				_allChatUsers.Add(cu);
-			}
-			else if (_currentUserItem.UserName == userName)
-				_currentUserItem.ConnectedImage = Resources.Circle_Green;
+				UserListItem item = new UserListItem(this);
 
-			PopulateInemsUser();
+				item.UserName = userName;
+				item.ConnectedImage = Resources.Circle_Green;
+				item.HaveMsgImage = Resources.Tick;
+				_userListItems.Add(item);
+				this.PanelListUsers.Controls.Add(item);
+			}
+			else
+			{
+				for (int i = 0; i < _userListItems.Count; ++i)
+					if (_userListItems[i].UserName == userName)
+						_userListItems[i].ConnectedImage = Resources.Circle_Green;
+			}
 		}
 
 		public void DisconnectUserCallback(string userName)
@@ -120,14 +128,15 @@ namespace MainWindow
 					newCU.isConnected = false;
 					_allChatUsers.Remove(_allChatUsers[i]);
 					_allChatUsers.Insert(i, newCU);
-					break;
 				}
+				if (_userListItems[i].UserName == userName)
+					_userListItems[i].ConnectedImage = Resources.Circle_Red;
 			}
 
 			if (_currentUserItem.UserName == userName)
 				_currentUserItem.ConnectedImage = Resources.Circle_Red;
 
-			PopulateInemsUser();
+			//PopulateInemsUser();
 		}
 
 		//--------------------------------
@@ -177,7 +186,10 @@ namespace MainWindow
 			{
 				if (_allChatUsers[i].userName == item.UserName)
 				{
-					// Взять сообщения с сервиса и отобразить их(сохранить как items)
+					string[] msgs = _client.GetUnsentMsg(item.UserName, _userName); 
+					for (int h = 0; h < msgs.Length; ++h)
+						MsgCallback(item.UserName, _userName, msgs[h]);
+
 					this.msgFlowPanel.Controls.Clear();
 
 					for (int k = 0; k < _allChatUsers[i].msgItems.Count; ++k)
@@ -187,6 +199,7 @@ namespace MainWindow
 					break;
 				}
 			}
+
 		}
 
 
@@ -203,13 +216,16 @@ namespace MainWindow
 
 			for (int i = 0; i < allUserArr.Length; ++i)
 			{
-				string[] words = allUserArr[i].Split(new char[] { '&' });
-				if (_userName != words[0])
+				string word = allUserArr[i];
+				string un = word;
+				un = un.Substring(0, un.Length - 2);
+				
+				if (_userName != un)
 				{
 					ChatUser newCU = new ChatUser();
-					newCU.userName = words[0];
-					newCU.isConnected = ('1' == words[1][0]) ? true : false;
-					newCU.haveMsg = ('1' == words[1][1]) ? true : false;
+					newCU.userName = un;
+					newCU.isConnected = ('1' == word[word.Length - 2]) ? true : false;
+					newCU.haveMsg = ('1' == word[word.Length - 1]) ? true : false;
 					newCU.msgItems = new List<MessageItem>();
 					_allChatUsers.Add(newCU);
 				}
@@ -315,16 +331,32 @@ namespace MainWindow
 
 		private void msgButton_MouseClick(object sender, MouseEventArgs e)
 		{
-			if (this.msgTextBox.Text == "")
-				return;
+			string textMsg = this.msgTextBox.Text;
+			this.msgTextBox.Text = "";
+			SedMsfFromMe(textMsg);
+		}
 
-			if (_currentUserItem == null)
+		private void msgTextBox_KeyDown(object sender, KeyEventArgs e)
+		{
+			MouseEventArgs v = new MouseEventArgs(MouseButtons, 1, 1, 1, 1);
+			if (e.KeyData == Keys.Enter)
+			{
+				string textMsg = this.msgTextBox.Text;
+				this.msgTextBox.Text = "";
+				SedMsfFromMe(textMsg);
+			}
+			
+		}
+
+		private void SedMsfFromMe(string textMsg)
+		{
+			if (textMsg == "" | textMsg == "\t" | _currentUserItem == null)
 				return;
 
 			string date = DateTime.Now.ToString();
 
 			MessageItem msg = new MessageItem(
-				this.msgTextBox.Text,
+				textMsg,
 				date,
 				_userName + _currentUserItem.UserName + date,
 				_currentUserItem.UserName,
@@ -342,8 +374,7 @@ namespace MainWindow
 				}
 			}
 
-			_client.SendMsg(_userName, _currentUserItem.UserName, this.msgTextBox.Text + " " + date);
-			this.msgTextBox.Text = "";
+			_client.SendMsg(_userName, _currentUserItem.UserName, textMsg + " " + date);
 		}
 	}
 }
