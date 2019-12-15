@@ -66,7 +66,7 @@ namespace Sevice.TEST
             throw new NotImplementedException();
         }
 
-        public bool HaveMsg(string userName)
+        public bool HaveMsg(string usr, string userName)
         {
             throw new NotImplementedException();
         }

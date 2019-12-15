@@ -36,7 +36,7 @@ namespace DataBase.Test
 		public void Have_mess()
 		{
 			DataBase db = new DataBase();
-			bool b = db.HaveMsg("sada");
+			bool b = db.HaveMsg("123", "sada");
 			Assert.AreEqual(b,true);
 		}
 
