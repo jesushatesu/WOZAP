@@ -12,43 +12,44 @@ namespace WOZAP
     [ServiceBehavior(InstanceContextMode = InstanceContextMode.Single)]
     public class Service : IService
     {
-        DataBase.DataBase _dataBase;
-        List<User> _users = new List<User>();
-
-        public List<User> GetUsr()
-        {
-            return _users;
-        }
+        private DataBase.IDataBase dataBase { get; set; }
+        private List<User> users { get; set; }
 
         public Service()
         {
-            _dataBase = new DataBase.DataBase();
-			
-			_users = GetUsersList();
+            dataBase = new DataBase.DataBase();
+
+            users = new List<User>();
+            users = GetUsersList();
         }
 
-        /*public Service(DataBase.IDataBase db)
+        public Service(DataBase.IDataBase db)
         {
             dataBase = db;
 
-			users = GetUsersList();
-        }*/
+            users = GetUsersList();
+        }
+
+        public List<User> GetUsr()
+        {
+            return users;
+        }
 
         public string[] Connect(string userName)
 		{
             bool isNewUser = true;
 			
-            for (int i = 0; i < _users.Count(); i++)
+            for (int i = 0; i < users.Count(); i++)
             {
-                if (_users[i].name == userName)
+                if (users[i].name == userName)
 				{
-					_users.Remove(_users[i]);
+					users.Remove(users[i]);
 					isNewUser = false;
 				}
             }
 
             if (isNewUser)
-				_dataBase.AddUser(userName); // Не добавляет у меня, возможно нужны временные файлы БД!!!!!!!!!!
+				dataBase.AddUser(userName); // Не добавляет у меня, возможно нужны временные файлы БД!!!!!!!!!!
 
 			User newUser = new User()
 			{
@@ -57,7 +58,7 @@ namespace WOZAP
 				opCont = OperationContext.Current
 			};
 
-			_users.Insert(0, newUser);
+			users.Insert(0, newUser);
 
 			Console.WriteLine("[" + userName + "] => Connect = " + newUser.isConnected.ToString());
 
@@ -66,16 +67,16 @@ namespace WOZAP
 
 		private string[] SayOnlineAndGetInfoAboutOtherUsers(string toUserName)
 		{
-			string[] userStruct = new string[_users.Count()];
+			string[] userStruct = new string[users.Count()];
 
-			for (int i = 0; i < _users.Count(); i++)
+			for (int i = 0; i < users.Count(); i++)
 			{
-				if (_users[i].isConnected & _users[i].name != toUserName)
-					_users[i].opCont.GetCallbackChannel<IServerChatCallback>().ConnectUserCallback(toUserName);
+				if (users[i].isConnected & users[i].name != toUserName)
+					users[i].opCont.GetCallbackChannel<IServerChatCallback>().ConnectUserCallback(toUserName);
 
-				userStruct[i] = _users[i].name + "&"
-					+ ((_users[i].isConnected) ? "1" : "0")
-					+ ((_dataBase.HaveMsg(toUserName)) ? "1" : "0"); // Нужно так !!! HaveMsg(string fromUser, toUser)
+				userStruct[i] = users[i].name + "&"
+					+ ((users[i].isConnected) ? "1" : "0")
+					+ ((dataBase.HaveMsg(toUserName)) ? "1" : "0"); // Нужно так !!! HaveMsg(string fromUser, toUser)
 			}
 
 			return userStruct;
@@ -85,21 +86,21 @@ namespace WOZAP
 		{
 			int indexDisconUser = -1;
 
-			for (int i = 0; i < _users.Count(); i++)
+			for (int i = 0; i < users.Count(); i++)
             {
-				if (_users[i].isConnected & _users[i].name != userName)
-					_users[i].opCont.GetCallbackChannel<IServerChatCallback>().DisconnectUserCallback(userName);
+				if (users[i].isConnected & users[i].name != userName)
+					users[i].opCont.GetCallbackChannel<IServerChatCallback>().DisconnectUserCallback(userName);
 
-				if (_users.ToArray()[i].name == userName)
+				if (users.ToArray()[i].name == userName)
 					indexDisconUser = i;
 			}
 
 			if (indexDisconUser != -1)
 			{
-				User newUser = _users[indexDisconUser];
+				User newUser = users[indexDisconUser];
 				newUser.ChangeCon(false);
-				_users.Remove(_users[indexDisconUser]);
-				_users.Add(newUser);
+				users.Remove(users[indexDisconUser]);
+				users.Add(newUser);
 
 				Console.WriteLine("[" + userName + "] => Connect = " + newUser.isConnected.ToString());
 			}
@@ -113,14 +114,15 @@ namespace WOZAP
         public void SendMsg(string fromUserName, string toUserName, string msg)
         {
 			bool sendMsg = false;
-            foreach(User user in _users)
+            foreach(User user in users)
             {
                 if (user.name == toUserName)
                 {
-                    if (user.isConnected)
+					Console.WriteLine("Waiting send msg [" + fromUserName + "] to [" + toUserName + "]");
+					if (user.isConnected)
                         user.opCont.GetCallbackChannel<IServerChatCallback>().MsgCallback(fromUserName, toUserName, msg);
                     else
-                        _dataBase.AddMsg(fromUserName, toUserName, msg);  // Не работает !!!!!
+                        dataBase.AddMsg(fromUserName, toUserName, msg);  // Не работает !!!!!
 
 					sendMsg = true;
 					break;
@@ -137,23 +139,23 @@ namespace WOZAP
 
         public string[] GetUnsentMsg(string userNameFrom, string userNameTo)
         {
-            string[] str = _dataBase.GetMsg(userNameFrom, userNameTo);
+            string[] str = dataBase.GetMsg(userNameFrom, userNameTo);
 
             return str;
         }
         
         List<User> GetUsersList()
         {
-            string[] allUsers = new string[10];
-            allUsers = _dataBase.GetUsers();
+            string[] allUsers = dataBase.GetUsers();
 
             foreach (string usr in allUsers)
             {
-				User user = new User { name = usr, isConnected = false };
-				_users.Add(user);
+                User user = new User { name = usr, isConnected = false };
+				users.Add(user);
             }
 
-            return _users;
+
+            return users;
         }
     }
 }

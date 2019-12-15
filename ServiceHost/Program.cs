@@ -11,7 +11,9 @@ namespace WOZAP
     {
         static void Main()
         {
-            using (var host = new ServiceHost(typeof(WOZAP.Service)))
+            var service = new Service();
+            string uri = "localhost:8080";
+            using (var host = new ServiceHost(service, new Uri(uri)))
             {
                 host.Open();
                 Console.WriteLine("host started!");

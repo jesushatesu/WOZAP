@@ -118,7 +118,6 @@ C:\Users\Илья\Desktop\ТиМП\j nej\WOZAP\MainWindow\obj\Debug\MainWindow.c
 C:\Users\Илья\Desktop\ТиМП\j nej\WOZAP\MainWindow\obj\Debug\MainWindow.csproj.CopyComplete
 C:\Users\Илья\Desktop\ТиМП\j nej\WOZAP\MainWindow\obj\Debug\MainWindow.exe
 C:\Users\Илья\Desktop\ТиМП\j nej\WOZAP\MainWindow\obj\Debug\MainWindow.pdb
-<<<<<<< Updated upstream
 C:\Users\JesusHatesU\Desktop\WOZAP\MainWindow\bin\Debug\MainWindow.exe.config
 C:\Users\JesusHatesU\Desktop\WOZAP\MainWindow\bin\Debug\MainWindow.exe
 C:\Users\JesusHatesU\Desktop\WOZAP\MainWindow\bin\Debug\MainWindow.pdb
@@ -131,7 +130,6 @@ C:\Users\JesusHatesU\Desktop\WOZAP\bin\Debug\Database1_log.ldf
 C:\Users\JesusHatesU\Desktop\WOZAP\bin\Debug\MainWindow.exe.config
 C:\Users\JesusHatesU\Desktop\WOZAP\bin\Debug\MainWindow.exe
 C:\Users\JesusHatesU\Desktop\WOZAP\bin\Debug\MainWindow.pdb
-<<<<<<< HEAD
 C:\Users\Илья\Desktop\ТиМП\Новая папка\WOZAP\bin\Debug\MainWindow.exe.config
 C:\Users\Илья\Desktop\ТиМП\Новая папка\WOZAP\bin\Debug\MainWindow.exe
 C:\Users\Илья\Desktop\ТиМП\Новая папка\WOZAP\bin\Debug\MainWindow.pdb
@@ -144,10 +142,7 @@ C:\Users\Илья\Desktop\ТиМП\Новая папка\WOZAP\MainWindow\obj\De
 C:\Users\Илья\Desktop\ТиМП\Новая папка\WOZAP\MainWindow\obj\Debug\MainWindow.csproj.GenerateResource.cache
 C:\Users\Илья\Desktop\ТиМП\Новая папка\WOZAP\MainWindow\obj\Debug\MainWindow.exe
 C:\Users\Илья\Desktop\ТиМП\Новая папка\WOZAP\MainWindow\obj\Debug\MainWindow.pdb
-=======
 C:\Users\228\Desktop\WOZAP\MainWindow\obj\Debug\MainWindow.MessageItem.resources
->>>>>>> Stashed changes
->>>>>>> dce0b233fa681b068d1626b7e631a41fc5cdd766
 C:\Users\Илья\Desktop\ТиМП\Рабочаяя версия\WOZAP\bin\Debug\MainWindow.exe.config
 C:\Users\Илья\Desktop\ТиМП\Рабочаяя версия\WOZAP\bin\Debug\MainWindow.exe
 C:\Users\Илья\Desktop\ТиМП\Рабочаяя версия\WOZAP\bin\Debug\MainWindow.pdb
@@ -165,7 +160,6 @@ C:\Users\228\Desktop\WOZAP\bin\Debug\Database1_log.ldf
 C:\Users\228\Desktop\WOZAP\bin\Debug\MainWindow.exe.config
 C:\Users\228\Desktop\WOZAP\bin\Debug\MainWindow.exe
 C:\Users\228\Desktop\WOZAP\bin\Debug\MainWindow.pdb
->>>>>>> 3ebe067... доделал базу данных
 D:\Programming\ТиМП\working version\WOZAP\bin\Debug\MainWindow.exe.config
 D:\Programming\ТиМП\working version\WOZAP\bin\Debug\MainWindow.exe
 D:\Programming\ТиМП\working version\WOZAP\bin\Debug\MainWindow.pdb

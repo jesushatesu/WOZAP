@@ -88,7 +88,6 @@ C:\Users\JesusHatesU\Desktop\WOZAP\bin\Debug\Database1_log.ldf
 C:\Users\JesusHatesU\Desktop\WOZAP\bin\Debug\WOZAP.dll.config
 C:\Users\JesusHatesU\Desktop\WOZAP\bin\Debug\WOZAP.dll
 C:\Users\JesusHatesU\Desktop\WOZAP\bin\Debug\WOZAP.pdb
-<<<<<<< HEAD
 C:\Users\Илья\Desktop\ТиМП\Новая папка\WOZAP\bin\Debug\Database1.mdf
 C:\Users\Илья\Desktop\ТиМП\Новая папка\WOZAP\bin\Debug\Database1_log.ldf
 C:\Users\Илья\Desktop\ТиМП\Новая папка\WOZAP\bin\Debug\WOZAP.dll.config
@@ -107,13 +106,11 @@ C:\Users\Илья\Desktop\ТиМП\Рабочаяя версия\WOZAP\WOZAP\obj
 C:\Users\Илья\Desktop\ТиМП\Рабочаяя версия\WOZAP\WOZAP\obj\Debug\WOZAP.csproj.CopyComplete
 C:\Users\Илья\Desktop\ТиМП\Рабочаяя версия\WOZAP\WOZAP\obj\Debug\WOZAP.dll
 C:\Users\Илья\Desktop\ТиМП\Рабочаяя версия\WOZAP\WOZAP\obj\Debug\WOZAP.pdb
-=======
 C:\Users\228\Desktop\WOZAP\bin\Debug\Database1.mdf
 C:\Users\228\Desktop\WOZAP\bin\Debug\Database1_log.ldf
 C:\Users\228\Desktop\WOZAP\bin\Debug\WOZAP.dll.config
 C:\Users\228\Desktop\WOZAP\bin\Debug\WOZAP.dll
 C:\Users\228\Desktop\WOZAP\bin\Debug\WOZAP.pdb
->>>>>>> 3ebe067... доделал базу данных
 D:\Programming\ТиМП\working version\WOZAP\bin\Debug\Database1.mdf
 D:\Programming\ТиМП\working version\WOZAP\bin\Debug\Database1_log.ldf
 D:\Programming\ТиМП\working version\WOZAP\bin\Debug\WOZAP.dll.config
@@ -123,3 +120,13 @@ D:\Programming\ТиМП\working version\WOZAP\WOZAP\obj\Debug\WOZAP.csprojAssemb
 D:\Programming\ТиМП\working version\WOZAP\WOZAP\obj\Debug\WOZAP.csproj.CopyComplete
 D:\Programming\ТиМП\working version\WOZAP\WOZAP\obj\Debug\WOZAP.dll
 D:\Programming\ТиМП\working version\WOZAP\WOZAP\obj\Debug\WOZAP.pdb
+C:\WOZAP\bin\Debug\Database1.mdf
+C:\WOZAP\bin\Debug\Database1_log.ldf
+C:\WOZAP\bin\Debug\WOZAP.dll.config
+C:\WOZAP\bin\Debug\WOZAP.dll
+C:\WOZAP\bin\Debug\WOZAP.pdb
+C:\WOZAP\WOZAP\obj\Debug\WOZAP.csprojAssemblyReference.cache
+C:\WOZAP\WOZAP\obj\Debug\WOZAP.csproj.CoreCompileInputs.cache
+C:\WOZAP\WOZAP\obj\Debug\WOZAP.csproj.CopyComplete
+C:\WOZAP\WOZAP\obj\Debug\WOZAP.dll
+C:\WOZAP\WOZAP\obj\Debug\WOZAP.pdb
