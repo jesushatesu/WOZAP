@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 using System.Data.Linq;
+using System.Configuration;
 
 namespace DataBase
 {
@@ -21,7 +22,7 @@ namespace DataBase
 
 		string ModificationMsgDB(int idMsg, string newMsg);
 
-		bool HaveMsg(string userName);
+		bool HaveMsg(string fromUser,string toUser);
 
 	}
 
@@ -33,8 +34,9 @@ namespace DataBase
 		{
 			int iden = 0;
 			string name = username;
-			DataClasses1DataContext db = new DataClasses1DataContext();
-	
+			string connectionString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename='D:\5 сем\ТИМП\WOZAP\DataBase\Database1.mdf';Integrated Security=True";
+			DataClasses1DataContext db = new DataClasses1DataContext(connectionString);
+
 			foreach (var user in db.GetTable<User>().OrderByDescending(u => u.Id))
 			{
 				if (user.name == name)
@@ -47,40 +49,44 @@ namespace DataBase
 
 		// Нужно так  !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 		// public bool HaveMsg(string fromUser, toUser)
-		public bool HaveMsg(string userName)
+		public bool HaveMsg(string fromUser, string toUser)
 		{
-			int b = GetId(userName);
-			DataClasses1DataContext db2 = new DataClasses1DataContext();
+			int b = GetId(toUser);
+			int a = GetId(fromUser);
+			string connectionString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename='D:\5 сем\ТИМП\WOZAP\DataBase\Database1.mdf';Integrated Security=True";
+			DataClasses1DataContext db2 = new DataClasses1DataContext(connectionString);
 			foreach (var user in db2.GetTable<Message>().OrderByDescending(u => u.Id2))
 			{
-				if (user.Id2 == b)
+				if (user.Id2 == b && user.Id1==a)
 				{
 					return true;
 				}
 			}
-		    return false;
+			return false;
 		}
 		public DataBase()
 		{
 			UnsentMsg = new string[3] { " ", " ", " " };
 		}
-        
+
 
 		public void AddUser(string user)
 		{
-			DataClasses1DataContext db = new DataClasses1DataContext();
-			User user1 = new User { name = user};
+			string connectionString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename='D:\5 сем\ТИМП\WOZAP\DataBase\Database1.mdf';Integrated Security=True";
+			DataClasses1DataContext db = new DataClasses1DataContext(connectionString);
+			User user1 = new User { name = user };
 			// добавляем его в таблицу Users
 			db.GetTable<User>().InsertOnSubmit(user1);
 			db.SubmitChanges();
 		}
 
-		public void AddMsg(string from,string to,string msgg)
+		public void AddMsg(string from, string to, string msgg)
 		{
 			string a = from; string b = to;
 			string msg = msgg;
-			DataClasses1DataContext db2 = new DataClasses1DataContext();
-			
+			string connectionString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename='D:\5 сем\ТИМП\WOZAP\DataBase\Database1.mdf';Integrated Security=True";
+			DataClasses1DataContext db2 = new DataClasses1DataContext(connectionString);
+
 			int ida = GetId(a);
 			int idb = GetId(b);
             //Console.WriteLine("До добавления");
@@ -108,7 +114,8 @@ namespace DataBase
 			int b;
 			a = GetId(userNameFrom);
 			b = GetId(userNameTo);
-			DataClasses1DataContext db2 = new DataClasses1DataContext();
+			string connectionString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename='D:\5 сем\ТИМП\WOZAP\DataBase\Database1.mdf';Integrated Security=True";
+			DataClasses1DataContext db2 = new DataClasses1DataContext(connectionString);
 			int count = 0;
 			foreach (var user in db2.GetTable<Message>().OrderByDescending(u => u.Id2))
 			{
@@ -118,7 +125,6 @@ namespace DataBase
 				}
 			}
 			//Console.WriteLine(count);
-
 			string[] str = new string[count];
 			int i = 0;
 			foreach (var user in db2.GetTable<Message>().OrderByDescending(u => u.Id1))
@@ -136,15 +142,16 @@ namespace DataBase
 						str = new_str;
 					}
 					str[i++] = user.Msg;
-					//Console.WriteLine(str[i - 1]);
 				}
 			}
+
 			return str;
 		}
 
 		public string[] GetUsers()
 		{
-			DataClasses1DataContext db = new DataClasses1DataContext();
+			string connectionString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename='D:\5 сем\ТИМП\WOZAP\DataBase\Database1.mdf';Integrated Security=True";
+			DataClasses1DataContext db = new DataClasses1DataContext(connectionString);
 
 			// Получаем таблицу пользователей
 			Table<User> users = db.GetTable<User>();
@@ -177,14 +184,26 @@ namespace DataBase
 
 	class Program
 	{
-		static void Main(string[] args) 
+		static void Main(string[] args)
 		{
+			//string fromUser = "ilya";
+			//string touser = "tema";
 			DataBase db = new DataBase();
-			string[] a = db.GetMsg("sss", "ddd");
-			foreach (var user in a)
-			{
-				Console.WriteLine(user);
-			}
+			bool a= db.HaveMsg("ilya", "vadik");
+			Console.WriteLine(a);
+			//int a = db.GetId(fromUser);
+			//int b = db.GetId(touser);
+			//string connectionString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename='D:\5 сем\ТИМП\WOZAP\DataBase\Database1.mdf';Integrated Security=True";
+			//DataClasses1DataContext db2 = new DataClasses1DataContext(connectionString);
+			//foreach (var user in db2.GetTable<Message>())
+			//{
+			//	if (user.Id2 == b && user.Id1 == a)
+			//	{
+			//		return true;
+			//	}
+			//}
+
+
 		}
 	}
 }

@@ -35,16 +35,7 @@ namespace Tests_MainWindow
 			InitializationsTest();
 
 			_testUW.ConnectUserCallback(_newNameUser);
-			List<string> allUserName = _testUW.GetAllUsersName();
-			bool addNewUser = false;
-			for (int i = 0; i < allUserName.Count; ++i)
-				if (allUserName[i] == _newNameUser)
-				{
-					addNewUser = true;
-					break;
-				}
-			
-			Assert.IsTrue(addNewUser);
+
 			Assert.IsTrue(_testUW.ThisUserIsConnect(_newNameUser));
 		}
 

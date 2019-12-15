@@ -138,6 +138,7 @@ namespace WOZAP
 
         public string[] GetUnsentMsg(string userNameFrom, string userNameTo)
         {
+			Console.WriteLine("GetUnsentMsg for [" + userNameFrom + "] to [" + userNameTo + "]");
             string[] str = dataBase.GetMsg(userNameFrom, userNameTo);
 
             return str;

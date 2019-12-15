@@ -159,6 +159,7 @@
 			this.loginLine.Name = "loginLine";
 			this.loginLine.Size = new System.Drawing.Size(344, 32);
 			this.loginLine.TabIndex = 2;
+			this.loginLine.KeyDown += new System.Windows.Forms.KeyEventHandler(this.loginLine_KeyDown);
 			// 
 			// labelAuthorization
 			// 
@@ -199,6 +200,7 @@
 			this.Name = "SingInWindow";
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
 			this.Text = "SingIn";
+			this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.SingInWindow_KeyDown);
 			this.mainFoneSingIn.ResumeLayout(false);
 			this.mainFoneSingIn.PerformLayout();
 			this.topblokAuth.ResumeLayout(false);

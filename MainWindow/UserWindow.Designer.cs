@@ -120,6 +120,7 @@
 			this.msgTextBox.Name = "msgTextBox";
 			this.msgTextBox.Size = new System.Drawing.Size(478, 39);
 			this.msgTextBox.TabIndex = 0;
+			this.msgTextBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.msgTextBox_KeyDown);
 			// 
 			// userWindowLeft
 			// 
