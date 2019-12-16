@@ -47,8 +47,6 @@ namespace DataBase
 			return iden;
 		}
 
-		// Нужно так  !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-		// public bool HaveMsg(string fromUser, toUser)
 		public bool HaveMsg(string fromUser, string toUser)
 		{
 			int b = GetId(toUser);
