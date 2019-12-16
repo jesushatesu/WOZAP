@@ -27,7 +27,7 @@ namespace DataBase
 
 	public class DataBase : IDataBase
 	{
-		public static string connectionString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\228\Desktop\WOZAP\DataBase\Database1.mdf;Integrated Security=True;Integrated Security=True";
+		public static string connectionString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=D:\Programming\ТиМП\working version\WOZAP\DataBase\Database1.mdf;Integrated Security=True;Integrated Security=True";
 
 		public int GetId(string username)
 		{

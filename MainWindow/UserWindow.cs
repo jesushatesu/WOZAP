@@ -33,14 +33,23 @@ namespace MainWindow
 
 		public void MsgCallback(string fromUser, string toUser, string msgWithTime)
 		{
-			if (toUser != _userName)
+			if (toUser != _userName | msgWithTime == "")
 				return;
 
 			// format msgWithTime: "some msg 12.11.19"
 			string[] words = msgWithTime.Split(new char[] { ' ' });
-			string timeMsg = words[words.Length - 1];
-			words[words.Length - 1] = "";
+			string timeMsg = DateTime.Now.ToString();
+			if (words.Length >= 2)
+			{
+				timeMsg = words[words.Length - 2];
+				timeMsg += words[words.Length - 1];
+				words[words.Length - 1] = "";
+				words[words.Length - 2] = "";
+			}
+
 			string msgWithoutTime = String.Join(" ", words);
+			if (msgWithoutTime == "  " | msgWithoutTime == "\n  ")
+				return;
 
 			for (int i = 0; i < _allChatUsers.Count; ++i)
 			{
@@ -230,7 +239,9 @@ namespace MainWindow
 
 		private void SedMsfFromMe(string textMsg)
 		{
-			if (textMsg == "" | textMsg == "\t" | _currentUserItem == null)
+			char[] charsToTrim = { ' ', '\t', '\n', '\r' };
+			textMsg = textMsg.Trim(charsToTrim);
+			if (textMsg == "" | textMsg == "\n" | _currentUserItem == null)
 				return;
 
 			string date = DateTime.Now.ToString();
