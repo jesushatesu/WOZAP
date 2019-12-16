@@ -27,7 +27,7 @@ namespace DataBase
 
 	public class DataBase : IDataBase
 	{
-		static readonly string connectionString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\JesusHatesU\Desktop\WOZAP\DataBase\Database1.mdf;Integrated Security=True";
+		static readonly string connectionString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\JesushatesU\Desktop\WOZAP\DataBase\Database1.mdf;Integrated Security=True";
 
 		public int GetId(string username)
 		{
@@ -166,13 +166,15 @@ namespace DataBase
                 db2.SubmitChanges();
 			}
 		}
-    }
 
-	class Program
-	{
-		static void Main(string[] args)
-		{
-		}
-	}
+        class Program
+        {
+            static void Main()
+            {
+
+            }
+        }
+    }
+    
 }
 
