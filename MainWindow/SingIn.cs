@@ -64,10 +64,15 @@ namespace MainWindow
 
 		private void buttonSingIn_Click(object sender, EventArgs e)
 		{
-			if (this.loginLine.Text != "")
+			string nameUser = this.loginLine.Text;
+			char[] charsToTrim = { ' ', '\t', '\n', '\r' };
+			nameUser = nameUser.Trim(charsToTrim);
+			if (nameUser != "" & nameUser != " " & nameUser != "\n")
 			{
 				this.Hide();
-				UserWindow userWindow = new UserWindow(this.loginLine.Text, this);
+
+				this.loginLine.Text = "";
+				UserWindow userWindow = new UserWindow(nameUser, this);
 				userWindow.Show();
 			}
 			else
