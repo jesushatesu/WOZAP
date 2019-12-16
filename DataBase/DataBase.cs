@@ -27,7 +27,7 @@ namespace DataBase
 
 	public class DataBase : IDataBase
 	{
-		static string connectionString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\JesusHatesU\Desktop\WOZAP\DataBase\Database1.mdf;Integrated Security=True";
+		static readonly string connectionString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\JesusHatesU\Desktop\WOZAP\DataBase\Database1.mdf;Integrated Security=True";
 
 		public int GetId(string username)
 		{
@@ -84,13 +84,6 @@ namespace DataBase
             Message user12 = new Message { Id1 = ida, Id2 = idb, Msg = msg };
 			db.GetTable<Message>().InsertOnSubmit(user12);
             db.SubmitChanges();
-
-            foreach (var user in db.GetTable<Message>().OrderByDescending(u => u.Id2))
-            {
-                Console.WriteLine("Сообщение: " + user.Msg);
-            }
-
-            //Console.WriteLine("Добавилось сообщение " + user12.Msg + " from " + user12.Id1 + " to " + user12.Id2);
         }
 
 		public string[] GetMsg(string userNameFrom, string userNameTo)
@@ -105,12 +98,10 @@ namespace DataBase
 				if (user.Id2 == b && user.Id1 == a)
 				{
 					count++;
-                    Console.WriteLine("Сообщение: " + user.Msg);
                 }
 			}
 			string[] str = new string[count];
 			int i = 0;
-            Console.WriteLine("\n");
 
             foreach (var user in db2.GetTable<Message>().OrderByDescending(u => u.Id1))
 			{
@@ -129,8 +120,7 @@ namespace DataBase
 					str[i++] = user.Msg;
 				}
 			}
-
-            Console.WriteLine("\n");
+            
             DeleteMsg(userNameFrom, userNameTo);
 
 			return str;
@@ -138,7 +128,6 @@ namespace DataBase
 
 		public string[] GetUsers()
 		{
-			
 			DataClasses1DataContext db = new DataClasses1DataContext(connectionString);
 
 			Table<User> users = db.GetTable<User>();
@@ -173,7 +162,8 @@ namespace DataBase
 			{
 				if (user.Id1 == a && user.Id2 == b && user.Msg != null)
 					db2.GetTable<Message>().DeleteOnSubmit(user);
-				    db2.SubmitChanges();
+
+                db2.SubmitChanges();
 			}
 		}
     }
@@ -182,8 +172,6 @@ namespace DataBase
 	{
 		static void Main(string[] args)
 		{
-			DataBase db = new DataBase();
-			string[] a = db.GetMsg("tema", "ilya");
 		}
 	}
 }
