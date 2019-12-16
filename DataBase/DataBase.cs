@@ -29,6 +29,7 @@ namespace DataBase
 	{
 		public static string connectionString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=D:\Programming\ТиМП\working version\WOZAP\DataBase\Database1.mdf;Integrated Security=True;Integrated Security=True";
 
+
 		public int GetId(string username)
 		{
 			int iden = 0;
@@ -61,7 +62,6 @@ namespace DataBase
 			}
 			return false;
 		}
-
 		public DataBase()
 		{
 		}
@@ -69,7 +69,6 @@ namespace DataBase
 
 		public void AddUser(string user)
 		{
-			
 			DataClasses1DataContext db = new DataClasses1DataContext(connectionString);
 			User user1 = new User { name = user };
 			
@@ -77,26 +76,21 @@ namespace DataBase
 			db.SubmitChanges();
 		}
 
-		public void AddMsg(string from, string to, string msgg)
+		public void AddMsg(string from, string to, string msg)
 		{
-			string a = from; string b = to;
-			string msg = msgg;
-			
-			DataClasses1DataContext db2 = new DataClasses1DataContext(connectionString);
+			DataClasses1DataContext db = new DataClasses1DataContext(connectionString);
 
-			int ida = GetId(a);
-			int idb = GetId(b);
+			int ida = GetId(from);
+			int idb = GetId(to);
             Message user12 = new Message { Id1 = ida, Id2 = idb, Msg = msg };
-			db2.GetTable<Message>().InsertOnSubmit(user12);
-            db2.SubmitChanges();
+			db.GetTable<Message>().InsertOnSubmit(user12);
+            db.SubmitChanges();
         }
 
 		public string[] GetMsg(string userNameFrom, string userNameTo)
 		{
-			int a;
-			int b;
-			a = GetId(userNameFrom);
-			b = GetId(userNameTo);
+			int a = GetId(userNameFrom);
+            int b = GetId(userNameTo);
 			
 			DataClasses1DataContext db2 = new DataClasses1DataContext(connectionString);
 			int count = 0;
@@ -105,34 +99,36 @@ namespace DataBase
 				if (user.Id2 == b && user.Id1 == a)
 				{
 					count++;
-				}
+                }
 			}
 			string[] str = new string[count];
 			int i = 0;
-			foreach (var user in db2.GetTable<Message>().OrderByDescending(u => u.Id1))
+
+            foreach (var user in db2.GetTable<Message>().OrderByDescending(u => u.Id1))
 			{
 				if (user.Id2 == b && user.Id1 == a)
 				{
 					if (i >= count)
 					{
-						string[] new_str = new string[count + 100];
+						string[] new_str = new string[count + 10];
 
 						for (int j = 0; j < count; j++)
 							new_str[j] = str[j];
 
-						count += 100;
+						count += 10;
 						str = new_str;
 					}
 					str[i++] = user.Msg;
 				}
 			}
-			DeleteMsg(userNameFrom, userNameTo);
+            
+            DeleteMsg(userNameFrom, userNameTo);
+
 			return str;
 		}
 
 		public string[] GetUsers()
 		{
-			
 			DataClasses1DataContext db = new DataClasses1DataContext(connectionString);
 
 			Table<User> users = db.GetTable<User>();
@@ -167,7 +163,8 @@ namespace DataBase
 			{
 				if (user.Id1 == a && user.Id2 == b && user.Msg != null)
 					db2.GetTable<Message>().DeleteOnSubmit(user);
-				    db2.SubmitChanges();
+
+                db2.SubmitChanges();
 			}
 		}
     }
@@ -176,8 +173,6 @@ namespace DataBase
 	{
 		static void Main(string[] args)
 		{
-			DataBase db = new DataBase();
-			db.AddMsg("tema", "ilya", "NNSASAASNNN");
 		}
 	}
 }
