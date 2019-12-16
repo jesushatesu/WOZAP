@@ -27,7 +27,7 @@ namespace DataBase
 
 	public class DataBase : IDataBase
 	{
-		public static string connectionString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=.\Database1.mdf;Integrated Security=True";
+		public static string connectionString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\228\Desktop\WOZAP\DataBase\Database1.mdf;Integrated Security=True;Integrated Security=True";
 
 		public int GetId(string username)
 		{
@@ -61,6 +61,7 @@ namespace DataBase
 			}
 			return false;
 		}
+
 		public DataBase()
 		{
 		}
@@ -176,7 +177,7 @@ namespace DataBase
 		static void Main(string[] args)
 		{
 			DataBase db = new DataBase();
-			string[] a = db.GetMsg("tema", "ilya");
+			db.AddMsg("tema", "ilya", "NNSASAASNNN");
 		}
 	}
 }
