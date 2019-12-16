@@ -19,14 +19,14 @@ namespace WOZAP
         {
             dataBase = new DataBase.DataBase();
             
-            users = GetUsersList();
+            GetUsersList();
         }
 
         public Service(DataBase.IDataBase db)
         {
             dataBase = db;
 
-            users = GetUsersList();
+            GetUsersList();
         }
 
         public List<User> GetUsr()
@@ -48,7 +48,7 @@ namespace WOZAP
             }
 
             if (isNewUser)
-				dataBase.AddUser(userName); // Не добавляет у меня, возможно нужны временные файлы БД!!!!!!!!!!
+				dataBase.AddUser(userName);
 
 			User newUser = new User()
 			{
@@ -67,16 +67,18 @@ namespace WOZAP
 		private string[] SayOnlineAndGetInfoAboutOtherUsers(string toUserName)
 		{
 			string[] userStruct = new string[users.Count()];
-
-			for (int i = 0; i < users.Count(); i++)
+            
+            for (int i = 0; i < users.Count(); i++)
 			{
 				if (users[i].isConnected & users[i].name != toUserName)
 					users[i].opCont.GetCallbackChannel<IServerChatCallback>().ConnectUserCallback(toUserName);
 
-				userStruct[i] = users[i].name
+                
+                userStruct[i] = users[i].name
 					+ ((users[i].isConnected) ? "1" : "0")
 					+ ((dataBase.HaveMsg(users[i].name, toUserName)) ? "1" : "0"); // Нужно так !!! HaveMsg(string fromUser, toUser)
-			}
+                Console.WriteLine(userStruct[i]);
+            }
 
 			return userStruct;
 		}
@@ -144,7 +146,7 @@ namespace WOZAP
             return str;
         }
         
-        List<User> GetUsersList()
+        void GetUsersList()
         {
             string[] allUsers = dataBase.GetUsers();
 
@@ -154,8 +156,6 @@ namespace WOZAP
                 User user = new User { name = usr, isConnected = false };
 				users.Add(user);
             }
-
-            return users;
         }
     }
 }

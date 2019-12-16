@@ -34,7 +34,7 @@ namespace DataBase
 		{
 			int iden = 0;
 			string name = username;
-			string connectionString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename='D:\5 сем\ТИМП\WOZAP\DataBase\Database1.mdf';Integrated Security=True";
+			string connectionString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename='C:\Users\JesusHatesU\Desktop\WOZAP\DataBase\Database1.mdf';Integrated Security=True";
 			DataClasses1DataContext db = new DataClasses1DataContext(connectionString);
 
 			foreach (var user in db.GetTable<User>().OrderByDescending(u => u.Id))
@@ -53,18 +53,22 @@ namespace DataBase
 		{
 			int b = GetId(toUser);
 			int a = GetId(fromUser);
-			string connectionString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename='D:\5 сем\ТИМП\WOZAP\DataBase\Database1.mdf';Integrated Security=True";
-			DataClasses1DataContext db2 = new DataClasses1DataContext(connectionString);
+			string connectionString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename='C:\Users\JesusHatesU\Desktop\WOZAP\DataBase\Database1.mdf';Integrated Security=True";
+            
+            DataClasses1DataContext db2 = new DataClasses1DataContext(connectionString);
 			foreach (var user in db2.GetTable<Message>().OrderByDescending(u => u.Id2))
 			{
 				if (user.Id2 == b && user.Id1==a)
 				{
 					return true;
 				}
-			}
-			return false;
+                
+            }
+            
+            return false;
 		}
-		public DataBase()
+
+        public DataBase()
 		{
 			UnsentMsg = new string[3] { " ", " ", " " };
 		}
@@ -72,7 +76,7 @@ namespace DataBase
 
 		public void AddUser(string user)
 		{
-			string connectionString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename='D:\5 сем\ТИМП\WOZAP\DataBase\Database1.mdf';Integrated Security=True";
+			string connectionString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename='C:\Users\JesusHatesU\Desktop\WOZAP\DataBase\Database1.mdf';Integrated Security=True";
 			DataClasses1DataContext db = new DataClasses1DataContext(connectionString);
 			User user1 = new User { name = user };
 			// добавляем его в таблицу Users
@@ -84,7 +88,7 @@ namespace DataBase
 		{
 			string a = from; string b = to;
 			string msg = msgg;
-			string connectionString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename='D:\5 сем\ТИМП\WOZAP\DataBase\Database1.mdf';Integrated Security=True";
+			string connectionString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename='C:\Users\JesusHatesU\Desktop\WOZAP\DataBase\Database1.mdf';Integrated Security=True";
 			DataClasses1DataContext db2 = new DataClasses1DataContext(connectionString);
 
 			int ida = GetId(a);
@@ -114,7 +118,7 @@ namespace DataBase
 			int b;
 			a = GetId(userNameFrom);
 			b = GetId(userNameTo);
-			string connectionString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename='D:\5 сем\ТИМП\WOZAP\DataBase\Database1.mdf';Integrated Security=True";
+			string connectionString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename='C:\Users\JesusHatesU\Desktop\WOZAP\DataBase\Database1.mdf';Integrated Security=True";
 			DataClasses1DataContext db2 = new DataClasses1DataContext(connectionString);
 			int count = 0;
 			foreach (var user in db2.GetTable<Message>().OrderByDescending(u => u.Id2))
