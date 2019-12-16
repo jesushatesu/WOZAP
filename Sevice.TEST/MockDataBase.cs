@@ -70,5 +70,10 @@ namespace Sevice.TEST
         {
             throw new NotImplementedException();
         }
+
+        public void DeleteMsg(string fromUser, string toUser)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

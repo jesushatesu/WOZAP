@@ -27,7 +27,7 @@ namespace DataBase
 
 	public class DataBase : IDataBase
 	{
-		public static string connectionString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=.\Database1.mdf;Integrated Security=True";
+		static string connectionString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\JesusHatesU\Desktop\WOZAP\DataBase\Database1.mdf;Integrated Security=True";
 
 		public int GetId(string username)
 		{
@@ -68,7 +68,6 @@ namespace DataBase
 
 		public void AddUser(string user)
 		{
-			
 			DataClasses1DataContext db = new DataClasses1DataContext(connectionString);
 			User user1 = new User { name = user };
 			
@@ -76,26 +75,28 @@ namespace DataBase
 			db.SubmitChanges();
 		}
 
-		public void AddMsg(string from, string to, string msgg)
+		public void AddMsg(string from, string to, string msg)
 		{
-			string a = from; string b = to;
-			string msg = msgg;
-			
-			DataClasses1DataContext db2 = new DataClasses1DataContext(connectionString);
+			DataClasses1DataContext db = new DataClasses1DataContext(connectionString);
 
-			int ida = GetId(a);
-			int idb = GetId(b);
+			int ida = GetId(from);
+			int idb = GetId(to);
             Message user12 = new Message { Id1 = ida, Id2 = idb, Msg = msg };
-			db2.GetTable<Message>().InsertOnSubmit(user12);
-            db2.SubmitChanges();
+			db.GetTable<Message>().InsertOnSubmit(user12);
+            db.SubmitChanges();
+
+            foreach (var user in db.GetTable<Message>().OrderByDescending(u => u.Id2))
+            {
+                Console.WriteLine("Сообщение: " + user.Msg);
+            }
+
+            //Console.WriteLine("Добавилось сообщение " + user12.Msg + " from " + user12.Id1 + " to " + user12.Id2);
         }
 
 		public string[] GetMsg(string userNameFrom, string userNameTo)
 		{
-			int a;
-			int b;
-			a = GetId(userNameFrom);
-			b = GetId(userNameTo);
+			int a = GetId(userNameFrom);
+            int b = GetId(userNameTo);
 			
 			DataClasses1DataContext db2 = new DataClasses1DataContext(connectionString);
 			int count = 0;
@@ -104,28 +105,34 @@ namespace DataBase
 				if (user.Id2 == b && user.Id1 == a)
 				{
 					count++;
-				}
+                    Console.WriteLine("Сообщение: " + user.Msg);
+                }
 			}
 			string[] str = new string[count];
 			int i = 0;
-			foreach (var user in db2.GetTable<Message>().OrderByDescending(u => u.Id1))
+            Console.WriteLine("\n");
+
+            foreach (var user in db2.GetTable<Message>().OrderByDescending(u => u.Id1))
 			{
 				if (user.Id2 == b && user.Id1 == a)
 				{
 					if (i >= count)
 					{
-						string[] new_str = new string[count + 100];
+						string[] new_str = new string[count + 10];
 
 						for (int j = 0; j < count; j++)
 							new_str[j] = str[j];
 
-						count += 100;
+						count += 10;
 						str = new_str;
 					}
 					str[i++] = user.Msg;
 				}
 			}
-			DeleteMsg(userNameFrom, userNameTo);
+
+            Console.WriteLine("\n");
+            DeleteMsg(userNameFrom, userNameTo);
+
 			return str;
 		}
 

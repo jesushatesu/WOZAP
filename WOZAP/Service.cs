@@ -76,8 +76,7 @@ namespace WOZAP
                 
                 userStruct[i] = users[i].name
 					+ ((users[i].isConnected) ? "1" : "0")
-					+ ((dataBase.HaveMsg(users[i].name, toUserName)) ? "1" : "0"); // Нужно так !!! HaveMsg(string fromUser, toUser)
-                Console.WriteLine(userStruct[i]);
+					+ ((dataBase.HaveMsg(users[i].name, toUserName)) ? "1" : "0");
             }
 
 			return userStruct;
