@@ -7,7 +7,6 @@ using MainWindow.Properties;
 
 namespace MainWindow
 {
-
 	public partial class UserWindow : Form, IServiceCallback
 	{
 		private SingInWindow _singInWindow;
@@ -30,21 +29,26 @@ namespace MainWindow
 			_userListItems = new List<UserListItem>();
 		}
 
+		// ----------- callbacks ---------------
 
-        public void MsgCallback(string fromUser, string toUser, string msg)
+		public void MsgCallback(string fromUser, string toUser, string msgWithTime)
 		{
 			if (toUser != _userName)
 				return;
-			string[] words = msg.Split(new char[] { ' ' });
-			string dataMsg = words[words.Length - 1];
+
+			// format msgWithTime: "some msg 12.11.19"
+			string[] words = msgWithTime.Split(new char[] { ' ' });
+			string timeMsg = words[words.Length - 1];
 			words[words.Length - 1] = "";
-			string msgWithoutDate = String.Join(" ", words);
+			string msgWithoutTime = String.Join(" ", words);
+
 			for (int i = 0; i < _allChatUsers.Count; ++i)
 			{
 				if (_allChatUsers[i].userName == fromUser)
 				{
-					MessageItem msgItem = new MessageItem(msgWithoutDate, dataMsg,
-							_userName + fromUser + dataMsg, fromUser, false);
+					MessageItem msgItem = new MessageItem(msgWithoutTime, timeMsg,
+							_userName + fromUser + timeMsg, fromUser, false);
+
 					_allChatUsers[i].msgItems.Add(msgItem);
 
 					if (_currentUserItem.UserName == fromUser)
@@ -53,7 +57,7 @@ namespace MainWindow
 					}
 					else
 					{
-						_allChatUsers.ToArray()[i].haveMsg = true; // ------ Сомнительная вещь
+						_allChatUsers.ToArray()[i].haveMsg = true;
 						for (int k = 0; k < _userListItems.Count; ++k)
 						{
 							if (_userListItems[k].UserName == fromUser)
@@ -139,9 +143,7 @@ namespace MainWindow
 			//PopulateInemsUser();
 		}
 
-		//--------------------------------
 		// ----------- get ---------------
-		//--------------------------------
 
 		public string GetUserName()
 		{
@@ -174,9 +176,33 @@ namespace MainWindow
 			return isConnect;
 		}
 
-		//--------------------------------
 		// ---------- chat logic ---------
-		//--------------------------------
+
+		private void UserWindow_Load(object sender, EventArgs e)
+		{
+
+			_client = new ServiceClient(new System.ServiceModel.InstanceContext(this));
+			string[] allUserArr = allUserArr = _client.Connect(_userName);
+
+			for (int i = 0; i < allUserArr.Length; ++i)
+			{
+				string word = allUserArr[i];
+				string un = word;
+				un = un.Substring(0, un.Length - 2);
+
+				if (_userName != un)
+				{
+					ChatUser newCU = new ChatUser();
+					newCU.userName = un;
+					newCU.isConnected = ('1' == word[word.Length - 2]) ? true : false;
+					newCU.haveMsg = ('1' == word[word.Length - 1]) ? true : false;
+					newCU.msgItems = new List<MessageItem>();
+					_allChatUsers.Add(newCU);
+				}
+			}
+
+			PopulateInemsUser();
+		}
 
 		public void ClickUserItem(UserListItem item)
 		{
@@ -202,45 +228,41 @@ namespace MainWindow
 
 		}
 
-
-
-		//--------------------------------
-		//----------- design -------------
-		//--------------------------------
-
-		private void UserWindow_Load(object sender, EventArgs e)
+		private void SedMsfFromMe(string textMsg)
 		{
+			if (textMsg == "" | textMsg == "\t" | _currentUserItem == null)
+				return;
 
-			_client = new ServiceClient(new System.ServiceModel.InstanceContext(this));
-			string[] allUserArr = allUserArr = _client.Connect(_userName);
+			string date = DateTime.Now.ToString();
 
-			for (int i = 0; i < allUserArr.Length; ++i)
+			MessageItem msg = new MessageItem(
+				textMsg,
+				date,
+				_userName + _currentUserItem.UserName + date,
+				_currentUserItem.UserName,
+				true
+			);
+
+			this.msgFlowPanel.Controls.Add(msg);
+
+			for (int i = 0; i < _allChatUsers.Count; ++i)
 			{
-				string word = allUserArr[i];
-				string un = word;
-				un = un.Substring(0, un.Length - 2);
-				
-				if (_userName != un)
+				if (_allChatUsers[i].userName == _currentUserItem.UserName)
 				{
-					ChatUser newCU = new ChatUser();
-					newCU.userName = un;
-					newCU.isConnected = ('1' == word[word.Length - 2]) ? true : false;
-					newCU.haveMsg = ('1' == word[word.Length - 1]) ? true : false;
-					newCU.msgItems = new List<MessageItem>();
-					_allChatUsers.Add(newCU);
+					_allChatUsers[i].msgItems.Add(msg);
+					break;
 				}
 			}
 
-			PopulateInemsUser();
+			_client.SendMsg(_userName, _currentUserItem.UserName, textMsg + " " + date);
 		}
 
-		// Отрисовка списка всех пользователей
 		private void PopulateInemsUser()
 		{
 			this.PanelListUsers.Controls.Clear();
 
 			_userListItems.Clear();
-			
+
 			for (int i = 0; i < _allChatUsers.Count; ++i)
 			{
 				UserListItem item = new UserListItem(this);
@@ -275,6 +297,9 @@ namespace MainWindow
 			item.SetBackColor(Color.FromArgb(132, 133, 235));
 			item.HaveMsgImage = Resources.Tick;
 		}
+
+
+		//----------- design -------------
 
 		private void topblokAuth_MouseMove(object sender, MouseEventArgs e)
 		{
@@ -348,33 +373,5 @@ namespace MainWindow
 			
 		}
 
-		private void SedMsfFromMe(string textMsg)
-		{
-			if (textMsg == "" | textMsg == "\t" | _currentUserItem == null)
-				return;
-
-			string date = DateTime.Now.ToString();
-
-			MessageItem msg = new MessageItem(
-				textMsg,
-				date,
-				_userName + _currentUserItem.UserName + date,
-				_currentUserItem.UserName,
-				true
-			);
-
-			this.msgFlowPanel.Controls.Add(msg);
-
-			for (int i = 0; i < _allChatUsers.Count; ++i)
-			{
-				if (_allChatUsers[i].userName == _currentUserItem.UserName)
-				{
-					_allChatUsers[i].msgItems.Add(msg);
-					break;
-				}
-			}
-
-			_client.SendMsg(_userName, _currentUserItem.UserName, textMsg + " " + date);
-		}
 	}
 }

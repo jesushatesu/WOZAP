@@ -25,7 +25,9 @@ namespace Tests_MainWindow
 		public void DesignerUserWindow()
 		{
 			InitializationsTest();
+
 			string userName = _testUW.GetUserName();
+
 			Assert.AreEqual(_testNameUser, userName);
 		}
 
