@@ -27,13 +27,13 @@ namespace DataBase
 
 	public class DataBase : IDataBase
 	{
-		private static string[] UnsentMsg;
+		public static string connectionString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=.\Database1.mdf;Integrated Security=True";
 
 		public int GetId(string username)
 		{
 			int iden = 0;
 			string name = username;
-			string connectionString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename='D:\5 сем\ТИМП\WOZAP\DataBase\Database1.mdf';Integrated Security=True";
+			
 			DataClasses1DataContext db = new DataClasses1DataContext(connectionString);
 
 			foreach (var user in db.GetTable<User>().OrderByDescending(u => u.Id))
@@ -50,7 +50,7 @@ namespace DataBase
 		{
 			int b = GetId(toUser);
 			int a = GetId(fromUser);
-			string connectionString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename='D:\5 сем\ТИМП\WOZAP\DataBase\Database1.mdf';Integrated Security=True";
+			
 			DataClasses1DataContext db2 = new DataClasses1DataContext(connectionString);
 			foreach (var user in db2.GetTable<Message>().OrderByDescending(u => u.Id2))
 			{
@@ -63,13 +63,12 @@ namespace DataBase
 		}
 		public DataBase()
 		{
-			UnsentMsg = new string[3] { " ", " ", " " };
 		}
 
 
 		public void AddUser(string user)
 		{
-			string connectionString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename='D:\5 сем\ТИМП\WOZAP\DataBase\Database1.mdf';Integrated Security=True";
+			
 			DataClasses1DataContext db = new DataClasses1DataContext(connectionString);
 			User user1 = new User { name = user };
 			
@@ -81,7 +80,7 @@ namespace DataBase
 		{
 			string a = from; string b = to;
 			string msg = msgg;
-			string connectionString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename='D:\5 сем\ТИМП\WOZAP\DataBase\Database1.mdf';Integrated Security=True";
+			
 			DataClasses1DataContext db2 = new DataClasses1DataContext(connectionString);
 
 			int ida = GetId(a);
@@ -97,7 +96,7 @@ namespace DataBase
 			int b;
 			a = GetId(userNameFrom);
 			b = GetId(userNameTo);
-			string connectionString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename='D:\5 сем\ТИМП\WOZAP\DataBase\Database1.mdf';Integrated Security=True";
+			
 			DataClasses1DataContext db2 = new DataClasses1DataContext(connectionString);
 			int count = 0;
 			foreach (var user in db2.GetTable<Message>().OrderByDescending(u => u.Id2))
@@ -132,7 +131,7 @@ namespace DataBase
 
 		public string[] GetUsers()
 		{
-			string connectionString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename='C:\Users\JesusHatesU\Desktop\WOZAP\DataBase\Database1.mdf';Integrated Security=True";
+			
 			DataClasses1DataContext db = new DataClasses1DataContext(connectionString);
 
 			Table<User> users = db.GetTable<User>();
@@ -157,19 +156,18 @@ namespace DataBase
 			return str;
 		}
 
-    public void DeleteMsg(string fromUser, string toUser)
+        public void DeleteMsg(string fromUser, string toUser)
 		{
 			int a = GetId(fromUser);
 			int b = GetId(toUser);
-			string connectionString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\228\Desktop\WOZAP\DataBase\Database1.mdf;Integrated Security=True";
+			
 			DataClasses1DataContext db2 = new DataClasses1DataContext(connectionString);
 			foreach (var user in db2.GetTable<Message>())
 			{
 				if (user.Id1 == a && user.Id2 == b && user.Msg != null)
 					db2.GetTable<Message>().DeleteOnSubmit(user);
-				db2.SubmitChanges();
+				    db2.SubmitChanges();
 			}
-
 		}
     }
 
@@ -177,22 +175,8 @@ namespace DataBase
 	{
 		static void Main(string[] args)
 		{
-			//string fromUser = "ilya";
-			//string touser = "tema";
 			DataBase db = new DataBase();
-			string[] a = db.GetMsg("vadik", "sada");
-			
-
-			//int a = db.GetId(fromUser);
-			//int b = db.GetId(touser);
-			//string connectionString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\228\Desktop\WOZAP\DataBase\Database1.mdf;Integrated Security=True";
-			//DataClasses1DataContext db2 = new DataClasses1DataContext(connectionString);
-			//foreach (var user in db2.GetTable<Message>())
-			//{
-			//	if (user.Id1 == a && user.Id2 == b && user.Msg != null)
-			//		db2.GetTable<Message>().DeleteOnSubmit(user);
-			//	    db2.SubmitChanges();
-			//}
+			string[] a = db.GetMsg("tema", "ilya");
 		}
 	}
 }
