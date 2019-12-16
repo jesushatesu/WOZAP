@@ -14,12 +14,26 @@ namespace WOZAP
         {
             var db = new DataBase.DataBase();
             var service = new Service(db);
-            using (var host = new ServiceHost(service, new Uri("http://localhost:8080/")))
+            using (ServiceHost host = new ServiceHost(service, new Uri("localhost:8080")))
             {
-                host.Open();
-                Console.WriteLine("host started!");
-                Console.ReadLine();
-                System.Console.Read();
+                try
+                {
+                    host.Open();
+                    Console.WriteLine("host started!");
+                    Console.ReadLine();
+
+                    host.Close();
+                }
+                catch (TimeoutException timeProblem)
+                {
+                    Console.WriteLine(timeProblem.Message);
+                    Console.ReadLine();
+                }
+                catch (CommunicationException commProblem)
+                {
+                    Console.WriteLine(commProblem.Message);
+                    Console.ReadLine();
+                }
             }
         }
     }

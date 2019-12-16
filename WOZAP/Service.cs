@@ -148,12 +148,12 @@ namespace WOZAP
         {
             string[] allUsers = dataBase.GetUsers();
 
+            users = new List<User>();
             foreach (string usr in allUsers)
             {
                 User user = new User { name = usr, isConnected = false };
 				users.Add(user);
             }
-
 
             return users;
         }

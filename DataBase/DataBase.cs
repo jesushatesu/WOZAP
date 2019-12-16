@@ -150,7 +150,7 @@ namespace DataBase
 
 		public string[] GetUsers()
 		{
-			string connectionString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename='D:\5 сем\ТИМП\WOZAP\DataBase\Database1.mdf';Integrated Security=True";
+			string connectionString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename='C:\Users\JesusHatesU\Desktop\WOZAP\DataBase\Database1.mdf';Integrated Security=True";
 			DataClasses1DataContext db = new DataClasses1DataContext(connectionString);
 
 			// Получаем таблицу пользователей
