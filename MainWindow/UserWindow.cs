@@ -13,7 +13,7 @@ namespace MainWindow
 		private string _userName;
 		private List<ChatUser> _allChatUsers;
 		private Point _lastPoint;
-		private UserListItem _currentUserItem;
+		private int _idCurrentUserItem;
 		private List<UserListItem> _userListItems;
 		private ServiceClient _client;
 
@@ -21,7 +21,7 @@ namespace MainWindow
 		{
 			InitializeComponent();
 			
-			_currentUserItem = new UserListItem(this);
+			_idCurrentUserItem = -1;
 			_userName = userName;
 			_singInWindow = singInWindow;
 			this.userName.Text = userName;
@@ -60,9 +60,10 @@ namespace MainWindow
 
 					_allChatUsers[i].msgItems.Add(msgItem);
 
-					if (_currentUserItem.UserName == fromUser)
+					if (_userListItems[_idCurrentUserItem].UserName == fromUser)
 					{
 						this.msgFlowPanel.Controls.Add(msgItem);
+						this.msgFlowPanel.AutoScrollPosition = new Point(msgItem.Left, msgItem.Top);
 					}
 					else
 					{
@@ -146,8 +147,8 @@ namespace MainWindow
 					_userListItems[i].ConnectedImage = Resources.Circle_Red;
 			}
 
-			if (_currentUserItem.UserName == userName)
-				_currentUserItem.ConnectedImage = Resources.Circle_Red;
+			if (_userListItems[_idCurrentUserItem].UserName == userName)
+				_userListItems[_idCurrentUserItem].ConnectedImage = Resources.Circle_Red;
 
 			//PopulateInemsUser();
 		}
@@ -241,7 +242,7 @@ namespace MainWindow
 		{
 			char[] charsToTrim = { ' ', '\t', '\n', '\r' };
 			textMsg = textMsg.Trim(charsToTrim);
-			if (textMsg == "" | textMsg == "\n" | _currentUserItem == null)
+			if (textMsg == "" | textMsg == "\n" | _idCurrentUserItem == -1)
 				return;
 
 			string date = DateTime.Now.ToString();
@@ -249,23 +250,23 @@ namespace MainWindow
 			MessageItem msg = new MessageItem(
 				textMsg,
 				date,
-				_userName + _currentUserItem.UserName + date,
-				_currentUserItem.UserName,
+				_userName + _userListItems[_idCurrentUserItem].UserName + date,
+				_userListItems[_idCurrentUserItem].UserName,
 				true
 			);
 
 			this.msgFlowPanel.Controls.Add(msg);
-
+			this.msgFlowPanel.AutoScrollPosition = new Point(msg.Left, msg.Top);
 			for (int i = 0; i < _allChatUsers.Count; ++i)
 			{
-				if (_allChatUsers[i].userName == _currentUserItem.UserName)
+				if (_allChatUsers[i].userName == _userListItems[_idCurrentUserItem].UserName)
 				{
 					_allChatUsers[i].msgItems.Add(msg);
 					break;
 				}
 			}
 
-			_client.SendMsg(_userName, _currentUserItem.UserName, textMsg + " " + date);
+			_client.SendMsg(_userName, _userListItems[_idCurrentUserItem].UserName, textMsg + " " + date);
 		}
 
 		private void PopulateInemsUser()
@@ -290,11 +291,6 @@ namespace MainWindow
 				else
 					item.HaveMsgImage = Resources.Tick;
 
-				if (item == _currentUserItem)
-				{
-					СhangeCurrentUserItem(item);
-				}
-
 				_userListItems.Add(item);
 				this.PanelListUsers.Controls.Add(item);
 			}
@@ -302,9 +298,13 @@ namespace MainWindow
 
 		private void СhangeCurrentUserItem(UserListItem item)
 		{
-			_currentUserItem.SetBackColor(Color.White);
-			_currentUserItem.clickAtThis = false;
-			_currentUserItem = item;
+			if (_idCurrentUserItem != -1)
+			{
+				_userListItems[_idCurrentUserItem].SetBackColor(Color.White);
+				_userListItems[_idCurrentUserItem].clickAtThis = false;
+			}
+			
+			_idCurrentUserItem = _userListItems.IndexOf(item);
 			item.SetBackColor(Color.FromArgb(132, 133, 235));
 			item.HaveMsgImage = Resources.Tick;
 		}
