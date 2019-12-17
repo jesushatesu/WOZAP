@@ -29,7 +29,7 @@ namespace MainWindow
 			_userListItems = new List<UserListItem>();
 		}
 
-		// ----------- callbacks ---------------
+		// --------- callbacks ------------
 
 		public void MsgCallback(string fromUser, string toUser, string msgWithTime)
 		{
@@ -39,7 +39,7 @@ namespace MainWindow
 			// format msgWithTime: "some msg 12.11.19"
 			string[] words = msgWithTime.Split(new char[] { ' ' });
 			string timeMsg = DateTime.Now.ToString();
-			if (words.Length >= 2)
+			if (words.Length > 2)
 			{
 				timeMsg = words[words.Length - 2];
 				timeMsg += words[words.Length - 1];
@@ -51,33 +51,41 @@ namespace MainWindow
 			if (msgWithoutTime == "  " | msgWithoutTime == "\n  ")
 				return;
 
+			int indexUser = -1;
 			for (int i = 0; i < _allChatUsers.Count; ++i)
-			{
 				if (_allChatUsers[i].userName == fromUser)
 				{
-					MessageItem msgItem = new MessageItem(msgWithoutTime, timeMsg,
+					indexUser = i;
+					break;
+				} 
+
+			if (indexUser != -1)
+			{
+				MessageItem msgItem = new MessageItem(msgWithoutTime, timeMsg,
 							_userName + fromUser + timeMsg, fromUser, false);
 
-					_allChatUsers[i].msgItems.Add(msgItem);
-
+				_allChatUsers[indexUser].msgItems.Add(msgItem);
+				bool isCurrUser = false;
+				if (_idCurrentUserItem != -1)
 					if (_userListItems[_idCurrentUserItem].UserName == fromUser)
+						isCurrUser = true;
+
+				if (isCurrUser)
+				{
+					this.msgFlowPanel.Controls.Add(msgItem);
+					this.msgFlowPanel.AutoScrollPosition = new Point(msgItem.Left, msgItem.Top);
+				}
+				else
+				{
+					_allChatUsers.ToArray()[indexUser].haveMsg = true;
+					for (int k = 0; k < _userListItems.Count; ++k)
 					{
-						this.msgFlowPanel.Controls.Add(msgItem);
-						this.msgFlowPanel.AutoScrollPosition = new Point(msgItem.Left, msgItem.Top);
-					}
-					else
-					{
-						_allChatUsers.ToArray()[i].haveMsg = true;
-						for (int k = 0; k < _userListItems.Count; ++k)
+						if (_userListItems[k].UserName == fromUser)
 						{
-							if (_userListItems[k].UserName == fromUser)
-							{
-								_userListItems[k].HaveMsgImage = Resources.haveMsg;
-								break;
-							}
+							_userListItems[k].HaveMsgImage = Resources.haveMsg;
+							break;
 						}
 					}
-					break;
 				}
 			}
 		}
@@ -146,29 +154,28 @@ namespace MainWindow
 				if (_userListItems[i].UserName == userName)
 					_userListItems[i].ConnectedImage = Resources.Circle_Red;
 			}
-
-			if (_userListItems[_idCurrentUserItem].UserName == userName)
-				_userListItems[_idCurrentUserItem].ConnectedImage = Resources.Circle_Red;
-
-			//PopulateInemsUser();
 		}
 
-		// ----------- get ---------------
+		// --------- get / set -------------
 
 		public string GetUserName()
 		{
 			return _userName;
 		}
 
-		public List<string> GetAllUsersName()
+		public List<MessageItem> GetMsgChatUsers(string userName)
 		{
-			List<string> usersName = new List<string> { };
+			List<MessageItem> mi = new List<MessageItem>();
 			foreach (ChatUser cu in _allChatUsers)
 			{
-				usersName.Add(cu.userName);
+				if (cu.userName == userName)
+				{
+					mi = cu.msgItems;
+					break;
+				}
 			}
 
-			return usersName;
+			return mi;
 		}
 
 		public bool ThisUserIsConnect(string username)
@@ -186,7 +193,12 @@ namespace MainWindow
 			return isConnect;
 		}
 
-		// ---------- chat logic ---------
+		public void SetIdCurrentUserItem(int id)
+		{
+			_idCurrentUserItem = id;
+		}
+
+		// ---------- logic design ---------
 
 		private void UserWindow_Load(object sender, EventArgs e)
 		{
@@ -296,7 +308,7 @@ namespace MainWindow
 			}
 		}
 
-		private void СhangeCurrentUserItem(UserListItem item)
+		public void СhangeCurrentUserItem(UserListItem item)
 		{
 			if (_idCurrentUserItem != -1)
 			{
@@ -310,7 +322,7 @@ namespace MainWindow
 		}
 
 
-		//----------- design -------------
+		//--------- design winforms ----------
 
 		private void topblokAuth_MouseMove(object sender, MouseEventArgs e)
 		{

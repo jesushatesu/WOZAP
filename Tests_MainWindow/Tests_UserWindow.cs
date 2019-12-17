@@ -11,6 +11,7 @@ namespace Tests_MainWindow
 		private SingInWindow _sw;
 		private const string _testNameUser = "testNameUser";
 		private const string _newNameUser = "newNameUser";
+		private const string _someMsg = "some msg";
 		private UserWindow _testUW;
 		private UserWindow _newUser;
 
@@ -52,6 +53,22 @@ namespace Tests_MainWindow
 			_testUW.DisconnectUserCallback(_newNameUser);
 
 			Assert.IsFalse(_testUW.ThisUserIsConnect(_newNameUser));
+		}
+
+		[TestMethod]
+		public void MsgCallbackFromOnlineUser()
+		{
+			InitializationsTest();
+
+			_testUW.ConnectUserCallback(_newNameUser);
+
+			_testUW.SetIdCurrentUserItem(0);
+
+			_testUW.MsgCallback(_newNameUser, _testNameUser, _someMsg);
+
+			List<MessageItem> mi = _testUW.GetMsgChatUsers(_newNameUser);
+
+			Assert.AreEqual<string>(_someMsg, mi[0].GetMsg());
 		}
 	}
 }
